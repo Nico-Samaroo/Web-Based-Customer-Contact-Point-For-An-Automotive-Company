@@ -1,36 +1,33 @@
 <template>
-    <div v-if="currentCustomer" class="edit-form">
-        <h4>Customer</h4>
-        <form>
-            
-        <div class="form-group">
+    <div v-if="customer" class="edit-form">
+        <h4>Editing: {{ customer.first_name }} {{ customer.last_name }}</h4>
+
+        <div class="mb-3">
             <label for="first_name">First Name</label>
             <input type="text" class="form-control" id="first_name" required v-model="customer.first_name"
                 name="first_name" />
         </div>
 
-        <div class="form-group">
+        <div class="mb-3">
             <label for="last_name">Last Name</label>
             <input class="form-control" id="last_name" required v-model="customer.last_name" name="last_name" />
         </div>
 
-        <div class="form-group">
+        <div class="mb-3">
             <label for="email">Email</label>
-            <input class="form-control" id="email" required v-model="customer.email" name="email" />
+            <input type="email" class="form-control" id="email" required v-model="customer.email" name="email" />
         </div>
 
-        <div class="form-group">
+        <div class="mb-3">
             <label for="contact_no">Contact No.</label>
-            <input class="form-control" id="contact_no" required v-model="customer.contact_no" name="contact_no" />
+            <input type="tel" class="form-control" id="contact_no" required v-model="customer.contact_no" name="contact_no" />
         </div>
 
-        </form>
-
-        <button class="badge badge-danger mr-2" @click="deleteCustomer">
+        <button class="btn btn-danger" @click="deleteCustomer">
             Delete
         </button>
 
-        <button type="submit" class="badge badge-success" @click="updateCustomer">
+        <button type="submit" class="btn btn-success mx-4" @click="updateCustomer">
             Update
         </button>
         <p>{{ message }}</p>
@@ -43,13 +40,13 @@
 </template>
 
 <script>
-import CustomerDataService from "../services/CustomerDataService";
+import CustomerDataService from "../../services/CustomerDataService";
 
 export default {
     name: "view-customer",
     data() {
         return {
-            currentCustomer: null,
+            customer: null,
             message: ''
         };
     },
@@ -57,26 +54,8 @@ export default {
         getCustomer(id) {
             CustomerDataService.get(id)
                 .then(response => {
-                    this.currentCustomer = response.data;
-                    console.log(response.data);
-                })
-                .catch(e => {
-                    console.log(e);
-                });
-        },
-
-        updatePublished(status) {
-            var data = {
-                id: this.currentCustomer.id,
-                title: this.currentCustomer.title,
-                description: this.currentCustomer.description,
-                published: status
-            };
-
-            CustomerDataService.update(this.currentCustomer.id, data)
-                .then(response => {
-                    this.currentCustomer.published = status;
-                    console.log(response.data);
+                    this.customer = response.data;
+                    // console.log(response.data);  
                 })
                 .catch(e => {
                     console.log(e);
@@ -84,7 +63,7 @@ export default {
         },
 
         updateCustomer() {
-            CustomerDataService.update(this.currentCustomer.id, this.currentCustomer)
+            CustomerDataService.update(this.customer.id, this.customer)
                 .then(response => {
                     console.log(response.data);
                     this.message = 'The customer was updated successfully!';
@@ -95,7 +74,7 @@ export default {
         },
 
         deleteCustomer() {
-            CustomerDataService.delete(this.currentCustomer.id)
+            CustomerDataService.delete(this.customer.id)
                 .then(response => {
                     console.log(response.data);
                     this.$router.push({ name: "customers" });
@@ -113,8 +92,7 @@ export default {
 </script>
 
 <style>
-.edit-form {
-    max-width: 300px;
-    margin: auto;
+input {
+    margin-bottom: 2rem;
 }
 </style>

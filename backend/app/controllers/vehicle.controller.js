@@ -36,6 +36,7 @@ exports.create = (req, res) => {
 // Retrieve all Vehicles from the database.
 exports.findAll = (req, res) => {
   Vehicle.find()
+    .populate('customer_id')
     .then(data => {
       res.send(data);
     })

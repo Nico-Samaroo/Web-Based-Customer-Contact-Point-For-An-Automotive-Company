@@ -21,11 +21,11 @@ module.exports = mongoose => {
         type: Number,
         required: false
       },
-      customer_id: [{
+      customer_id: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: "customer"
-      }],
+      },
     },
     { timestamps: true }
   );

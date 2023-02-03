@@ -42,8 +42,12 @@
                     <label><strong>Contact No.:</strong></label> {{ currentCustomer.contact_no }}
                 </div>
 
-                <a class="btn btn-warning" :href="'/customers/' + currentCustomer.id">
+                <a class="btn btn-warning" :href="'/customer/update/' + currentCustomer.id">
                     Edit
+                </a>
+
+                <a class="btn btn-danger mx-2" @click="deleteCustomer(currentCustomer.id)">
+                    Delete
                 </a>
             </div>
             <div v-else>
@@ -55,10 +59,11 @@
 </template>
 
 <script>
-import CustomerDataService from "../services/CustomerDataService";
+import CustomerDataService from "../../services/CustomerDataService";
+import swal from 'sweetalert';
 
 export default {
-    name: "customers-list",
+    name: "list-customers",
     data() {
         return {
             loading: false,
@@ -91,6 +96,28 @@ export default {
         setActiveCustomer(customer, index) {
             this.currentCustomer = customer;
             this.currentIndex = index;
+        },
+
+        deleteCustomer(id) {
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover it!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((confirmed) => {
+                if(confirmed) {
+                    CustomerDataService.delete(id)
+                        .then(response => {
+                            console.log(response.data);
+                            this.refreshList();
+                        })
+                        .catch(e => {
+                            console.log(e);
+                        });
+                }
+            });
         },
 
         removeAllCustomers() {

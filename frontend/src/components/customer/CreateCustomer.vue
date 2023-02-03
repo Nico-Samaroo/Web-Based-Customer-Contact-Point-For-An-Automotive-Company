@@ -1,5 +1,8 @@
 <template>
-    <form class="submit-form">
+    <div class="submit-form">
+        <!-- <pre>
+            First Name: {{ customer.first_name }}
+        </pre> -->
         <div class="mb-3">
             <label for="first_name">First Name</label>
             <input type="text" class="form-control" id="first_name" required v-model="customer.first_name" name="first_name" />
@@ -12,31 +15,31 @@
 
         <div class="mb-3">
             <label for="email">Email</label>
-            <input class="form-control" id="email" required v-model="customer.email" name="email" />
+            <input type="email" class="form-control" id="email" required v-model="customer.email" name="email" />
         </div>
 
         <div class="mb-3">
             <label for="contact_no">Contact No.</label>
-            <input class="form-control" id="contact_no" required v-model="customer.contact_no" name="contact_no" />
+            <input type="tel" class="form-control" id="contact_no" required v-model="customer.contact_no" name="contact_no" />
         </div>
 
-        <button @click="saveCustomer" class="btn btn-success">Submit</button>
+        <button @click="saveCustomer()" class="btn btn-success">Create</button>
 
-    </form>
+    </div>
 </template>
 
 <script>
-import CustomerDataService from "../services/CustomerDataService";
+import CustomerDataService from "../../services/CustomerDataService";
 
 export default {
-    name: "add-customer",
+    name: "create-customer",
     data() {
         return {
             customer: {
-                first_name: String,
-                last_name: String,
-                email: String,
-                contact_no: String,
+                first_name: '',
+                last_name: '',
+                email: '',
+                contact_no: '',
             },
         };
     },
@@ -52,8 +55,8 @@ export default {
             CustomerDataService.create(data)
                 .then(response => {
                     this.customer.id = response.data.id;
-                    console.log(response.data);
-                    this.submitted = true;
+                    // console.log(response.data);
+                    this.$router.push({ name: "list-customers" });
                 })
                 .catch(e => {
                     console.log(e);
