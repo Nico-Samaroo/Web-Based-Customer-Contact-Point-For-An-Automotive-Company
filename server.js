@@ -9,10 +9,10 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 
-// parse requests of content-type - application/json
+// parse requests of content-type 
 app.use(express.json());
 
-// parse requests of content-type - application/x-www-form-urlencoded
+// parse requests of content-type 
 app.use(express.urlencoded({ extended: true }));
 
 const db = require("./app/models");
@@ -35,6 +35,8 @@ app.get("/", (req, res) => {
 });
 
 require("./app/routes/customer.routes")(app);
+require("./app/routes/rental.routes")(app);
+require("./app/routes/rental_appointments.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
