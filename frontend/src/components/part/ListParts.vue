@@ -5,9 +5,9 @@
     <div v-if="parts" class="list row">
         <div class="col-md-8">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search by License No." v-model="license_no" />
+                <input type="text" class="form-control" placeholder="Search by Code." v-model="code" />
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" @click="searchLicenseNo">
+                    <button class="btn btn-outline-secondary" type="button" @click="searchCode">
                         Search
                     </button>
                 </div>

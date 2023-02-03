@@ -24,6 +24,25 @@
           </ul>
         </li>
 
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Appointments
+          </a>
+          <ul class="dropdown-menu">
+            <li><router-link to="/appointment/create" class="dropdown-item">Create Appointment</router-link></li>
+            <li><router-link to="/appointment/list" class="dropdown-item">Appointment List</router-link></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Parts
+          </a>
+          <ul class="dropdown-menu">
+            <li><router-link to="/part/create" class="dropdown-item">Create Part</router-link></li>
+            <li><router-link to="/part/list" class="dropdown-item">Part List</router-link></li>
+          </ul>
+        </li>
 
       </div>
     </nav>

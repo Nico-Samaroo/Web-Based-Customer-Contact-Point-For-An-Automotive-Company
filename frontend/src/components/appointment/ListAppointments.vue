@@ -4,7 +4,8 @@
     </div>
     <div class="row">
         <div class="col-12">
-            
+            <vue-cal style="height: 800px" active-view="month" :events="appointments" />
+            <pre>{{ appointments || json}}</pre>
         </div>
     </div>
 </template>
@@ -12,16 +13,16 @@
 <script>
 import AppointmentDataService from "../../services/AppointmentDataService";
 import swal from "sweetalert";
+import VueCal from 'vue-cal'
+import 'vue-cal/dist/vuecal.css'
 
 export default {
     name: "list-appointments",
+    components: { VueCal },
     data() {
         return {
             loading: false,
             appointments: [],
-            currentAppointment: null,
-            currentIndex: -1,
-            license_no: ""
         };
     },
     methods: {
@@ -31,7 +32,7 @@ export default {
                 .then(response => {
                     this.loading = false;
                     this.appointments = response.data;
-                    // console.log(response.data);
+                    console.log(response.data);
                 })
                 .catch(e => {
                     console.log(e);

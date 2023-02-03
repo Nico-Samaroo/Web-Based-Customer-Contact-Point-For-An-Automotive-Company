@@ -1,17 +1,22 @@
 module.exports = mongoose => {
   var schema = mongoose.Schema(
     {
-      date: {
+      start: {
         type: Date,
         required: true
       },
-      appointment: {
-        type: String,
-        required: false
+      end: {
+        type: Date,
+        required: true
+      },
+      vehicle: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "vehicle"
       },
       services: [{
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
+        required: false,
         ref: "service"
       }],
       parts: [{
@@ -26,6 +31,8 @@ module.exports = mongoose => {
   schema.method("toJSON", function() {
     const { __v, _id, ...object } = this.toObject();
     object.id = _id;
+    // object.label = object.vehicle.license_no;
+    // object.start = object.start;
     return object;
   });
 

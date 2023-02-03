@@ -4,14 +4,15 @@ const Appointment = db.appointments;
 // Create and Save a new Appointment
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.date) {
+  if (!req.body.start) {
     res.status(400).send({ message: "Content can not be empty!" });
     return;
   }
 
   // Create a Appointment
   const appointment = new Appointment({
-    date: req.body.date,
+    start: req.body.start,
+    end: req.body.end,
     vehicle: req.body.vehicle,
     services: req.body.services,
     parts: req.body.parts
@@ -35,6 +36,7 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   Appointment.find()
     .then(data => {
+      console.log(data);
       res.send(data);
     })
     .catch(err => {
