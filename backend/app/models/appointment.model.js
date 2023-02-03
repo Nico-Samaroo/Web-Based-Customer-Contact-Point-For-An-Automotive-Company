@@ -1,31 +1,24 @@
 module.exports = mongoose => {
   var schema = mongoose.Schema(
     {
-      license_no: {
-        type: String,
+      date: {
+        type: Date,
         required: true
       },
-      chassis_no: {
+      appointment: {
         type: String,
         required: false
       },
-      make: {
-        type: String,
-        required: true
-      },
-      model: {
-        type: String,
-        required: true
-      },
-      year: {
-        type: Number,
-        required: false
-      },
-      customer: {
+      services: [{
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: "customer"
-      },
+        ref: "service"
+      }],
+      parts: [{
+        type: mongoose.Schema.Types.ObjectId,
+        required: false,
+        ref: "part"
+      }],
     },
     { timestamps: true }
   );
@@ -36,6 +29,6 @@ module.exports = mongoose => {
     return object;
   });
 
-  const Vehicle = mongoose.model("vehicle", schema);
-  return Vehicle;
+  const Appointment = mongoose.model("appointment", schema);
+  return Appointment;
 };

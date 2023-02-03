@@ -34,15 +34,81 @@ const routes = [
     name: "update-vehicle",
     component: () => import("./components/vehicle/UpdateVehicle")
   },
-  {
+ /* {
     path: "/vehicle/view/:id",
     name: "view-vehicle",
     component: () => import("./components/vehicle/ViewVehicle")
-  },
+  },*/
   {
     path: "/vehicle/create/:id?",
     name: "create-vehicle",
     component: () => import("./components/vehicle/CreateVehicle")
+  },
+
+  {
+    path: "/appointment/list",
+    alias: "/appointments",
+    name: "list-appointments",
+    component: () => import("./components/appointment/ListAppointments")
+  },
+ /* {
+    path: "/appointment/update/:id",
+    name: "update-appointment",
+    component: () => import("./components/appointment/UpdateAppointment")
+  },*/
+  /*{
+    path: "/appointment/view/:id",
+    name: "view-appointment",
+    component: () => import("./components/appointment/ViewAppointment")
+  },*/
+  /*{
+    path: "/appointment/create/:id?",
+    name: "create-appointment",
+    component: () => import("./components/appointment/CreateAppointment")
+  },*/
+
+  {
+    path: "/part/list",
+    alias: "/parts",
+    name: "list-parts",
+    component: () => import("./components/part/ListParts")
+  },
+  {
+    path: "/part/update/:id",
+    name: "update-part",
+    component: () => import("./components/part/UpdatePart")
+  },
+  /*{
+    path: "/part/view/:id",
+    name: "view-part",
+    component: () => import("./components/part/ViewPart")
+  },*/
+  {
+    path: "/part/create/:id?",
+    name: "create-part",
+    component: () => import("./components/part/CreatePart")
+  },
+
+  {
+    path: "/service/list",
+    alias: "/services",
+    name: "list-services",
+    component: () => import("./components/service/ListServices")
+  },
+  {
+    path: "/service/update/:id",
+    name: "update-service",
+    component: () => import("./components/service/UpdateService")
+  },
+  /*{
+    path: "/service/view/:id",
+    name: "view-service",
+    component: () => import("./components/service/ViewService")
+  },*/
+  {
+    path: "/service/create/:id?",
+    name: "create-service",
+    component: () => import("./components/service/CreateService")
   }
 ];
 

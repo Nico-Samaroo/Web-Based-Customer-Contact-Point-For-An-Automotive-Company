@@ -3,12 +3,12 @@
 
         <div v-if="customer">
             <h4>Adding Vehicle  to : {{ customer.first_name }} {{ customer.last_name }}</h4>
-            <input type="hidden" name="customer_id" value="{{ customer.id }}">
+            <input type="hidden" name="customer" value="{{ customer.id }}">
         </div>
 
         <div v-else class="mb-3">
             <h4>Creating Vehicle</h4>
-            <select name="customer_id" id="customer_id" class="form-control" v-model="vehicle.customer_id" required>
+            <select name="customer" id="customer" class="form-control" v-model="vehicle.customer" required>
                 <option value="">Please select a customer</option>
                 <option v-for="customer in customers" :key="customer.id" :value="customer.id">{{ customer.first_name }} {{ customer.last_name }}</option>
             </select>
@@ -66,7 +66,7 @@ export default {
                 make: '',
                 model: '',
                 year: '',
-                customer_id: '',
+                customer: '',
             },
             customer: null,
             customers: []
@@ -120,9 +120,9 @@ export default {
         }
     },
     mounted() {
-        let customer_id = this.$route.params.id;
-        if(customer_id) {
-            this.getCustomer(customer_id);
+        let customer = this.$route.params.id;
+        if(customer) {
+            this.getCustomer(customer);
         } else {
             this.retrieveCustomers();
         }

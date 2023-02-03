@@ -3,7 +3,7 @@
         <h4>Editing: {{ vehicle.license_no }}</h4>
 
         <div class="mb-3">
-            <select name="customer_id" id="customer_id" class="form-control" v-model="vehicle.customer_id" :value="vehicle.customer_id" required>
+            <select name="customer" id="customer" class="form-control" v-model="vehicle.customer" :value="vehicle.customer" required>
                 <option value="">Please select a customer</option>
                 <option v-for="customer in customers" :key="customer.id" :value="customer.id">{{ customer.first_name }} {{ customer.last_name }}</option>
             </select>

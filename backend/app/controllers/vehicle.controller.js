@@ -16,7 +16,7 @@ exports.create = (req, res) => {
     make: req.body.make,
     model: req.body.model,
     year: req.body.year,
-    customer_id: req.body.customer_id
+    customer: req.body.customer
   });
 
   // Save Vehicle in the database
@@ -36,7 +36,7 @@ exports.create = (req, res) => {
 // Retrieve all Vehicles from the database.
 exports.findAll = (req, res) => {
   Vehicle.find()
-    .populate('customer_id')
+    .populate('customer')
     .then(data => {
       res.send(data);
     })

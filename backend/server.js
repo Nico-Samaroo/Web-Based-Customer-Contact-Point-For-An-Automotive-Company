@@ -41,6 +41,9 @@ app.get("/", (req, res) => {
 
 require("./app/routes/customer.routes")(app);
 require("./app/routes/vehicle.routes")(app);
+require("./app/routes/appointment.routes")(app);
+require("./app/routes/part.routes")(app);
+require("./app/routes/service.routes")(app);
 
 // set port, listen for requests
 // node server.js

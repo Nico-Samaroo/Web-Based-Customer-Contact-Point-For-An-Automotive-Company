@@ -30,7 +30,7 @@
             <div v-if="currentVehicle">
                 <h4>Vehicles</h4>
                 <div>
-                    <label><strong>Customer Name:</strong></label> {{ currentVehicle.customer.first_name }}
+                    <label><strong>Customer Name:</strong></label> {{ currentVehicle.customer.first_name +' '+ currentVehicle.customer.last_name }}
                 </div>
                 <div>
                     <label><strong>License No.:</strong></label> {{ currentVehicle.license_no }}
@@ -97,6 +97,7 @@ export default {
         },
 
         setActiveVehicle(vehicle, index) {
+            console.log(vehicle);
             this.currentVehicle = vehicle;
             this.currentIndex = index;
         },
