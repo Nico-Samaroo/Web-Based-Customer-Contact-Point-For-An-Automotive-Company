@@ -4,8 +4,8 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <vue-cal style="height: 800px" active-view="month" :events="appointments" />
             <pre>{{ appointments || json}}</pre>
+            <vue-cal style="height: 800px" active-view="month" :events="appointments" />
         </div>
     </div>
 </template>
@@ -32,7 +32,13 @@ export default {
                 .then(response => {
                     this.loading = false;
                     this.appointments = response.data;
-                    console.log(response.data);
+                    this.appointments.forEach(function (doc){
+                        const beginDate = new Date(doc.begin);
+                        const endDate = new Date(doc.finish); 
+                        doc.start = beginDate.getFullYear()+"-"+(beginDate.getMonth()+1)+"-"+beginDate.getDate() + " " + beginDate.getHours() + ":" + beginDate.getMinutes() + ":" + beginDate.getSeconds();
+                        doc.end = endDate.getFullYear()+"-"+(endDate.getMonth()+1)+"-"+endDate.getDate() + " " + endDate.getHours() + ":" + endDate.getMinutes() + ":" + endDate.getSeconds();
+                    });
+                    // console.log(response.data);
                 })
                 .catch(e => {
                     console.log(e);

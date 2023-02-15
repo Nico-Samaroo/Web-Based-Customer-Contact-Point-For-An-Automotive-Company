@@ -64,7 +64,7 @@ export default {
             parts: [],
             currentPart: null,
             currentIndex: -1,
-            license_no: ""
+            code: ""
         };
     },
     methods: {
@@ -126,8 +126,8 @@ export default {
                 });
         },
 
-        searchLicenseNo() {
-            PartDataService.findByLicenseNo(this.license_no)
+        searchCode() {
+            PartDataService.findByCode(this.code)
                 .then(response => {
                     this.parts = response.data;
                     console.log(response.data);

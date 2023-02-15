@@ -1,11 +1,26 @@
 module.exports = mongoose => {
   var schema = mongoose.Schema(
     {
-      first_name: String,
-      last_name: String,
-      email: String,
-      contact_no: String,
-      city: String,
+      first_name: {
+          type: String,
+          required: [true, "Please include a first name"],
+      },
+      last_name: {
+          type: String,
+          required: [true, "Please include a last name"],
+      },
+      email: {
+          type: String,
+          required: [true, "Please include an email"],
+      },
+      contact_no: {
+          type: String,
+          required: [true, "Please include a contact number"],
+      },
+      city: {
+          type: String,
+          required: [true, "Please include a city"],
+      }
     },
     { timestamps: true }
   );

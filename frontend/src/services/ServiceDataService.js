@@ -25,8 +25,8 @@ class ServiceDataService {
     return http.delete(`/services`);
   }
 
-  findByFirstName(licenseNo) {
-    return http.get(`/services?license_no=${licenseNo}`);
+  findByName(name) {
+    return http.get(`/services?name=${name}`);
   }
 }
 

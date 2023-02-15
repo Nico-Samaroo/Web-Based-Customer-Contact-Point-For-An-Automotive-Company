@@ -2,87 +2,72 @@
     <div class="row">
         <div v-if="loading" class="col-12">Loading...</div>
     </div>
-    <div v-if="vehicles" class="list row">
+    <div v-if="services" class="list row">
         <div class="col-md-8">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search by License No." v-model="license_no" />
+                <input type="text" class="form-control" placeholder="Search by Name" v-model="name" />
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" @click="searchLicenseNo">
+                    <button class="btn btn-outline-secondary" type="button" @click="searchName">
                         Search
                     </button>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
-            <h4>Vehicles List</h4>
+            <h4>Services List</h4>
             <ul class="list-group">
                 <li class="list-group-item" :class="{ active: index == currentIndex }"
-                    v-for="(vehicle, index) in vehicles" :key="index" @click="setActiveVehicle(vehicle, index)">
-                    {{ vehicle.license_no }}
+                    v-for="(service, index) in services" :key="index" @click="setActiveService(service, index)">
+                    {{ service.name }}
                 </li>
             </ul>
 
-            <!-- <button class="m-3 btn btn-sm btn-danger" @click="removeAllVehicles">
+            <!-- <button class="m-3 btn btn-sm btn-danger" @click="removeAllServices">
                 Remove All
             </button> -->
         </div>
         <div class="col-md-6">
-            <div v-if="currentVehicle">
-                <h4>Vehicles</h4>
+            <div v-if="currentService">
+                <h4>Services</h4>
                 <div>
-                    <label><strong>Customer Name:</strong></label> {{ currentVehicle.customer.first_name +' '+ currentVehicle.customer.last_name }}
-                </div>
-                <div>
-                    <label><strong>License No.:</strong></label> {{ currentVehicle.license_no }}
-                </div>
-                <div>
-                    <label><strong>Chassis No.:</strong></label> {{ currentVehicle.chassis_no }}
-                </div>
-                <div>
-                    <label><strong>Make:</strong></label> {{ currentVehicle.make }}
-                </div>
-                <div>
-                    <label><strong>Model:</strong></label> {{ currentVehicle.model }}
-                </div>
-                <div>
-                    <label><strong>Year:</strong></label> {{ currentVehicle.year }}
+                    <label><strong>Name:</strong></label> {{ currentService.name }}
                 </div>
 
-                <a class="btn btn-warning" :href="'/vehicle/update/' + currentVehicle.id">Edit</a>
+                <a class="btn btn-warning" :href="'/service/update/' + currentService.id">Edit</a>
 
-                <button class="btn btn-danger mx-2" @click="deleteVehicle(currentVehicle.id)">Delete</button>
+                <button class="btn btn-danger mx-2" @click="deleteService(currentService.id)">Delete</button>
 
             </div>
             <div v-else>
                 <br />
-                <p>Please click on a Vehicle...</p>
+                <p>Please click on a Service...</p>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import VehicleDataService from "../../services/VehicleDataService";
+import ServiceDataService from "../../services/ServiceDataService";
 import swal from "sweetalert";
 
 export default {
-    name: "list-vehicles",
+    name: "list-services",
     data() {
         return {
             loading: false,
-            vehicles: [],
-            currentVehicle: null,
+            services: [],
+            currentService: null,
             currentIndex: -1,
-            license_no: ""
+            name: ""
         };
     },
     methods: {
-        retrieveVehicles() {
+        retrieveServices() {
             this.loading = true;
-            VehicleDataService.getAll()
+            ServiceDataService.getAll()
                 .then(response => {
                     this.loading = false;
-                    this.vehicles = response.data;
+                    this.services = response.data;
                     // console.log(response.data);
                 })
                 .catch(e => {
@@ -91,18 +76,18 @@ export default {
         },
 
         refreshList() {
-            this.retrieveVehicles();
-            this.currentVehicle = null;
+            this.retrieveServices();
+            this.currentService = null;
             this.currentIndex = -1;
         },
 
-        setActiveVehicle(vehicle, index) {
-            console.log(vehicle);
-            this.currentVehicle = vehicle;
+        setActiveService(service, index) {
+            console.log(service);
+            this.currentService = service;
             this.currentIndex = index;
         },
 
-        deleteVehicle(id) {
+        deleteService(id) {
             swal({
                 title: "Are you sure?",
                 text: "Once deleted, you will not be able to recover it!",
@@ -112,7 +97,7 @@ export default {
             })
             .then((confirmed) => {
                 if(confirmed) {
-                    VehicleDataService.delete(id)
+                    ServiceDataService.delete(id)
                         .then(response => {
                             console.log(response.data);
                             this.refreshList();
@@ -124,8 +109,8 @@ export default {
             });
         },
 
-        removeAllVehicles() {
-            VehicleDataService.deleteAll()
+        removeAllServices() {
+            ServiceDataService.deleteAll()
                 .then(response => {
                     console.log(response.data);
                     this.refreshList();
@@ -135,10 +120,10 @@ export default {
                 });
         },
 
-        searchLicenseNo() {
-            VehicleDataService.findByLicenseNo(this.license_no)
+        searchName() {
+            ServiceDataService.findByName(this.name)
                 .then(response => {
-                    this.vehicles = response.data;
+                    this.services = response.data;
                     console.log(response.data);
                 })
                 .catch(e => {
@@ -147,7 +132,7 @@ export default {
         }
     },
     mounted() {
-        this.retrieveVehicles();
+        this.retrieveServices();
     },
 };
 </script>

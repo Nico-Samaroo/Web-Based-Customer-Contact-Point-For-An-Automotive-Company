@@ -25,8 +25,8 @@ class AppointmentDataService {
     return http.delete(`/appointments`);
   }
 
-  findByFirstName(licenseNo) {
-    return http.get(`/appointments?license_no=${licenseNo}`);
+  findByStartDate(start) {
+    return http.get(`/appointments?start=${start}`);
   }
 }
 

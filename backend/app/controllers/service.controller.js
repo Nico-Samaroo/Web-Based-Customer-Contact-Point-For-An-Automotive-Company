@@ -4,7 +4,7 @@ const Service = db.services;
 // Create and Save a new Service
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.license_no) {
+  if (!req.body.name) {
     res.status(400).send({ message: "Content can not be empty!" });
     return;
   }
@@ -31,7 +31,6 @@ exports.create = (req, res) => {
 // Retrieve all Services from the database.
 exports.findAll = (req, res) => {
   Service.find()
-    .populate('customer')
     .then(data => {
       res.send(data);
     })

@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const morgan = require("morgan");
 
 const app = express();
 
@@ -14,6 +15,9 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use(bodyParser.json());
+
+//for logging server requests
+app.use(morgan("dev"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -44,6 +48,7 @@ require("./app/routes/vehicle.routes")(app);
 require("./app/routes/appointment.routes")(app);
 require("./app/routes/part.routes")(app);
 require("./app/routes/service.routes")(app);
+require("./app/routes/user.routes")(app);
 
 // set port, listen for requests
 // node server.js

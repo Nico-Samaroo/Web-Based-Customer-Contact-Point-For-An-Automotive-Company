@@ -1,45 +1,17 @@
 <template>
-    <div v-if="vehicle" class="edit-form">
-        <h4>Editing: {{ vehicle.license_no }}</h4>
-
+    <div v-if="service" class="edit-form">
+        <h4>Editing: {{ service.name }}</h4>
         <div class="mb-3">
-            <select name="customer" id="customer" class="form-control" v-model="vehicle.customer" :value="vehicle.customer" required>
-                <option value="">Please select a customer</option>
-                <option v-for="customer in customers" :key="customer.id" :value="customer.id">{{ customer.first_name }} {{ customer.last_name }}</option>
-            </select>
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" required v-model="service.name"
+                name="name" />
         </div>
 
-        <div class="mb-3">
-            <label for="license_no">License No.</label>
-            <input type="text" class="form-control" id="license_no" required v-model="vehicle.license_no"
-                name="license_no" />
-        </div>
-
-        <div class="mb-3">
-            <label for="chassis_no">Chassis No.</label>
-            <input class="form-control" id="chassis_no" required v-model="vehicle.chassis_no" name="chassis_no" />
-        </div>
-
-        <div class="mb-3">
-            <label for="make">Make</label>
-            <input class="form-control" id="make" required v-model="vehicle.make" name="make" />
-        </div>
-
-        <div class="mb-3">
-            <label for="model">Model</label>
-            <input class="form-control" id="model" required v-model="vehicle.model" name="model" />
-        </div>
-
-        <div class="mb-3">
-            <label for="year">Year</label>
-            <input class="form-control" id="year" required v-model="vehicle.year" name="year" />
-        </div>
-
-        <button class="btn btn-danger" @click="deleteVehicle">
+        <button class="btn btn-danger" @click="deleteService">
             Delete
         </button>
 
-        <button type="submit" class="btn btn-success mx-4" @click="updateVehicle">
+        <button type="submit" class="btn btn-success mx-4" @click="updateService">
             Update
         </button>
 
@@ -47,29 +19,26 @@
 
     <div v-else>
         <br />
-        <p>Please click on a Vehicle...</p>
+        <p>Please click on a Service...</p>
     </div>
 </template>
 
 <script>
-import VehicleDataService from "../../services/VehicleDataService";
-import CustomerDataService from "../../services/CustomerDataService";
+import ServiceDataService from "../../services/ServiceDataService";
 import swal from "sweetalert";
 
 export default {
-    name: "update-vehicle",
+    name: "update-service",
     data() {
         return {
-            vehicle: null,
-            customers: [],
-            message: ''
+            service: null,
         };
     },
     methods: {
-        getVehicle(id) {
-            VehicleDataService.get(id)
+        getService(id) {
+            ServiceDataService.get(id)
                 .then(response => {
-                    this.vehicle = response.data;
+                    this.service = response.data;
                     // console.log(response.data);  
                 })
                 .catch(e => {
@@ -77,18 +46,18 @@ export default {
                 });
         },
 
-        updateVehicle() {
-            VehicleDataService.update(this.vehicle.id, this.vehicle)
+        updateService() {
+            ServiceDataService.update(this.service.id, this.service)
                 .then(response => {
                     console.log(response.data);
-                    this.$router.push({ name: 'list-vehicles' })
+                    this.$router.push({ name: 'list-services' })
                 })
                 .catch(e => {
                     console.log(e);
                 });
         },
 
-        deleteVehicle() {
+        deleteService() {
             swal({
                 title: "Are you sure?",
                 text: "Once deleted, you will not be able to recover it!",
@@ -98,10 +67,10 @@ export default {
             })
             .then((confirmed) => {
                 if(confirmed) {
-                    VehicleDataService.delete(this.vehicle.id)
+                    ServiceDataService.delete(this.service.id)
                         .then(response => {
                             console.log(response.data);
-                            this.$router.push({ name: 'list-vehicles'})
+                            this.$router.push({ name: 'list-services'})
                         })
                         .catch(e => {
                             console.log(e);
@@ -109,23 +78,9 @@ export default {
                 }
             });
         },
-
-        retrieveCustomers() {
-            this.loading = true;
-            CustomerDataService.getAll()
-                .then(response => {
-                    this.loading = false;
-                    this.customers = response.data;
-                    // console.log(response.data);
-                })
-                .catch(e => {
-                    console.log(e);
-                });
-        },
     },
     mounted() {
-        this.getVehicle(this.$route.params.id);
-        this.retrieveCustomers();
+        this.getService(this.$route.params.id);
     }
 };
 </script>

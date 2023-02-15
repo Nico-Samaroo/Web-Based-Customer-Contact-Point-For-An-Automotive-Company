@@ -25,8 +25,8 @@ class PartDataService {
     return http.delete(`/parts`);
   }
 
-  findByFirstName(licenseNo) {
-    return http.get(`/parts?license_no=${licenseNo}`);
+  findByCode(code) {
+    return http.get(`/parts?code=${code}`);
   }
 }
 

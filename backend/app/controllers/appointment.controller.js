@@ -11,8 +11,8 @@ exports.create = (req, res) => {
 
   // Create a Appointment
   const appointment = new Appointment({
-    start: req.body.start,
-    end: req.body.end,
+    begin: req.body.begin,
+    finish: req.body.finish,
     vehicle: req.body.vehicle,
     services: req.body.services,
     parts: req.body.parts
@@ -35,8 +35,9 @@ exports.create = (req, res) => {
 // Retrieve all Appointments from the database.
 exports.findAll = (req, res) => {
   Appointment.find()
+    .populate('vehicle')
     .then(data => {
-      console.log(data);
+      // console.log(data);
       res.send(data);
     })
     .catch(err => {
@@ -52,6 +53,7 @@ exports.findOne = (req, res) => {
   const id = req.params.id;
 
   Appointment.findById(id)
+    .populate('vehicle')
     .then(data => {
       if (!data)
         res.status(404).send({ message: "Not found Appointment with id " + id });
