@@ -21,6 +21,9 @@
                     <div class="hero__tab">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Services</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Car Rental</a>
                             </li>
                         </ul>
@@ -28,6 +31,46 @@
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
                                 <div class="hero__tab__form">
                                     <h2>Choose Service</h2>
+                                    <form>
+                                        <div class="select-list">
+                                            <div class="select-list-item">
+                                                <p>Select Brand</p>
+                                                <select>
+                                                    <option data-display=" ">Select Brand</option>
+                                                    <option value="">Acura</option>
+                                                    <option value="">Audi</option>
+                                                    <option value="">Bentley</option>
+                                                    <option value="">BMW</option>
+                                                    <option value="">Bugatti</option>
+                                                </select>
+                                            </div>
+                                            <div class="select-list-item">
+                                                <p>Select Model</p>
+                                                <select>
+                                                    <option data-display=" ">Select Model</option>
+                                                    <option value="">Q3</option>
+                                                    <option value="">A4 </option>
+                                                    <option value="">AVENTADOR</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="car-price">
+                                            <p>Price Range:</p>
+                                            <div class="price-range-wrap">
+                                                <div class="price-range"></div>
+                                                <div class="range-slider">
+                                                    <div class="price-input">
+                                                        <input type="text" id="amount">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="site-btn">Searching</button>
+                                    </form>
+                                </div>
+                            </div><div class="tab-pane" id="tabs-2" role="tabpanel">
+                                <div class="hero__tab__form">
+                                    <h2>Rent Your Dream Car</h2>
                                     <form>
                                         <div class="select-list">
                                             <div class="select-list-item">
@@ -232,7 +275,7 @@
                                 <div class="feature__item__icon">
                                     <img src="assets/img/feature/feature-3.png" alt="">
                                 </div>
-                                <h6>Cooling</h6>
+                                <h6>Colling</h6>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-4 col-6">
@@ -266,6 +309,43 @@
     </section>
     <!-- Feature Section End -->
 
+    <!-- Car Section Begin -->
+    <section class="car spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>Parts available</span>
+                        <h2>BesT Prices In The Region</h2>
+                    </div>
+                    <!-- <ul class="filter__controls">
+                        <li class="active" data-filter="*">Most Researched</li>
+                        <li data-filter=".sale">Latest on sale</li>
+                    </ul> -->
+                </div>
+            </div>
+            <div class="row car-filter">
+                <div v-for="(part, index) in parts" :key="index" class="col-lg-3 col-md-4 col-sm-6 mix">
+                    <div class="car__item">
+                        <div class="car__item__pic__slider">
+                            <img src="assets/img/cars/car-1.jpg" alt="">
+                        </div>
+                        <div class="car__item__text">
+                            <div class="car__item__text__inner">
+                                <div class="label-date">Code: {{ part.code }}</div>
+                                <h5>{{ part.name }}</h5>
+                            </div>
+                            <div class="car__item__price">
+                                <button class="car-option">Buy</button>
+                                <h6 class="text-right">${{ part.price.toFixed(2) }}&nbsp;&nbsp;&nbsp;&nbsp;</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Car Section End -->
 
     <!-- Chooseus Section Begin -->
     <!-- <section class="chooseus spad">
@@ -490,6 +570,8 @@
 </template>
 
 <script>
+import PartDataService from "../services/PartDataService";
+import swal from "sweetalert";
 
 export default {
     name: "home-page",
@@ -500,7 +582,45 @@ export default {
             date: new Date().getFullYear()
         }
     },
-    
+    methods: {
+        retrieveParts() {
+            this.loading = true;
+            PartDataService.getAll()
+                .then(response => {
+                    this.loading = false;
+                    this.parts = response.data;
+                    // console.log(response.data);
+                })
+                .catch(e => {
+                    console.log(e);
+                });
+        },
+
+        addToCart(part) {
+            swal({
+                title: "Are you sure?",
+                text: "Purchase Part",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((confirmed) => {
+                if(confirmed) {
+                    PartDataService.addToCart(part.id)
+                        .then(response => {
+                            console.log(response.data);
+                            this.refreshList();
+                        })
+                        .catch(e => {
+                            console.log(e);
+                        });
+                }
+            });
+        }
+    },
+    mounted() {
+        this.retrieveParts();
+    },
 };
 
 
