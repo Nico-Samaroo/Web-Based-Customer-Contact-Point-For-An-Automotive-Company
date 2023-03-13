@@ -58,6 +58,40 @@ const routes = [
       requiresAuth: true
     }
   },
+  
+  {
+    path: "/user/list",
+    alias: "/users",
+    name: "list-users",
+    component: () => import("./components/user/ListUsers"),
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/user/update/:id",
+    name: "update-user",
+    component: () => import("./components/user/UpdateUser"),
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/user/view/:id",
+    name: "view-user",
+    component: () => import("./components/user/ViewUser"),
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/user/create",
+    name: "create-user",
+    component: () => import("./components/user/CreateUser"),
+    meta: {
+      requiresAuth: true
+    }
+  },
 
   {
     path: "/vehicle/list",

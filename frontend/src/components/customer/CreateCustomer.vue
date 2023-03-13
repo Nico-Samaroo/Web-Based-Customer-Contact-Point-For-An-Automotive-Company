@@ -1,30 +1,37 @@
 <template>
-    <div class="submit-form">
-        <!-- <pre>
+    <div class="container">
+        <div class="row">
+            <div class="submit-form">
+                <!-- <pre>
             First Name: {{ customer.first_name }}
         </pre> -->
-        <div class="mb-3">
-            <label for="first_name">First Name</label>
-            <input type="text" class="form-control" id="first_name" required v-model="customer.first_name" name="first_name" />
-        </div> 
+                <div class="mb-3">
+                    <label for="first_name">First Name</label>
+                    <input type="text" class="form-control" id="first_name" required v-model="customer.first_name"
+                        name="first_name" />
+                </div>
 
-        <div class="mb-3">
-            <label for="last_name">Last Name</label>
-            <input class="form-control" id="last_name" required v-model="customer.last_name" name="last_name" />
+                <div class="mb-3">
+                    <label for="last_name">Last Name</label>
+                    <input class="form-control" id="last_name" required v-model="customer.last_name" name="last_name" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" required v-model="customer.email"
+                        name="email" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="contact_no">Contact No.</label>
+                    <input type="tel" class="form-control" id="contact_no" required v-model="customer.contact_no"
+                        name="contact_no" />
+                </div>
+
+                <button @click="saveCustomer()" class="btn btn-success">Create</button>
+
+            </div>
         </div>
-
-        <div class="mb-3">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" required v-model="customer.email" name="email" />
-        </div>
-
-        <div class="mb-3">
-            <label for="contact_no">Contact No.</label>
-            <input type="tel" class="form-control" id="contact_no" required v-model="customer.contact_no" name="contact_no" />
-        </div>
-
-        <button @click="saveCustomer()" class="btn btn-success">Create</button>
-
     </div>
 </template>
 

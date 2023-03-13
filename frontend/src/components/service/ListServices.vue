@@ -1,46 +1,48 @@
 <template>
-    <div class="row">
-        <div v-if="loading" class="col-12">Loading...</div>
-    </div>
-    <div v-if="services" class="list row">
-        <div class="col-md-8">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search by Name" v-model="name" />
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" @click="searchName">
-                        Search
-                    </button>
+    <div class="container">
+        <div class="row">
+            <div v-if="loading" class="col-12">Loading...</div>
+        </div>
+        <div v-if="services" class="list row">
+            <div class="col-md-8">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search by Name" v-model="name" />
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" @click="searchName">
+                            Search
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <h4>Services List</h4>
-            <ul class="list-group">
-                <li class="list-group-item" :class="{ active: index == currentIndex }"
-                    v-for="(service, index) in services" :key="index" @click="setActiveService(service, index)">
-                    {{ service.name }}
-                </li>
-            </ul>
+            <div class="col-md-6">
+                <h4>Services List</h4>
+                <ul class="list-group">
+                    <li class="list-group-item" :class="{ active: index == currentIndex }"
+                        v-for="(service, index) in services" :key="index" @click="setActiveService(service, index)">
+                        {{ service.name }}
+                    </li>
+                </ul>
 
-            <!-- <button class="m-3 btn btn-sm btn-danger" @click="removeAllServices">
+                <!-- <button class="m-3 btn btn-sm btn-danger" @click="removeAllServices">
                 Remove All
             </button> -->
-        </div>
-        <div class="col-md-6">
-            <div v-if="currentService">
-                <h4>Services</h4>
-                <div>
-                    <label><strong>Name:</strong></label> {{ currentService.name }}
-                </div>
-
-                <a class="btn btn-warning" :href="'/service/update/' + currentService.id">Edit</a>
-
-                <button class="btn btn-danger mx-2" @click="deleteService(currentService.id)">Delete</button>
-
             </div>
-            <div v-else>
-                <br />
-                <p>Please click on a Service...</p>
+            <div class="col-md-6">
+                <div v-if="currentService">
+                    <h4>Services</h4>
+                    <div>
+                        <label><strong>Name:</strong></label> {{ currentService.name }}
+                    </div>
+
+                    <a class="btn btn-warning" :href="'/service/update/' + currentService.id">Edit</a>
+
+                    <button class="btn btn-danger mx-2" @click="deleteService(currentService.id)">Delete</button>
+
+                </div>
+                <div v-else>
+                    <br />
+                    <p>Please click on a Service...</p>
+                </div>
             </div>
         </div>
     </div>

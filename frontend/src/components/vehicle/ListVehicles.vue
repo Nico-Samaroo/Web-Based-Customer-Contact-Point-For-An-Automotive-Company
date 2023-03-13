@@ -1,61 +1,66 @@
 <template>
-    <div class="row">
-        <div v-if="loading" class="col-12">Loading...</div>
-    </div>
-    <div v-if="vehicles" class="list row">
-        <div class="col-md-8">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Search by License No." v-model="license_no" />
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" @click="searchLicenseNo">
-                        Search
-                    </button>
+    <div class="container">
+        <div class="row">
+            <div v-if="loading" class="col-12">Loading...</div>
+        </div>
+        <div v-if="vehicles" class="list row">
+            <div class="col-md-8">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search by License No." v-model="license_no" />
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" @click="searchLicenseNo">
+                            Search
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <h4>Vehicles List</h4>
-            <ul class="list-group">
-                <li class="list-group-item" :class="{ active: index == currentIndex }"
-                    v-for="(vehicle, index) in vehicles" :key="index" @click="setActiveVehicle(vehicle, index)">
-                    {{ vehicle.license_no }}
-                </li>
-            </ul>
+            <div class="col-md-6">
+                <h4>Vehicles List</h4>
+                <ul class="list-group">
+                    <li class="list-group-item" :class="{ active: index == currentIndex }"
+                        v-for="(vehicle, index) in vehicles" :key="index" @click="setActiveVehicle(vehicle, index)">
+                        {{ vehicle.license_no }}
+                    </li>
+                </ul>
 
-            <!-- <button class="m-3 btn btn-sm btn-danger" @click="removeAllVehicles">
+                <!-- <button class="m-3 btn btn-sm btn-danger" @click="removeAllVehicles">
                 Remove All
             </button> -->
-        </div>
-        <div class="col-md-6">
-            <div v-if="currentVehicle">
-                <h4>Vehicles</h4>
-                <div>
-                    <label><strong>Customer Name:</strong></label> {{ currentVehicle.customer.first_name +' '+ currentVehicle.customer.last_name }}
-                </div>
-                <div>
-                    <label><strong>License No.:</strong></label> {{ currentVehicle.license_no }}
-                </div>
-                <div>
-                    <label><strong>Chassis No.:</strong></label> {{ currentVehicle.chassis_no }}
-                </div>
-                <div>
-                    <label><strong>Make:</strong></label> {{ currentVehicle.make }}
-                </div>
-                <div>
-                    <label><strong>Model:</strong></label> {{ currentVehicle.model }}
-                </div>
-                <div>
-                    <label><strong>Year:</strong></label> {{ currentVehicle.year }}
-                </div>
-
-                <a class="btn btn-warning" :href="'/vehicle/update/' + currentVehicle.id">Edit</a>
-
-                <button class="btn btn-danger mx-2" @click="deleteVehicle(currentVehicle.id)">Delete</button>
-
             </div>
-            <div v-else>
-                <br />
-                <p>Please click on a Vehicle...</p>
+            <div class="col-md-6">
+                <div v-if="currentVehicle">
+                    <h4>Vehicles</h4>
+                    <div>
+                        <label><strong>Customer Name:</strong></label> {{
+                            currentVehicle.customer.first_name + ' ' +
+                                currentVehicle.customer.last_name
+                        }}
+                    </div>
+                    <div>
+                        <label><strong>License No.:</strong></label> {{ currentVehicle.license_no }}
+                    </div>
+                    <div>
+                        <label><strong>Chassis No.:</strong></label> {{ currentVehicle.chassis_no }}
+                    </div>
+                    <div>
+                        <label><strong>Make:</strong></label> {{ currentVehicle.make }}
+                    </div>
+                    <div>
+                        <label><strong>Model:</strong></label> {{ currentVehicle.model }}
+                    </div>
+                    <div>
+                        <label><strong>Year:</strong></label> {{ currentVehicle.year }}
+                    </div>
+
+                    <a class="btn btn-warning" :href="'/vehicle/update/' + currentVehicle.id">Edit</a>
+
+                    <button class="btn btn-danger mx-2" @click="deleteVehicle(currentVehicle.id)">Delete</button>
+
+                </div>
+                <div v-else>
+                    <br />
+                    <p>Please click on a Vehicle...</p>
+                </div>
             </div>
         </div>
     </div>

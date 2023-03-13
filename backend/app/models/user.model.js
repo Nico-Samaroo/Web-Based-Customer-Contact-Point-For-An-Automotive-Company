@@ -25,6 +25,10 @@ module.exports = mongoose => {
                 required: true,
             },
         }],
+        admin:{
+            type:Boolean,
+            required:[true, "Please select admin"],
+        }
     });
 
     //this method will hash the password before saving the user model
@@ -39,7 +43,13 @@ module.exports = mongoose => {
     //this method generates an auth token for the user
     schema.methods.generateAuthToken = async function() {
         const user = this;
-        const token = jwt.sign({ _id: user._id, name: user.name, email: user.email },
+        const token = jwt.sign({
+            _id: user._id,
+            name: user.name, 
+            email: user.email,
+            contact_no: user.contact_no,
+            admin: user.admin
+        },
         "secret");
 
         user.tokens = user.tokens.concat({ token });
@@ -60,11 +70,11 @@ module.exports = mongoose => {
         return user;
     };
 
-    // schema.method("toJSON", function() {
-    //     const { __v, _id, ...object } = this.toObject();
-    //     object.id = _id;
-    //     return object;
-    // });
+    schema.method("toJSON", function() {
+        const { __v, _id, ...object } = this.toObject();
+        object.id = _id;
+        return object;
+    });
 
     const User = mongoose.model("user", schema);
     return User;

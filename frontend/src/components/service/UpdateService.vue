@@ -1,25 +1,28 @@
 <template>
-    <div v-if="service" class="edit-form">
-        <h4>Editing: {{ service.name }}</h4>
-        <div class="mb-3">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" required v-model="service.name"
-                name="name" />
+    <div class="container">
+        <div class="row">
+            <div v-if="service" class="edit-form">
+                <h4>Editing: {{ service.name }}</h4>
+                <div class="mb-3">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" required v-model="service.name" name="name" />
+                </div>
+
+                <button class="btn btn-danger" @click="deleteService">
+                    Delete
+                </button>
+
+                <button type="submit" class="btn btn-success mx-4" @click="updateService">
+                    Update
+                </button>
+
+            </div>
+
+            <div v-else>
+                <br />
+                <p>Please click on a Service...</p>
+            </div>
         </div>
-
-        <button class="btn btn-danger" @click="deleteService">
-            Delete
-        </button>
-
-        <button type="submit" class="btn btn-success mx-4" @click="updateService">
-            Update
-        </button>
-
-    </div>
-
-    <div v-else>
-        <br />
-        <p>Please click on a Service...</p>
     </div>
 </template>
 

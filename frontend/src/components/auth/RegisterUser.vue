@@ -2,6 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1">
+                <pre>{{ register || json }}</pre>
                 <form class="text-center border border-secondary p-5"
                     style="margin-top:70px;height:auto;padding-top:100px !important;" @submit.prevent="registerUser">
                     <input type="text" id="name" class="form-control mb-5" placeholder="First Name" v-model="register.first_name"
@@ -39,7 +40,8 @@ export default {
                 first_name: "",
                 last_name: "",
                 email: "",
-                password: ""
+                password: "",
+                admin:false
             }
         };
     },

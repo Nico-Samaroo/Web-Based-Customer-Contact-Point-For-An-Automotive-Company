@@ -1,36 +1,44 @@
 <template>
-    <div v-if="part" class="edit-form">
-        <h4>Editing: {{ part.name }}</h4>
+    <div class="container">
+        <div class="row">
+            <div v-if="part" class="edit-form">
+                <h4>Editing: {{ part.name }}</h4>
 
-        <div class="mb-3">
-            <label for="name">License No.</label>
-            <input type="text" class="form-control" id="name" required v-model="part.name"
-                name="name" />
+                <div class="mb-3">
+                    <label for="name">License No.</label>
+                    <input type="text" class="form-control" id="name" required v-model="part.name" name="name" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="code">Chassis No.</label>
+                    <input class="form-control" id="code" required v-model="part.code" name="code" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="amount">Make</label>
+                    <input class="form-control" id="amount" required v-model="part.amount" name="amount" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="price">Price</label>
+                    <input class="form-control" id="price" required v-model="part.price" name="price" />
+                </div>
+
+                <button class="btn btn-danger" @click="deletePart">
+                    Delete
+                </button>
+
+                <button type="submit" class="btn btn-success mx-4" @click="updatePart">
+                    Update
+                </button>
+
+            </div>
+
+            <div v-else>
+                <br />
+                <p>Please click on a Part...</p>
+            </div>
         </div>
-
-        <div class="mb-3">
-            <label for="code">Chassis No.</label>
-            <input class="form-control" id="code" required v-model="part.code" name="code" />
-        </div>
-
-        <div class="mb-3">
-            <label for="amount">Make</label>
-            <input class="form-control" id="amount" required v-model="part.amount" name="amount" />
-        </div>
-
-        <button class="btn btn-danger" @click="deletePart">
-            Delete
-        </button>
-
-        <button type="submit" class="btn btn-success mx-4" @click="updatePart">
-            Update
-        </button>
-
-    </div>
-
-    <div v-else>
-        <br />
-        <p>Please click on a Part...</p>
     </div>
 </template>
 

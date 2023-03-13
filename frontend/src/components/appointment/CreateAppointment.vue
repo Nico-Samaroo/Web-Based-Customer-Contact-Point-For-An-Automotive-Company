@@ -1,57 +1,68 @@
 <template>
-    <div class="edit-form">
-        <pre>{{ appointment || json }}</pre>
-        <div class="mb-3">
-            <label for="vehicle">Vehicle</label>
-            <select name="vehicle" id="vehicle" class="form-control" v-model="appointment.vehicle" required>
-                <option value="">Please select a vehicle</option>
-                <option v-for="vehicle in vehicles" :key="vehicle.id" :value="vehicle.id">{{ vehicle.license_no }}</option>
-            </select>
-        </div>
-
+    <div class="container">
         <div class="row">
-            <div class="col-6">
+            <div class="edit-form">
+                <!-- <pre>{{ appointment || json }}</pre> -->
                 <div class="mb-3">
-                    <label for="start">Start</label>
-                    <input type="datetime-local" class="form-control" id="start" required v-model="appointment.start"
-                        name="start" />
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="mb-3">
-                    <label for="end">End</label>
-                    <input type="datetime-local" class="form-control" id="end" required v-model="appointment.end"
-                        name="end" />
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-6">
-                <div class="mb-3">
-                    <label for="part">Part(s)</label>
-                    <select name="parts" id="part" class="form-control" v-model="appointment.parts" multiple>
-                        <option value="">Please select a part</option>
-                        <option v-for="part in parts" :key="part.id" :value="part.id">{{ part.name }} [{{ part.code }}]</option>
+                    <label for="vehicle">Vehicle</label>
+                    <select name="vehicle" id="vehicle" class="form-control" v-model="appointment.vehicle" required>
+                        <option value="">Please select a vehicle</option>
+                        <option v-for="vehicle in vehicles" :key="vehicle.id" :value="vehicle.id">{{
+                            vehicle.license_no
+                        }}</option>
                     </select>
                 </div>
-            </div>
-            <div class="col-6">
-                <div class="mb-3">
-                    <label for="service">Service(s)</label>
-                    <select name="services" id="service" class="form-control" v-model="appointment.services" multiple>
-                        <option value="">Please select a service</option>
-                        <option v-for="service in services" :key="service.id" :value="service.id">{{ service.name }}</option>
-                    </select>
+
+                <div class="row">
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="start">Start</label>
+                            <input type="datetime-local" class="form-control" id="start" required
+                                v-model="appointment.start" name="start" />
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="end">End</label>
+                            <input type="datetime-local" class="form-control" id="end" required
+                                v-model="appointment.end" name="end" />
+                        </div>
+                    </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="part">Part(s)</label>
+                            <select name="parts" id="part" class="form-control" v-model="appointment.parts" multiple>
+                                <option value="">Please select a part</option>
+                                <option v-for="part in parts" :key="part.id" :value="part.id">{{ part.name }} [{{
+                                    part.code
+                                }}]</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="service">Service(s)</label>
+                            <select name="services" id="service" class="form-control" v-model="appointment.services"
+                                multiple>
+                                <option value="">Please select a service</option>
+                                <option v-for="service in services" :key="service.id" :value="service.id">{{
+                                    service.name
+                                }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+
+                <button type="submit" class="btn btn-success" @click="createAppointment">
+                    Create
+                </button>
+
             </div>
         </div>
-
-
-        <button type="submit" class="btn btn-success" @click="createAppointment">
-            Create
-        </button>
-
     </div>
 
 </template>

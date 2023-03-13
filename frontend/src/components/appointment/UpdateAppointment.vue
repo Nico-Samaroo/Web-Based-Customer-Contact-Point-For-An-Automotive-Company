@@ -1,70 +1,83 @@
 <template>
-    <div v-if="appointment" class="edit-form">
-        <!-- <pre>{{ appointment || json }}</pre> -->
-        <h4>Editing appointment for: <strong>{{ appointment.vehicle.license_no }}</strong> on <strong>{{ appointment.start }}</strong></h4>
-
-        <div class="mb-3">
-            <label for="vehicle">Vehicle</label>
-            <select name="vehicle" id="vehicle" class="form-control" v-model="appointment.vehicle._id" required>
-                <option value="">Please select a vehicle</option>
-                <option v-for="vehicle in vehicles" :key="vehicle.id" :value="vehicle.id">{{ vehicle.license_no }}</option>
-            </select>
-        </div>
-
+    <div class="container">
         <div class="row">
-            <div class="col-6">
-                <div class="mb-3">
-                    <label for="start">Start</label>
-                    <input type="datetime-local" class="form-control" id="start" required v-model="appointment.begin"
-                        name="start" />
-                        <pre>{{ appointment.begin }}</pre>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="mb-3">
-                    <label for="end">End</label>
-                    <input type="datetime-local" class="form-control" id="end" required v-model="appointment.finish"
-                        name="end" />
-                        <pre>{{ appointment.finish }}</pre>
-                </div>
-            </div>
-        </div>
+            <div v-if="appointment" class="edit-form">
+                <!-- <pre>{{ appointment || json }}</pre> -->
+                <h4>Editing appointment for: <strong>{{ appointment.vehicle.license_no }}</strong> on <strong>{{
+                    appointment.start
+                }}</strong></h4>
 
-        <div class="row">
-            <div class="col-6">
                 <div class="mb-3">
-                    <label for="part">Appointment(s)</label>
-                    <select name="parts" id="part" class="form-control" v-model="appointment.parts" multiple>
-                        <option value="">Please select a part</option>
-                        <option v-for="part in parts" :key="part.id" :value="part.id">{{ part.name }} [{{ part.code }}]</option>
+                    <label for="vehicle">Vehicle</label>
+                    <select name="vehicle" id="vehicle" class="form-control" v-model="appointment.vehicle._id" required>
+                        <option value="">Please select a vehicle</option>
+                        <option v-for="vehicle in vehicles" :key="vehicle.id" :value="vehicle.id">{{
+                            vehicle.license_no
+                        }}</option>
                     </select>
                 </div>
-            </div>
-            <div class="col-6">
-                <div class="mb-3">
-                    <label for="service">Service(s)</label>
-                    <!-- <pre>{{ appointment.services }}</pre> -->
-                    <select name="services" id="service" class="form-control" v-model="appointment.services" multiple>
-                        <option value="">Please select a service</option>
-                        <option v-for="service in services" :key="service.id" :value="service.id">{{ service.name }}</option>
-                    </select>
+
+                <div class="row">
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="start">Start</label>
+                            <input type="datetime-local" class="form-control" id="start" required
+                                v-model="appointment.begin" name="start" />
+                            <pre>{{ appointment.begin }}</pre>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="end">End</label>
+                            <input type="datetime-local" class="form-control" id="end" required
+                                v-model="appointment.finish" name="end" />
+                            <pre>{{ appointment.finish }}</pre>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="part">Appointment(s)</label>
+                            <select name="parts" id="part" class="form-control" v-model="appointment.parts" multiple>
+                                <option value="">Please select a part</option>
+                                <option v-for="part in parts" :key="part.id" :value="part.id">{{ part.name }} [{{
+                                    part.code
+                                }}]</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="service">Service(s)</label>
+                            <!-- <pre>{{ appointment.services }}</pre> -->
+                            <select name="services" id="service" class="form-control" v-model="appointment.services"
+                                multiple>
+                                <option value="">Please select a service</option>
+                                <option v-for="service in services" :key="service.id" :value="service.id">{{
+                                    service.name
+                                }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-danger" @click="deleteAppointment">
+                    Delete
+                </button>
+
+                <button type="submit" class="btn btn-success mx-4" @click="updateAppointment">
+                    Update
+                </button>
+
+            </div>
+
+            <div v-else>
+                <br />
+                <p>Please click on a Appointment...</p>
             </div>
         </div>
-
-        <button class="btn btn-danger" @click="deleteAppointment">
-            Delete
-        </button>
-
-        <button type="submit" class="btn btn-success mx-4" @click="updateAppointment">
-            Update
-        </button>
-
-    </div>
-
-    <div v-else>
-        <br />
-        <p>Please click on a Appointment...</p>
     </div>
 </template>
 

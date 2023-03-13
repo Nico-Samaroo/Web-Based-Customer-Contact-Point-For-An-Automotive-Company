@@ -22,6 +22,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import UserDataService from "../../services/UserDataService";
 import swal from 'sweetalert';

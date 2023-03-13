@@ -1,7 +1,9 @@
 <template>
-    <div class="row">
-        <div class="col-12">
-            <h1>Dashboard</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Dashboard</h1>
+            </div>
         </div>
     </div>
 </template>
@@ -11,6 +13,7 @@
 export default {
     name: "admin-dashboard",
     data() {
+        return {}
     },
     methods: {
     },

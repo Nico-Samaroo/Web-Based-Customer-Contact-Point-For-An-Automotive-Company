@@ -1,79 +1,76 @@
 <template>
-  
-    <nav class="navbar navbar-expand navbar-dark bg-dark">
-      <router-link to="/" class="navbar-brand">Automotive</router-link>
-      <div v-if="isLoggedIn" class="navbar-nav mr-auto">
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Customers
-          </a>
-          <ul class="dropdown-menu">
-            <li><router-link to="/customer/create" class="dropdown-item">Create Customer</router-link></li>
-            <li><router-link to="/customer/list" class="dropdown-item">Customer List</router-link></li>
-          </ul>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Vehicles
-          </a>
-          <ul class="dropdown-menu">
-            <li><router-link to="/vehicle/create" class="dropdown-item">Create Vehicle</router-link></li>
-            <li><router-link to="/vehicle/list" class="dropdown-item">Vehicle List</router-link></li>
-          </ul>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Appointments
-          </a>
-          <ul class="dropdown-menu">
-            <li><router-link to="/appointment/create" class="dropdown-item">Create Appointment</router-link></li>
-            <li><router-link to="/appointment/list" class="dropdown-item">Appointments</router-link></li>
-          </ul>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Parts
-          </a>
-          <ul class="dropdown-menu">
-            <li><router-link to="/part/create" class="dropdown-item">Create Part</router-link></li>
-            <li><router-link to="/part/list" class="dropdown-item">Part List</router-link></li>
-          </ul>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Services
-          </a>
-          <ul class="dropdown-menu">
-            <li><router-link to="/service/create" class="dropdown-item">Create Service</router-link></li>
-            <li><router-link to="/service/list" class="dropdown-item">Service List</router-link></li>
-          </ul>
-        </li>
-
-      </div>
-      <div class="collapse navbar-collapse justify-content-end">
-        <ul class="navbar-nav">
-          <span v-if="isLoggedIn" class="navbar-text">
-            {{ user.first_name +' '+ user.last_name }}
-          </span>
-          <li class="nav-item active">
-            <button class="nav-link btn btn-secondary mr-2" @click="logUserOut">Logout</button>
-          </li>
-        </ul>
-      </div>
-    </nav>
+  <!-- Header Section Begin -->
+  <header class="header">
     <div class="container">
       <div class="row">
-        <div class="col mt-4">
-          <router-view></router-view>
+        <div class="col-lg-2">
+          <div class="header__logo">
+            <a href="./index.html"><img src="assets/img/logo.png" alt=""></a>
+          </div>
+        </div>
+        <div class="col-lg-10">
+          <div class="header__nav">
+            <nav class="header__menu">
+              <ul v-if="isLoggedIn">
+                <li><router-link to="/">Home</router-link></li>
+                <li><a>Users</a>
+                  <ul class="dropdown">
+                    <li><router-link to="/user/create">Create User</router-link></li>
+                    <li><router-link to="/user/list">User List</router-link></li>
+                  </ul>
+                </li>
+                <li><a>Vehicles</a>
+                  <ul class="dropdown">
+                    <li><router-link to="/vehicle/create">Create Vehicle</router-link></li>
+                    <li><router-link to="/vehicle/list">Vehicle List</router-link></li>
+                  </ul>
+                </li>
+                <li><a>Appointments</a>
+                  <ul class="dropdown">
+                    <li><router-link to="/appointment/create">Create Appointment</router-link>
+                    </li>
+                    <li><router-link to="/appointment/list">Appointments</router-link></li>
+                  </ul>
+                </li>
+                <li><a>Parts</a>
+                  <ul class="dropdown">
+                    <li><router-link to="/part/create">Create Part</router-link></li>
+                    <li><router-link to="/part/list">Part List</router-link></li>
+                  </ul>
+                </li>
+                <li><a>Services</a>
+                  <ul class="dropdown">
+                    <li><router-link to="/service/create">Create Service</router-link></li>
+                    <li><router-link to="/service/list">Service List</router-link></li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+            <div class="header__nav__widget">
+              <div class="header__nav__widget__btn">
+                <a href="#"><i class="fa fa-cart-plus"></i></a>
+              </div>
+              <router-link v-if="!isLoggedIn" to="/login" class="primary-btn">Login</router-link>
+              <button v-if="isLoggedIn" class="primary-btn" @click="logUserOut">Logout</button>
+            </div>
+          </div>
         </div>
       </div>
+      <div class="canvas__open">
+        <span class="fa fa-bars"></span>
+      </div>
     </div>
-    
+  </header>
+  <!-- Header Section End -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12">logged in as: </div>
+    </div>
+  </div>
+
+  <router-view></router-view>
+
 </template>
 
 <script>
@@ -84,15 +81,22 @@ export default {
   data() {
     return {
       user: {},
-      isLoggedIn: false
+      isLoggedIn: false,
+      isAdmin: false
     };
   },
   methods: {
     getUserDetails() {
       let token = localStorage.getItem("jwt");
-      let decoded = VueJwtDecode.decode(token);
-      this.isLoggedIn = true;
-      this.user = decoded;
+      
+      if(token) {
+        let decoded = VueJwtDecode.decode(token);
+
+        this.isLoggedIn = true;
+        this.user = decoded;
+        console.log(decoded);
+      }
+      
     },
 
     logUserOut() {
@@ -107,11 +111,4 @@ export default {
 }
 </script>
 
-<style>
-#app {
-  font-family: Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-}
-</style>
+

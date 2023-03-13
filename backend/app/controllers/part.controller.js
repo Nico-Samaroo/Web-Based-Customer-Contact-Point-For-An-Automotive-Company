@@ -13,7 +13,8 @@ exports.create = (req, res) => {
   const part = new Part({
     name: req.body.name,
     code: req.body.code,
-    amount: req.body.amount
+    amount: req.body.amount,
+    price: req.body.price
   });
 
   // Save Part in the database

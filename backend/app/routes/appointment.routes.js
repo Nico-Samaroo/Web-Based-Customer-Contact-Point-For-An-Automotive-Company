@@ -1,10 +1,12 @@
 module.exports = app => {
   const appointments = require("../controllers/appointment.controller.js");
+  const auth = require("../config/auth.config.js");
+  
 
   var router = require("express").Router();
 
   // Create a new Appointment
-  router.post("/", appointments.create);
+  router.post("/", auth, appointments.create);
 
   // Retrieve all Appointments
   router.get("/", appointments.findAll);

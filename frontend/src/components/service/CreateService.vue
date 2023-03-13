@@ -1,18 +1,20 @@
 <template>
-    <div class="edit-form">
+    <div class="container">
+        <div class="row">
+            <div class="edit-form">
 
-        <div class="mb-3">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" required v-model="service.name"
-                name="name" />
+                <div class="mb-3">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" required v-model="service.name" name="name" />
+                </div>
+
+                <button type="submit" class="btn btn-success" @click="createService">
+                    Create
+                </button>
+
+            </div>
         </div>
-
-        <button type="submit" class="btn btn-success" @click="createService">
-            Create
-        </button>
-
     </div>
-
 </template>
 
 <script>

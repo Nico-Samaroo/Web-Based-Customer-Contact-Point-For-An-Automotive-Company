@@ -1,5 +1,6 @@
 module.exports = app => {
   const vehicles = require("../controllers/vehicle.controller.js");
+  const auth = require("../config/auth.config.js");
 
   var router = require("express").Router();
 

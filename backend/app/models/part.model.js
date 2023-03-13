@@ -12,6 +12,10 @@ module.exports = mongoose => {
       amount: {
         type: Number,
         required: true
+      },
+      price: {
+        type: Number,
+        required: true
       }
     },
     { timestamps: true }
@@ -20,6 +24,7 @@ module.exports = mongoose => {
   schema.method("toJSON", function() {
     const { __v, _id, ...object } = this.toObject();
     object.id = _id;
+    // object.price = object.price.toFixed(2)
     return object;
   });
 

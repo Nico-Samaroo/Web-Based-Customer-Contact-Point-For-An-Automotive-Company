@@ -1,53 +1,61 @@
 <template>
-    <div v-if="vehicle" class="edit-form">
-        <h4>Editing: {{ vehicle.license_no }}</h4>
+    <div class="container">
+        <div class="row">
+            <div v-if="vehicle" class="edit-form">
+                <h4>Editing: {{ vehicle.license_no }}</h4>
 
-        <div class="mb-3">
-            <select name="customer" id="customer" class="form-control" v-model="vehicle.customer" :value="vehicle.customer" required>
-                <option value="">Please select a customer</option>
-                <option v-for="customer in customers" :key="customer.id" :value="customer.id">{{ customer.first_name }} {{ customer.last_name }}</option>
-            </select>
+                <div class="mb-3">
+                    <select name="customer" id="customer" class="form-control" v-model="vehicle.customer"
+                        :value="vehicle.customer" required>
+                        <option value="">Please select a customer</option>
+                        <option v-for="customer in customers" :key="customer.id" :value="customer.id">{{
+                            customer.first_name
+                        }} {{ customer.last_name }}</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="license_no">License No.</label>
+                    <input type="text" class="form-control" id="license_no" required v-model="vehicle.license_no"
+                        name="license_no" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="chassis_no">Chassis No.</label>
+                    <input class="form-control" id="chassis_no" required v-model="vehicle.chassis_no"
+                        name="chassis_no" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="make">Make</label>
+                    <input class="form-control" id="make" required v-model="vehicle.make" name="make" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="model">Model</label>
+                    <input class="form-control" id="model" required v-model="vehicle.model" name="model" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="year">Year</label>
+                    <input class="form-control" id="year" required v-model="vehicle.year" name="year" />
+                </div>
+
+                <button class="btn btn-danger" @click="deleteVehicle">
+                    Delete
+                </button>
+
+                <button type="submit" class="btn btn-success mx-4" @click="updateVehicle">
+                    Update
+                </button>
+
+            </div>
+
+            <div v-else>
+                <br />
+                <p>Please click on a Vehicle...</p>
+            </div>
         </div>
-
-        <div class="mb-3">
-            <label for="license_no">License No.</label>
-            <input type="text" class="form-control" id="license_no" required v-model="vehicle.license_no"
-                name="license_no" />
-        </div>
-
-        <div class="mb-3">
-            <label for="chassis_no">Chassis No.</label>
-            <input class="form-control" id="chassis_no" required v-model="vehicle.chassis_no" name="chassis_no" />
-        </div>
-
-        <div class="mb-3">
-            <label for="make">Make</label>
-            <input class="form-control" id="make" required v-model="vehicle.make" name="make" />
-        </div>
-
-        <div class="mb-3">
-            <label for="model">Model</label>
-            <input class="form-control" id="model" required v-model="vehicle.model" name="model" />
-        </div>
-
-        <div class="mb-3">
-            <label for="year">Year</label>
-            <input class="form-control" id="year" required v-model="vehicle.year" name="year" />
-        </div>
-
-        <button class="btn btn-danger" @click="deleteVehicle">
-            Delete
-        </button>
-
-        <button type="submit" class="btn btn-success mx-4" @click="updateVehicle">
-            Update
-        </button>
-
-    </div>
-
-    <div v-else>
-        <br />
-        <p>Please click on a Vehicle...</p>
     </div>
 </template>
 

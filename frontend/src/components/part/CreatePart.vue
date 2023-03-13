@@ -1,28 +1,35 @@
 <template>
-    <div class="edit-form">
+    <div class="container">
+        <div class="row">
+            <div class="edit-form">
 
-        <div class="mb-3">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" required v-model="part.name"
-                name="name" />
+                <div class="mb-3">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" required v-model="part.name" name="name" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="code">Code</label>
+                    <input type="text" class="form-control" id="code" required v-model="part.code" name="code" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="amount">Amount</label>
+                    <input type="number" class="form-control" id="amount" required v-model="part.amount"
+                        name="amount" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="price">Price</label>
+                    <input class="form-control" id="price" required v-model="part.price" name="price" />
+                </div>
+
+                <button type="submit" class="btn btn-success" @click="createPart">
+                    Create
+                </button>
+
+            </div>
         </div>
-
-        <div class="mb-3">
-            <label for="code">Code</label>
-            <input type="text" class="form-control" id="code" required v-model="part.code"
-                name="code" />
-        </div>
-
-        <div class="mb-3">
-            <label for="amount">Amount</label>
-            <input type="number" class="form-control" id="amount" required v-model="part.amount"
-                name="amount" />
-        </div>
-
-        <button type="submit" class="btn btn-success" @click="createPart">
-            Create
-        </button>
-
     </div>
 
 </template>

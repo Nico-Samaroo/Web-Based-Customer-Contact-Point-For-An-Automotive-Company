@@ -1,4 +1,5 @@
 <template>
+    <div class="container">
     <div class="row">
         <div v-if="loading" class="col-12">Loading...</div>
     </div>
@@ -18,7 +19,7 @@
             <ul class="list-group">
                 <li class="list-group-item" :class="{ active: index == currentIndex }"
                     v-for="(customer, index) in customers" :key="index" @click="setActiveCustomer(customer, index)">
-                    {{ customer.first_name +' '+ customer.last_name }}
+                    {{ customer.first_name + ' ' + customer.last_name }}
                 </li>
             </ul>
 
@@ -55,6 +56,7 @@
                 <p>Please click on a Customer...</p>
             </div>
         </div>
+    </div>
     </div>
 </template>
 

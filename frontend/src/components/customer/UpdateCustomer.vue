@@ -1,41 +1,47 @@
 <template>
-    <div v-if="customer" class="edit-form">
-        <h4>Editing: {{ customer.first_name }} {{ customer.last_name }}</h4>
+    <div class="container">
+        <div class="row">
+            <div v-if="customer" class="edit-form">
+                <h4>Editing: {{ customer.first_name }} {{ customer.last_name }}</h4>
 
-        <div class="mb-3">
-            <label for="first_name">First Name</label>
-            <input type="text" class="form-control" id="first_name" required v-model="customer.first_name"
-                name="first_name" />
+                <div class="mb-3">
+                    <label for="first_name">First Name</label>
+                    <input type="text" class="form-control" id="first_name" required v-model="customer.first_name"
+                        name="first_name" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="last_name">Last Name</label>
+                    <input class="form-control" id="last_name" required v-model="customer.last_name" name="last_name" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" required v-model="customer.email"
+                        name="email" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="contact_no">Contact No.</label>
+                    <input type="tel" class="form-control" id="contact_no" required v-model="customer.contact_no"
+                        name="contact_no" />
+                </div>
+
+                <button class="btn btn-danger" @click="deleteCustomer">
+                    Delete
+                </button>
+
+                <button type="submit" class="btn btn-success mx-4" @click="updateCustomer">
+                    Update
+                </button>
+                <p>{{ message }}</p>
+            </div>
+
+            <div v-else>
+                <br />
+                <p>Please click on a Customer...</p>
+            </div>
         </div>
-
-        <div class="mb-3">
-            <label for="last_name">Last Name</label>
-            <input class="form-control" id="last_name" required v-model="customer.last_name" name="last_name" />
-        </div>
-
-        <div class="mb-3">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" required v-model="customer.email" name="email" />
-        </div>
-
-        <div class="mb-3">
-            <label for="contact_no">Contact No.</label>
-            <input type="tel" class="form-control" id="contact_no" required v-model="customer.contact_no" name="contact_no" />
-        </div>
-
-        <button class="btn btn-danger" @click="deleteCustomer">
-            Delete
-        </button>
-
-        <button type="submit" class="btn btn-success mx-4" @click="updateCustomer">
-            Update
-        </button>
-        <p>{{ message }}</p>
-    </div>
-
-    <div v-else>
-        <br />
-        <p>Please click on a Customer...</p>
     </div>
 </template>
 
