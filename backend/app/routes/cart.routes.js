@@ -5,22 +5,25 @@ module.exports = app => {
   var router = require("express").Router();
 
   // Create a new Cart
-  router.post("/", auth, carts.create);
+  router.post("/", carts.create);
 
   // Retrieve all Carts
-  router.get("/", auth, carts.findAll);
+  router.get("/", carts.findAll);
 
   // Retrieve a single Cart with id
-  router.get("/:id", auth, carts.findOne);
+  router.get("/:id", carts.findOne);
+
+  // Retrieve a single Cart with customerId
+  router.get("/:customerId", carts.findByCustomerId);
 
   // Update a Cart with id
-  router.put("/:id", auth, carts.update);
+  router.put("/:id", carts.update);
 
   // Delete a Cart with id
-  router.delete("/:id", auth, carts.delete);
+  router.delete("/:id", carts.delete);
 
   // Create a new Cart
-  router.delete("/", auth, carts.deleteAll);
+  router.delete("/", carts.deleteAll);
 
   app.use("/api/carts", router);
 };

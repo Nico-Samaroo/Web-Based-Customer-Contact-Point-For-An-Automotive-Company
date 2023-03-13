@@ -14,5 +14,6 @@ db.parts = require("./part.model.js")(mongoose);
 db.services = require("./service.model.js")(mongoose);
 db.users = require("./user.model.js")(mongoose);
 db.carts = require("./cart.model.js")(mongoose);
+db.sales = require("./sale.model.js")(mongoose);
 
 module.exports = db;

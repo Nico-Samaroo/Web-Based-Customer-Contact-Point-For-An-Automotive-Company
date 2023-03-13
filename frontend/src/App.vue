@@ -11,12 +11,12 @@
     </div>
     <div id="mobile-menu-wrap"></div>
     <ul class="offcanvas__widget__add">
-      <li><i class="fa fa-clock-o"></i> Week day: 08:00 am to 18:00 pm</li>
+      <li><i class="fa fa-clock-o"></i> Week day: 08:00 am to 4:00 pm</li>
       <li><i class="fa fa-envelope-o"></i> info@automotive.com</li>
     </ul>
     <div class="offcanvas__phone__num">
       <i class="fa fa-phone"></i>
-      <span>(+12) 345 678 910</span>
+      <span>(+1 868) 555 6789</span>
     </div>
     <div class="offcanvas__social">
       <a href="#"><i class="fa fa-facebook"></i></a>
@@ -34,7 +34,7 @@
         <div class="row">
           <div class="col-lg-7">
             <ul class="header__top__widget">
-              <li><i class="fa fa-clock-o"></i> Week day: 08:00 am to 18:00 pm</li>
+              <li><i class="fa fa-clock-o"></i> Week day: 08:00 am to 4:00 pm</li>
               <li><i class="fa fa-envelope-o"></i> Info.colorlib@gmail.com</li>
             </ul>
           </div>
@@ -102,7 +102,7 @@
             </nav>
             <div class="header__nav__widget">
               <div class="header__nav__widget__btn">
-                <a href="#"><i class="fa fa-cart-plus"></i></a>
+                <a @click="getCart"><i class="fa fa-cart-plus"></i></a>
               </div>
               <!-- <span v-if="isLoggedIn" class="navbar-text">
                               {{ user.first_name +' '+ user.last_name }}
@@ -122,7 +122,7 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-12">logged in as: </div>
+      <div class="col-12 text-center mb-4">logged in as: <strong>{{ user.name }}</strong></div>
     </div>
   </div>
 
@@ -151,9 +151,15 @@ export default {
 
         this.isLoggedIn = true;
         this.user = decoded;
-        console.log(decoded);
+        // console.log(decoded);
       }
       
+    },
+
+    getCart(){
+      let token = localStorage.getItem("jwt");
+      let decoded = VueJwtDecode.decode(token);
+      this.$router.push({ name: 'list-cart', params: { customerId: decoded._id }});
     },
 
     logUserOut() {

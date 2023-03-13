@@ -239,7 +239,7 @@
                 <div class="col-lg-4">
                     <div class="feature__text">
                         <div class="section-title">
-                            <span>Our Us</span>
+                            <span>About Us</span>
                             <h2>We Are a Trusted Name In Auto</h2>
                         </div>
                         <div class="feature__text__desc">
@@ -275,7 +275,7 @@
                                 <div class="feature__item__icon">
                                     <img src="assets/img/feature/feature-3.png" alt="">
                                 </div>
-                                <h6>Colling</h6>
+                                <h6>Cooling</h6>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-4 col-6">
@@ -316,7 +316,7 @@
                 <div class="col-lg-12">
                     <div class="section-title">
                         <span>Parts available</span>
-                        <h2>BesT Prices In The Region</h2>
+                        <h2>Best Prices In The Region</h2>
                     </div>
                     <!-- <ul class="filter__controls">
                         <li class="active" data-filter="*">Most Researched</li>
@@ -336,7 +336,7 @@
                                 <h5>{{ part.name }}</h5>
                             </div>
                             <div class="car__item__price">
-                                <button class="car-option">Buy</button>
+                                <button class="car-option" @click="addToCart(part)">Add to cart</button>
                                 <h6 class="text-right">${{ part.price.toFixed(2) }}&nbsp;&nbsp;&nbsp;&nbsp;</h6>
                             </div>
                         </div>
@@ -486,8 +486,8 @@
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="footer__contact__option">
-                            <div class="option__item"><i class="fa fa-phone"></i> (+12) 345 678 910</div>
-                            <div class="option__item email"><i class="fa fa-envelope-o"></i> Colorlib@gmail.com</div>
+                            <div class="option__item"><i class="fa fa-phone"></i> (+1 868) 555 6789</div>
+                            <div class="option__item email"><i class="fa fa-envelope-o"></i> N.Auto@gmail.com</div>
                         </div>
                     </div>
                 </div>
@@ -498,10 +498,14 @@
                         <div class="footer__logo">
                             <a href="#"><img src="assets/img/footer-logo.png" alt=""></a>
                         </div>
-                        <p>Any questions? Let us know in store at 625 Gloria Union, California, United Stated or call us
-                            on (+1) 96 123 8888</p>
+                        <p>Visit Us at Our 2 Branch Locations:
+                        </p>
+                        <p>12 Turbo St., San Fernando
+                        </p>
+                        <p>21 Gasket St., Port of Spain
+                        </p>
                         <div class="footer__social">
-                            <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                            <a href="https://facebook.com" class="facebook"><i class="fa fa-facebook"></i></a>
                             <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
                             <a href="#" class="google"><i class="fa fa-google"></i></a>
                             <a href="#" class="skype"><i class="fa fa-skype"></i></a>
@@ -512,10 +516,10 @@
                     <div class="footer__widget">
                         <h5>Infomation</h5>
                         <ul>
-                            <li><a href="#"><i class="fa fa-angle-right"></i> Purchase</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right"></i> Payemnt</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right"></i> Shipping</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right"></i> Return</a></li>
+                            <li><a href="https://www.google.com/maps/place/Rons+Auto+Repair+and+Alignment+Centre/@10.2584102,-61.4638748,17z/data=!3m1!4b1!4m6!3m5!1s0x8c358c4a2e2a49d7:0x863ed494e0a0fde5!8m2!3d10.2584102!4d-61.4616861!16s%2Fg%2F11_qd25y0"><i class="fa fa-angle-right"></i> San Fernando Branch Directions</a></li>
+                            <li><a href="https://www.google.com/maps?q=movietowne+port+of+spain&um=1&ie=UTF-8&sa=X&ved=2ahUKEwiRkP-py5_9AhX1QjABHVu-BusQ_AUoAXoECAEQAw"><i class="fa fa-angle-right"></i> Port of Spain Branch Directions</a></li>
+                        <!-- <li><a href="#"><i class="fa fa-angle-right"></i> Shipping</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right"></i> Return</a></li>-->
                         </ul>
                     </div>
                 </div>
@@ -571,6 +575,8 @@
 
 <script>
 import PartDataService from "../services/PartDataService";
+import CartDataService from "../services/CartDataService";
+import VueJwtDecode from "vue-jwt-decode";
 import swal from "sweetalert";
 
 export default {
@@ -606,10 +612,17 @@ export default {
             })
             .then((confirmed) => {
                 if(confirmed) {
-                    PartDataService.addToCart(part.id)
+                    let token = localStorage.getItem("jwt");
+                    let decoded = VueJwtDecode.decode(token);
+                    let cart = {
+                        customer: decoded._id,
+                        parts: [part.id],
+                        total: part.price
+                    };
+
+                    CartDataService.create(cart)
                         .then(response => {
                             console.log(response.data);
-                            this.refreshList();
                         })
                         .catch(e => {
                             console.log(e);

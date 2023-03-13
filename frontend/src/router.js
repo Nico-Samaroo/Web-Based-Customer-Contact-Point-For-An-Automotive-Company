@@ -58,6 +58,41 @@ const routes = [
       requiresAuth: true
     }
   },
+
+
+  {
+    path: "/cart/list",
+    alias: "/cart",
+    name: "list-cart",
+    component: () => import("./components/cart/ListCart"),
+    meta: {
+      requiresAuth: true
+    }
+  },
+  // {
+  //   path: "/cart/update/:id",
+  //   name: "update-cart",
+  //   component: () => import("./components/cart/UpdateCart"),
+  //   meta: {
+  //     requiresAuth: true
+  //   }
+  // },
+  // {
+  //   path: "/cart/view/:id",
+  //   name: "view-cart",
+  //   component: () => import("./components/cart/ViewCart"),
+  //   meta: {
+  //     requiresAuth: true
+  //   }
+  // },
+  // {
+  //   path: "/cart/create",
+  //   name: "create-cart",
+  //   component: () => import("./components/cart/CreateCart"),
+  //   meta: {
+  //     requiresAuth: true
+  //   }
+  // },
   
   {
     path: "/user/list",

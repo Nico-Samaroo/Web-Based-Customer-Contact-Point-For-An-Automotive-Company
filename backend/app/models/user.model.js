@@ -45,7 +45,7 @@ module.exports = mongoose => {
         const user = this;
         const token = jwt.sign({
             _id: user._id,
-            name: user.name, 
+            name: user.first_name +' '+ user.last_name, 
             email: user.email,
             contact_no: user.contact_no,
             admin: user.admin

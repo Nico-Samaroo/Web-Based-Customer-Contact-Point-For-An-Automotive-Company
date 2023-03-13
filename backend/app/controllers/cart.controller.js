@@ -4,22 +4,21 @@ const Cart = db.carts;
 // Create and Save a new Cart
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.name) {
+  if (!req.body.customer) {
     res.status(400).send({ message: "Content can not be empty!" });
     return;
   }
 
   // Create a Cart
-  const part = new Cart({
-    name: req.body.userId,
-    code: req.body.code,
-    amount: req.body.amount,
-    price: req.body.price
+  const cart = new Cart({
+    customer: req.body.customer,
+    parts: req.body.parts,
+    total: req.body.total
   });
 
   // Save Cart in the database
-  part
-    .save(part)
+  cart
+    .save(cart)
     .then(data => {
       res.send(data);
     })
@@ -40,7 +39,7 @@ exports.findAll = (req, res) => {
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving parts."
+          err.message || "Some error occurred while retrieving carts."
       });
     });
 };
@@ -53,6 +52,24 @@ exports.findOne = (req, res) => {
     .then(data => {
       if (!data)
         res.status(404).send({ message: "Not found Cart with id " + id });
+      else res.send(data);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .send({ message: "Error retrieving Cart with id=" + id });
+    });
+};
+
+// Find a single Cart by customerId
+exports.findByCustomerId = (req, res) => {
+  const customerId = req.params.customerId;
+
+  Cart.findOne({ customer: customerId })
+    .populate('parts')
+    .then(data => {
+      if (!data)
+        res.status(404).send({ message: "Cannot find a cart for this customer " + id });
       else res.send(data);
     })
     .catch(err => {
@@ -121,7 +138,7 @@ exports.deleteAll = (req, res) => {
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all parts."
+          err.message || "Some error occurred while removing all carts."
       });
     });
 };

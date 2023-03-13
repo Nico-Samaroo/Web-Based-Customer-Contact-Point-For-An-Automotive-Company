@@ -25,6 +25,6 @@ module.exports = mongoose => {
     return object;
   });
 
-  const Cart = mongoose.model("cart", schema);
-  return Cart;
+  const Sale = mongoose.model("sale", schema);
+  return Sale;
 };
