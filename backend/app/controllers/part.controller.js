@@ -31,6 +31,22 @@ exports.create = (req, res) => {
     });
 };
 
+exports.upload = (req, res) => {
+  console.log(req.file);
+  if (!req.file) {
+    console.log("No file received");
+    return res.send({
+      success: false
+    });
+
+  } else {
+    console.log('file received');
+    return res.send({
+      success: true
+    })
+  }
+};
+
 // Retrieve all Parts from the database.
 exports.findAll = (req, res) => {
   Part.find()

@@ -9,8 +9,8 @@ class CartDataService {
     return http.get(`/carts/${id}`);
   }
 
-  getByCustomer(customerId) {
-    return http.get(`/carts?customerId=${customerId}`);
+  getByUser(userId) {
+    return http.get(`/carts?userId=${userId}`);
   }
 
   create(data) {

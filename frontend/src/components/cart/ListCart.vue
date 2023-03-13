@@ -7,13 +7,12 @@
             <div v-if="cart" class="list row">
                 <div class="col-md-12">
                     <h4>Cart</h4>
-                    <ul>
-                        <li class="list-group-item"
-                            v-for="(list, index) in cart" :key="index">
-                            {{ list.part || json }}
-                        </li>
-                    </ul>
-                    {{ cart || json }}
+                    <table class="table ">
+                        <tr v-for="(list, index) in cart" :key="index">
+                            <td v-for="(part, i) in list.parts" :key="i">{{ part }}</td>
+                        </tr>
+                    </table>
+                    <pre>{{ cart || json }}</pre>
 
                     <!-- <button class="m-3 btn btn-sm btn-danger" @click="removeAllCarts">
                 Remove All
@@ -43,7 +42,7 @@ export default {
             let token = localStorage.getItem("jwt");
             let decoded = VueJwtDecode.decode(token);
             this.loading = true;
-            CartDataService.getByCustomer(decoded._id)
+            CartDataService.getByUser(decoded._id)
                 .then(response => {
                     this.loading = false;
                     this.cart = response.data;

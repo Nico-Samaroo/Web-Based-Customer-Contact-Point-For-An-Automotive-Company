@@ -13,8 +13,8 @@ module.exports = app => {
   // Retrieve a single Cart with id
   router.get("/:id", carts.findOne);
 
-  // Retrieve a single Cart with customerId
-  router.get("/:customerId", carts.findByCustomerId);
+  // Retrieve a single Cart with userId
+  router.get("/:userId", carts.findByUserId);
 
   // Update a Cart with id
   router.put("/:id", carts.update);

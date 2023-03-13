@@ -5,8 +5,9 @@
                 <div v-if="loading" class="col-12">Loading...</div>
             </div>
             <div v-if="parts" class="list row">
-                <div class="col-md-8">
-                    <div class="input-group mb-3">
+                <div class="col-md-12">
+                    <h4>Parts List</h4>
+                    <div class="input-group mb-3" style="margin: 1em 0;">
                         <input type="text" class="form-control" placeholder="Search by Code." v-model="code" />
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="button" @click="searchCode">
@@ -15,43 +16,27 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <h4>Parts List</h4>
-                    <ul class="list-group">
-                        <li class="list-group-item" :class="{ active: index == currentIndex }"
-                            v-for="(part, index) in parts" :key="index" @click="setActivePart(part, index)">
-                            {{ part.name }} [{{ part.code }}]
-                        </li>
-                    </ul>
+                <div class="col-3" v-for="(part, index) in parts" :key="index">
+                            <div class="flex justify-center">
+                                <div class="rounded-lg shadow-lg bg-white max-w-sm">
+                                    <a href="#!">
+                                        <img class="rounded-t-lg" src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" alt=""/>
+                                    </a>
+                                    <div class="p-6" style="padding: 1em; margin-bottom: 2em;">
+                                        <h5 class="text-gray-900 text-xl font-medium mb-2">{{ part.name }}</h5>
+                                        <p class="text-gray-700 text-base mb-4">
+                                            Code: [{{ part.code }}]
+                                            Amount: {{ part.amount }}
+                                            Price: {{ part.price }}
+                                        </p>
+                                        <a class="btn btn-warning" :href="'/part/update/' + part.id">Edit</a>
+                                        <button class="btn btn-danger mx-2" @click="deletePart(part.id)">Delete</button>
 
                     <!-- <button class="m-3 btn btn-sm btn-danger" @click="removeAllParts">
                 Remove All
             </button> -->
-                </div>
-                <div class="col-md-6">
-                    <div v-if="currentPart">
-                        <h4>Parts</h4>
-                        <div>
-                            <label><strong>Name:</strong></label> {{ currentPart.name }}
+                                </div>
                         </div>
-                        <div>
-                            <label><strong>Code:</strong></label> {{ currentPart.code }}
-                        </div>
-                        <div>
-                            <label><strong>Amount:</strong></label> {{ currentPart.amount }}
-                        </div>
-                        <div>
-                            <label><strong>Price:</strong></label> {{ currentPart.price }}
-                        </div>
-
-                        <a class="btn btn-warning" :href="'/part/update/' + currentPart.id">Edit</a>
-
-                        <button class="btn btn-danger mx-2" @click="deletePart(currentPart.id)">Delete</button>
-
-                    </div>
-                    <div v-else>
-                        <br />
-                        <p>Please click on a Part...</p>
                     </div>
                 </div>
             </div>

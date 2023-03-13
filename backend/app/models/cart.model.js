@@ -1,20 +1,17 @@
 module.exports = mongoose => {
   var schema = mongoose.Schema(
     {
-      customer: {
+      userId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref:"customer"
+        ref:"user"
       },
       parts: [{
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref:"part"
-      }],
-      total: {
-        type: Number,
-        required: true
-      }
+        partId: String,
+        quantity: Number,
+        name: String,
+        price: Number
+      }]
     },
     { timestamps: true }
   );

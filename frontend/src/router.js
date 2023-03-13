@@ -189,7 +189,6 @@ const routes = [
       requiresAuth: true
     }
   },
-
   {
     path: "/part/list",
     alias: "/parts",

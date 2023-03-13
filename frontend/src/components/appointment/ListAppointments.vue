@@ -5,7 +5,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <!-- <pre>{{ appointments || json}}</pre> -->
+                <pre>{{ appointments || json}}</pre>
                 <vue-cal style="height: 800px" active-view="month" :events="appointments" />
             </div>
         </div>

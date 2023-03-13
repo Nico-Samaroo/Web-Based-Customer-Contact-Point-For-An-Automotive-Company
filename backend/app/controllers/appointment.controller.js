@@ -35,9 +35,11 @@ exports.create = (req, res) => {
 // Retrieve all Appointments from the database.
 exports.findAll = (req, res) => {
   Appointment.find()
-    .populate('vehicle')
+    .populate("vehicle")
+    .populate("services")
+    .populate("parts")
     .then(data => {
-      // console.log(data);
+      console.log(data);
       res.send(data);
     })
     .catch(err => {

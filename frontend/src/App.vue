@@ -11,12 +11,12 @@
     </div>
     <div id="mobile-menu-wrap"></div>
     <ul class="offcanvas__widget__add">
-      <li><i class="fa fa-clock-o"></i> Week day: 08:00 am to 4:00 pm</li>
+      <li><i class="fa fa-clock-o"></i> Week day: 08:00 am to 18:00 pm</li>
       <li><i class="fa fa-envelope-o"></i> info@automotive.com</li>
     </ul>
     <div class="offcanvas__phone__num">
       <i class="fa fa-phone"></i>
-      <span>(+1 868) 555 6789</span>
+      <span>(+12) 345 678 910</span>
     </div>
     <div class="offcanvas__social">
       <a href="#"><i class="fa fa-facebook"></i></a>
@@ -34,7 +34,7 @@
         <div class="row">
           <div class="col-lg-7">
             <ul class="header__top__widget">
-              <li><i class="fa fa-clock-o"></i> Week day: 08:00 am to 4:00 pm</li>
+              <li><i class="fa fa-clock-o"></i> Week day: 08:00 am to 18:00 pm</li>
               <li><i class="fa fa-envelope-o"></i> Info.colorlib@gmail.com</li>
             </ul>
           </div>
@@ -86,10 +86,11 @@
                     <li><router-link to="/appointment/list">Appointments</router-link></li>
                   </ul>
                 </li>
-                <li><a>Parts</a>
+                <li><a>Quotes</a>
                   <ul class="dropdown">
-                    <li><router-link to="/part/create">Create Part</router-link></li>
-                    <li><router-link to="/part/list">Part List</router-link></li>
+                    <li><router-link to="/part/create">Create Quote</router-link></li>
+                    <li><router-link to="/part/list">List Parts</router-link></li>
+
                   </ul>
                 </li>
                 <li><a>Services</a>

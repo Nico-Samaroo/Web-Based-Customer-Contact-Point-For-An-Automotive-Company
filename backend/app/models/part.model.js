@@ -1,6 +1,10 @@
 module.exports = mongoose => {
   var schema = mongoose.Schema(
     {
+      image: {
+        type: String,
+        required: false
+      },
       code: {
         type: String,
         required: true
@@ -24,7 +28,6 @@ module.exports = mongoose => {
   schema.method("toJSON", function() {
     const { __v, _id, ...object } = this.toObject();
     object.id = _id;
-    // object.price = object.price.toFixed(2)
     return object;
   });
 
