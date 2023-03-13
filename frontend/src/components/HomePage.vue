@@ -1,4 +1,5 @@
-<template> 
+<template>
+    
     <!-- Hero Section Begin -->
     <section class="hero spad set-bg" style="background-image: url('assets/img/hero-bg.jpg')">
         <div class="container">
@@ -20,13 +21,13 @@
                     <div class="hero__tab">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Rentals</a>
+                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Services</a>
                             </li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
                                 <div class="hero__tab__form">
-                                    <h2>Choose Rental</h2>
+                                    <h2>Choose Service</h2>
                                     <form>
                                         <div class="select-list">
                                             <div class="select-list-item">
@@ -66,12 +67,86 @@
                                 </div>
                             </div>
                         </div>
-                    </div> 
-                </div> 
+                    </div>
+                </div>
             </div>
         </div>
     </section>
     <!-- Hero Section End -->
+
+    <!-- Services Section Begin -->
+    <section class="services spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>Our Services</span>
+                        <h2>Auto Repair</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="services__item">
+                        <!-- <img src="assets/img/services/services-1.png" alt=""> -->
+                        <h5>Oil Change - $100</h5>
+                        <p>Over time, the fast-moving parts breakdown the oil and lessen its ability to absorb heat and lubricate the engine. Skipping an oil change leads to the vehicle's oil thinning over time and catching a build-up of metal, dirt, and other particles. Get your oil changed at N Auto Today!</p>
+                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="services__item">
+                        <!-- <img src="assets/img/services/services-2.png" alt=""> -->
+                        <h5>Brake Repair - $120</h5>
+                        <p>Regular brake checks give you the chance to fix small problems before they become bigger. However, too much time between services, can cause brake pads to wear away completely, damaging your brake disks every time you come to a stop. Get your brakes checked and repaired at N Auto Today!</p>
+                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="services__item">
+                        <!-- <img src="assets/img/services/services-3.png" alt=""> -->
+                        <h5>Alignment - $110</h5>
+                        <p>Tire alignment, also known as wheel alignment, can help your tires perform properly and help them last longer. It can also improve handling and keep your vehicle from pulling in one direction or vibrating strangely on the road.  Get your tires aligned at N Auto Today!</p>
+                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h2>Car Wash</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="services__item">
+                        <!-- <img src="assets/img/services/services-1.png" alt=""> -->
+                        <h5>Buff and Polish - $1000</h5>
+                        <p>Buffing or polishing a vehicle correctly allows you to take away or remove a number of defects, such as small scratches, etching and oxidation. Get your car buffed and polished at N Auto Today!</p>
+                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="services__item">
+                        <!-- <img src="assets/img/services/services-2.png" alt=""> -->
+                        <h5>Inside and Outside Wash - $400</h5>
+                        <p>Keeping your vehicle clean and shiny with regular carwashes is an investment for the future. Regular carwashes help protect your vehicle from grime, mud, and other corrosive debris that can lead to rust, faded paint and more. Get a complete car wash N Auto Today!</p>
+                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="services__item">
+                        <!-- <img src="assets/img/services/services-3.png" alt=""> -->
+                        <h5>Shampoo Upholstery - $500</h5>
+                        <p>Give your regular car interior cleaning as this can help you avoid health issues and other issues associated with low indoor air quality. Get an interior car wash/shampoo at N Auto Today!</p>
+                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services Section End (To be Continued) -->
 
     <!-- Feature Section Begin -->
     <section class="feature spad">
@@ -80,13 +155,17 @@
                 <div class="col-lg-4">
                     <div class="feature__text">
                         <div class="section-title">
-                            <span>Our Us</span>
+                            <span>About Us</span>
                             <h2>We Are a Trusted Name In Auto</h2>
                         </div>
                         <div class="feature__text__desc">
                             <p>‘N Auto’ is an automotive repair, wash bay and body repair provider. </p>
                             <p>The complete satisfaction of our valued customers is our highest priority. Contact us, Visit us or Book an appointment online Today!</p>
                         </div>
+                        <!-- <div class="feature__text__btn">
+                            <a href="#" class="primary-btn">About Us</a>
+                            <a href="#" class="primary-btn partner-btn">Our Partners</a>
+                        </div> -->
                     </div>
                 </div>
                 <div class="col-lg-4 offset-lg-4">
@@ -144,6 +223,134 @@
             </div>
         </div>
     </section>
+    <!-- Feature Section End -->
+   
+    <!-- Chooseus Section Begin -->
+    <!-- <section class="chooseus spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="chooseus__text">
+                        <div class="section-title">
+                            <h2>Why People Choose Us</h2>
+                            <p>Duis aute irure dolorin reprehenderits volupta velit dolore fugiat nulla pariatur
+                                excepteur sint occaecat cupidatat.</p>
+                        </div>
+                        <ul>
+                            <li><i class="fa fa-check-circle"></i> Lorem ipsum dolor sit amet, consectetur adipiscing
+                                elit.</li>
+                            <li><i class="fa fa-check-circle"></i> Integer et nisl et massa tempor ornare vel id orci.
+                            </li>
+                            <li><i class="fa fa-check-circle"></i> Nunc consectetur ligula vitae nisl placerat tempus.
+                            </li>
+                            <li><i class="fa fa-check-circle"></i> Curabitur quis ante vitae lacus varius pretium.</li>
+                        </ul>
+                        <a href="#" class="primary-btn">About Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chooseus__video set-bg">
+            <img src="assets/img/chooseus-video.png" alt="">
+            <a href="https://www.youtube.com/watch?v=Xd0Ok-MkqoE"
+                class="play-btn video-popup"><i class="fa fa-play"></i></a>
+        </div>
+    </section> -->
+    <!-- Chooseus Section End -->
+
+    <!-- Latest Blog Section Begin -->
+    <!-- <section class="latest spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>Our Blog</span>
+                        <h2>Latest News Updates</h2>
+                        <p>Sign up for the latest Automobile Industry information and more. Duis aute<br /> irure
+                            dolorin reprehenderits volupta velit dolore fugiat.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="latest__blog__item">
+                        <div class="latest__blog__item__pic set-bg" style="background-image: url('assets/img/latest-blog/lb-1.jpg');">
+                            <ul>
+                                <li>By Polly Williams</li>
+                                <li>Dec 19, 2018</li>
+                                <li>Comment</li>
+                            </ul>
+                        </div>
+                        <div class="latest__blog__item__text">
+                            <h5>Benjamin Franklin S Method Of Habit Formation</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                ut labore et dolore magna aliqua. Risus commodo viverra maecenas accumsan lacus vel
+                                facilisis.</p>
+                            <a href="#">View More <i class="fa fa-long-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="latest__blog__item">
+                        <div class="latest__blog__item__pic set-bg" style="background-image('assets/img/latest-blog/lb-2.jpg');">
+                            <ul>
+                                <li>By Mattie Ramirez</li>
+                                <li>Dec 19, 2018</li>
+                                <li>Comment</li>
+                            </ul>
+                        </div>
+                        <div class="latest__blog__item__text">
+                            <h5>How To Set Intentions That Energize You</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                ut labore et dolore magna aliqua. Risus commodo viverra maecenas accumsan lacus vel
+                                facilisis.</p>
+                            <a href="#">View More <i class="fa fa-long-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="latest__blog__item">
+                        <div class="latest__blog__item__pic set-bg" style="background-image('assets/img/latest-blog/lb-3.jpg');">
+                            <ul>
+                                <li>By Nicholas Brewer</li>
+                                <li>Dec 19, 2018</li>
+                                <li>Comment</li>
+                            </ul>
+                        </div>
+                        <div class="latest__blog__item__text">
+                            <h5>Burning Desire Golden Key Or Red Herring</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                                ut labore et dolore magna aliqua. Risus commodo viverra maecenas accumsan lacus vel
+                                facilisis.</p>
+                            <a href="#">View More <i class="fa fa-long-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- Latest Blog Section End -->
+
+    <!-- Cta Begin -->
+    <!-- <div class="cta">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="cta__item set-bg" style="background-image('assets/img/cta/cta-1.jpg');">
+                        <h4>Do You Want To Buy A Car</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="cta__item set-bg" style="background-image('assets/img/cta/cta-2.jpg');">
+                        <h4>Do You Want To Rent A Car</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- Cta End -->
 
     <!-- Footer Section Begin -->
     <footer class="footer set-bg" style="background-image('assets/img/footer-bg.jpg');">
@@ -227,15 +434,31 @@
         </div>
     </footer>
     <!-- Footer Section End -->
+
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
 </template>
 
 <script>
 
+
 export default {
     name: "home-page",
-   
-    
-
+    data() {
+        return {
+            loading: false,
+            parts: [],
+            date: new Date().getFullYear()
+        }
+    },
 };
 
 
