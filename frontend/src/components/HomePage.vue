@@ -21,7 +21,7 @@
                     <div class="hero__tab">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Services</a>
+                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Car Rental</a>
                             </li>
                         </ul>
                         <div class="tab-content">
@@ -144,9 +144,50 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h2>Body Shop</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="services__item">
+                        <!-- <img src="assets/img/services/services-1.png" alt=""> -->
+                        <h5>Rim Repair - $250</h5>
+                        <p>Repairing your alloy wheels is generally cheaper than having to replace them, especially if there's only a few small scratches or dents that can be repaired with ease. Get your rims repaired at N Auto Today!</p>
+                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="services__item">
+                        <!-- <img src="assets/img/services/services-2.png" alt=""> -->
+                        <h5>Polish Headlights - $100</h5>
+                        <p>Plastic lenses can become dull, scratched and yellow over time. Polishing headlights will clear the haze and save money on replacements lights. Get your headlights polished at N Auto Today!</p>
+                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="services__item">
+                        <!-- <img src="assets/img/services/services-3.png" alt=""> -->
+                        <h5>Ceramic coating - $2000</h5>
+                        <p>Ceramic coating will protect your car's paint from oxidizing, preventing it from fading and wearing a dull look. Get your car ceramic coated at N Auto Today!</p>
+                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="services__item">
+                        <!-- <img src="assets/img/services/services-3.png" alt=""> -->
+                        <h5>Collision Repairs</h5>
+                        <p>Price based on uploading picture(s) to get a quote.</p>
+                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
-    <!-- Services Section End (To be Continued) -->
+    <!-- Services Section End -->
 
     <!-- Feature Section Begin -->
     <section class="feature spad">
@@ -155,7 +196,7 @@
                 <div class="col-lg-4">
                     <div class="feature__text">
                         <div class="section-title">
-                            <span>About Us</span>
+                            <span>Our Us</span>
                             <h2>We Are a Trusted Name In Auto</h2>
                         </div>
                         <div class="feature__text__desc">
@@ -224,7 +265,8 @@
         </div>
     </section>
     <!-- Feature Section End -->
-   
+
+
     <!-- Chooseus Section Begin -->
     <!-- <section class="chooseus spad">
         <div class="container">
@@ -449,7 +491,6 @@
 
 <script>
 
-
 export default {
     name: "home-page",
     data() {
@@ -459,6 +500,7 @@ export default {
             date: new Date().getFullYear()
         }
     },
+    
 };
 
 
