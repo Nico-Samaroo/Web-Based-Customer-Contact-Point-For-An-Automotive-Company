@@ -1,20 +1,18 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="edit-form">
-
-                <div v-if="customer">
-                    <h4>Adding Vehicle to : {{ customer.first_name }} {{ customer.last_name }}</h4>
-                    <input type="hidden" name="customer" value="{{ customer.id }}">
+            <div class="col-12">
+                <!-- <pre>{{ vehicle || json }}</pre> -->
+                <div v-if="user">
+                    <h4>Adding Vehicle to : {{ user.first_name }} {{ user.last_name }}</h4>
+                    <input type="hidden" name="user" value="{{ user.id }}">
                 </div>
 
                 <div v-else class="mb-3">
-                    <h4>Creating Vehicle</h4>
-                    <select name="customer" id="customer" class="form-control" v-model="vehicle.customer" required>
+                    <h4 class="mb-4">Creating Vehicle</h4>
+                    <select name="customer" id="customer" class="form-control" v-model="vehicle.user" required>
                         <option value="">Please select a customer</option>
-                        <option v-for="customer in customers" :key="customer.id" :value="customer.id">{{
-                            customer.first_name
-                        }} {{ customer.last_name }}</option>
+                        <option v-for="user in users" :key="user.id" :value="user.id">{{ user.first_name }} {{ user.last_name }}</option>
                     </select>
                 </div>
 
@@ -45,6 +43,22 @@
                     <input type="text" class="form-control" id="year" required v-model="vehicle.year" name="year" />
                 </div>
 
+                <div class="mb-3">
+                    <!-- <pre>{{ vehicle.rental || json}}</pre> -->
+                    <label for="rental" style="font-weight: bold;">Rental?: </label>&nbsp;&nbsp;
+
+                    <input type="radio" id="yes" value="true" v-model="vehicle.rental">
+                    <label for="yes">Yes</label>
+                    &nbsp;
+                    <input type="radio" id="no" value="false" v-model="vehicle.rental">
+                    <label for="no">No</label>
+                </div>
+
+                <div v-if="vehicle.rental" class="mb-3">
+                    <label for="rental_price">Rental Price (Daily)</label>
+                    <input type="text" class="form-control" id="rental_price" required v-model="vehicle.rental_price" name="rental_price" />
+                </div>
+
                 <button type="submit" class="btn btn-success" @click="createVehicle">
                     Create
                 </button>
@@ -56,7 +70,7 @@
 </template>
 
 <script>
-import CustomerDataService from "../../services/CustomerDataService";
+import UserDataService from "../../services/UserDataService";
 import VehicleDataService from "../../services/VehicleDataService";
 
 export default {
@@ -69,17 +83,17 @@ export default {
                 make: '',
                 model: '',
                 year: '',
-                customer: '',
+                user: '',
             },
-            customer: null,
-            customers: []
+            user: null,
+            users: []
         };
     },
     methods: {
-        getCustomer(id) {
-            CustomerDataService.get(id)
+        getUser(id) {
+            UserDataService.get(id)
                 .then(response => {
-                    this.customer = response.data;
+                    this.user = response.data;
                     // console.log(response.data);  
                 })
                 .catch(e => {
@@ -87,12 +101,12 @@ export default {
                 });
         },
 
-        retrieveCustomers() {
+        retrieveUsers() {
             this.loading = true;
-            CustomerDataService.getAll()
+            UserDataService.getAll()
                 .then(response => {
                     this.loading = false;
-                    this.customers = response.data;
+                    this.users = response.data;
                     // console.log(response.data);
                 })
                 .catch(e => {
@@ -103,7 +117,8 @@ export default {
         createVehicle() {
             VehicleDataService.create(this.vehicle)
                 .then(response => {
-                    console.log(response.data);
+                    this.vehicle.id = response.data.id;
+                    // console.log(response.data);
                     this.$router.push({ name: "list-vehicles" });
                 })
                 .catch(e => {
@@ -111,23 +126,23 @@ export default {
                 });
         },
 
-        deleteCustomer() {
-            CustomerDataService.delete(this.customer.id)
-                .then(response => {
-                    console.log(response.data);
-                    this.$router.push({ name: "customers" });
-                })
-                .catch(e => {
-                    console.log(e);
-                });
-        }
+        // deleteCustomer() {
+        //     UserDataService.delete(this.customer.id)
+        //         .then(response => {
+        //             console.log(response.data);
+        //             this.$router.push({ name: "customers" });
+        //         })
+        //         .catch(e => {
+        //             console.log(e);
+        //         });
+        // }
     },
     mounted() {
-        let customer = this.$route.params.id;
-        if(customer) {
-            this.getCustomer(customer);
+        let userId = this.$route.params.id;
+        if(userId) {
+            this.getUser(userId);
         } else {
-            this.retrieveCustomers();
+            this.retrieveUsers();
         }
     }
 };

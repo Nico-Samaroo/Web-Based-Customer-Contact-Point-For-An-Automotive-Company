@@ -9,6 +9,10 @@ class VehicleDataService {
     return http.get(`/vehicles/${id}`);
   }
 
+  getByCustomerId(userId) {
+    return http.get(`/vehicles/by-user/${userId}`);
+  }
+
   create(data) {
     return http.post("/vehicles", data);
   }

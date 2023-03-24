@@ -7,7 +7,7 @@
       <a href="#" class="primary-btn">Add Car</a>
     </div>
     <div class="offcanvas__logo">
-      <a href="./index.html"><img src="" alt=""></a>
+      <router-link to="/"><img src="assets/img/logo.png" alt=""></router-link>
     </div>
     <div id="mobile-menu-wrap"></div>
     <ul class="offcanvas__widget__add">
@@ -59,7 +59,7 @@
       <div class="row">
         <div class="col-lg-2">
           <div class="header__logo">
-            <a href="./index.html"><img src="assets/img/logo.png" alt=""></a>
+            <router-link to="/"><img src="assets/img/logo.png" alt=""></router-link>
           </div>
         </div>
         <div class="col-lg-10">
@@ -77,20 +77,26 @@
                   <ul class="dropdown">
                     <li><router-link to="/vehicle/create">Create Vehicle</router-link></li>
                     <li><router-link to="/vehicle/list">Vehicle List</router-link></li>
+                    <!-- <li><router-link to="/rental/create">Create Rental</router-link></li> -->
+                    <li><router-link to="/rental/list">Rentals</router-link></li>
                   </ul>
                 </li>
                 <li><a>Appointments</a>
                   <ul class="dropdown">
-                    <li><router-link to="/appointment/create">Create Appointment</router-link>
-                    </li>
+                    <li><router-link to="/appointment/create">Create Appointment</router-link></li>
                     <li><router-link to="/appointment/list">Appointments</router-link></li>
+                  </ul>
+                </li>
+                <li><a>Parts</a>
+                  <ul class="dropdown">
+                    <li><router-link to="/part/create">Create Part</router-link></li>
+                    <li><router-link to="/part/list">Part List</router-link></li>
                   </ul>
                 </li>
                 <li><a>Quotes</a>
                   <ul class="dropdown">
-                    <li><router-link to="/part/create">Create Quote</router-link></li>
-                    <li><router-link to="/part/list">List Parts</router-link></li>
-
+                    <li><router-link to="/quote/create">Create Quote</router-link></li>
+                    <li><router-link to="/quote/list">Quote List</router-link></li>
                   </ul>
                 </li>
                 <li><a>Services</a>
@@ -102,6 +108,9 @@
               </ul>
             </nav>
             <div class="header__nav__widget">
+              <div class="header__nav__widget__btn">
+                <router-link to="/history"><i class="fa fa-history"></i></router-link>
+              </div>
               <div class="header__nav__widget__btn">
                 <a @click="getCart"><i class="fa fa-cart-plus"></i></a>
               </div>

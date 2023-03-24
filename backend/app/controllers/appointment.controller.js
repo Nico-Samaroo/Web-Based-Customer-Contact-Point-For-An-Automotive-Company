@@ -4,7 +4,7 @@ const Appointment = db.appointments;
 // Create and Save a new Appointment
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.start) {
+  if (!req.body.begin) {
     res.status(400).send({ message: "Content can not be empty!" });
     return;
   }
@@ -12,10 +12,8 @@ exports.create = (req, res) => {
   // Create a Appointment
   const appointment = new Appointment({
     begin: req.body.begin,
-    finish: req.body.finish,
     vehicle: req.body.vehicle,
     services: req.body.services,
-    parts: req.body.parts
   });
 
   // Save Appointment in the database
@@ -37,9 +35,27 @@ exports.findAll = (req, res) => {
   Appointment.find()
     .populate("vehicle")
     .populate("services")
-    .populate("parts")
     .then(data => {
       console.log(data);
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving appointments."
+      });
+    });
+};
+
+// Retrieve all Appointments from the database.
+exports.findByVehicle = (req, res) => {
+  const vehicleId = req.params.vehicleId;
+  // console.log(vehicleId);
+
+  Appointment.find({ vehicle: vehicleId })
+    .populate("vehicle")
+    .populate("services")
+    .then(data => {
       res.send(data);
     })
     .catch(err => {

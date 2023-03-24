@@ -9,6 +9,10 @@ class AppointmentDataService {
     return http.get(`/appointments/${id}`);
   }
 
+  getByVehicleId(vehicleId) {
+    return http.get(`/appointments/by-vehicle/${vehicleId}`);
+  }
+
   create(data) {
     return http.post("/appointments", data);
   }

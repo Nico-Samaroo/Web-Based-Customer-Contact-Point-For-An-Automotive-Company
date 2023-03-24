@@ -16,7 +16,9 @@ exports.create = (req, res) => {
     make: req.body.make,
     model: req.body.model,
     year: req.body.year,
-    customer: req.body.customer
+    user: req.body.user,
+    rental: req.body.rental,
+    rental_price: req.body.rental_price
   });
 
   // Save Vehicle in the database
@@ -36,7 +38,24 @@ exports.create = (req, res) => {
 // Retrieve all Vehicles from the database.
 exports.findAll = (req, res) => {
   Vehicle.find()
-    .populate('customer')
+    .populate('user')
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving vehicles."
+      });
+    });
+};
+
+// Retrieve all Vehicles by user.
+exports.findByUser = (req, res) => {
+  const userId = req.params.userId;
+
+  Vehicle.find({user: userId})
+    .populate('user')
     .then(data => {
       res.send(data);
     })

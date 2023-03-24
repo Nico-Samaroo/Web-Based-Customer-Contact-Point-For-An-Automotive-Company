@@ -21,11 +21,19 @@ module.exports = mongoose => {
         type: Number,
         required: false
       },
-      customer: {
-        type: mongoose.Schema.Types.ObjectId,
+      user: {  //defines user object
+        type: mongoose.Schema.Types.ObjectId,  //which has ObjectID property
         required: true,
-        ref: "customer"
+        ref: "user"    //references "user" from the schema definition, to link a vehicle to a specific user
       },
+      rental: {
+        type: Boolean,
+        required: false
+      },
+      rental_price: {
+        type: Number,
+        required: false
+      }
     },
     { timestamps: true }
   );

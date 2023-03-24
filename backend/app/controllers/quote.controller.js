@@ -1,7 +1,7 @@
 const db = require("../models");
-const Part = db.parts;
+const Quote = db.quotes;
 
-// Create and Save a new Part
+// Create and Save a new quote
 exports.create = (req, res) => {
   // Validate request
   if (!req.body.name) {
@@ -9,24 +9,24 @@ exports.create = (req, res) => {
     return;
   }
 
-  // Create a Part
-  const part = new Part({
+  // Create a quote
+  const quote = new Quote({
     name: req.body.name,
     code: req.body.code,
     amount: req.body.amount,
     price: req.body.price
   });
 
-  // Save Part in the database
-  part
-    .save(part)
+  // Save quote in the database
+  quote
+    .save(quote)
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Part."
+          err.message || "Some error occurred while creating the quote."
       });
     });
 };
@@ -49,21 +49,21 @@ exports.upload = (req, res) => {
 
 exports.download = (req, res) => {
   const filename = req.params.filename;
-  const path = "/assets/uploads/parts/" + filename;
+  const path = "/assets/uploads/quotes/" + filename;
 
   res.sendFile(path);
 }
 
 // Retrieve all Parts from the database.
 exports.findAll = (req, res) => {
-  Part.find()
+  Quote.find()
     .then(data => {
       res.send(data);
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while retrieving parts."
+          err.message || "Some error occurred while retrieving quotes."
       });
     });
 };
@@ -72,20 +72,20 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
-  Part.findById(id)
+  Quote.findById(id)
     .then(data => {
       if (!data)
-        res.status(404).send({ message: "Not found Part with id " + id });
+        res.status(404).send({ message: "Not found quote with id " + id });
       else res.send(data);
     })
     .catch(err => {
       res
         .status(500)
-        .send({ message: "Error retrieving Part with id=" + id });
+        .send({ message: "Error retrieving quote with id=" + id });
     });
 };
 
-// Update a Part by the id in the request
+// Update a quote by the id in the request
 exports.update = (req, res) => {
   if (!req.body) {
     return res.status(400).send({
@@ -95,26 +95,26 @@ exports.update = (req, res) => {
 
   const id = req.params.id;
 
-  Part.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+  Quote.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
     .then(data => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot update Part with id=${id}. Maybe Part was not found!`
+          message: `Cannot update quote with id=${id}. Maybe quote was not found!`
         });
-      } else res.send({ message: "Part was updated successfully." });
+      } else res.send({ message: "Quote was updated successfully." });
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error updating Part with id=" + id
+        message: "Error updating quote with id=" + id
       });
     });
 };
 
-// Delete a Part with the specified id in the request
+// Delete a quote with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
 
-  Part.findByIdAndRemove(id, { useFindAndModify: false })
+  Quote.findByIdAndRemove(id, { useFindAndModify: false })
     .then(data => {
       if (!data) {
         res.status(404).send({
@@ -133,18 +133,18 @@ exports.delete = (req, res) => {
     });
 };
 
-// Delete all Parts from the database.
+// Delete all quotes from the database.
 exports.deleteAll = (req, res) => {
-  Part.deleteMany({})
+  Quote.deleteMany({})
     .then(data => {
       res.send({
-        message: `${data.deletedCount} Parts were deleted successfully!`
+        message: `${data.deletedCount} Quotes were deleted successfully!`
       });
     })
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all parts."
+          err.message || "Some error occurred while removing all quotes."
       });
     });
 };

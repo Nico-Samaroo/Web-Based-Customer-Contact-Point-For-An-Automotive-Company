@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row">
-            <div v-if="user" class="edit-form">
+            <div v-if="user" class="col-12">
                 <h4>Editing: {{ user.first_name }} {{ user.last_name }}</h4>
 
                 <div class="mb-3">

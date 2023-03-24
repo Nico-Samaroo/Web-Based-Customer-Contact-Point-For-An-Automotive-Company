@@ -6,10 +6,13 @@ module.exports = app => {
   var router = require("express").Router();
 
   // Create a new Appointment
-  router.post("/", auth, appointments.create);
+  router.post("/", appointments.create);
 
   // Retrieve all Appointments
   router.get("/", appointments.findAll);
+
+  // By vehicle
+  router.get("/by-vehicle/:vehicleId", appointments.findByVehicle);
 
   // Retrieve a single Appointment with id
   router.get("/:id", appointments.findOne);

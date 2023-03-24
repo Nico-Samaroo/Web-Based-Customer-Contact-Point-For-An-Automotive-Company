@@ -1,47 +1,34 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="edit-form">
+            <div class="col-12">
                 <!-- <pre>{{ appointment || json }}</pre> -->
-                <div class="mb-3">
-                    <label for="vehicle">Vehicle</label>
-                    <select name="vehicle" id="vehicle" class="form-control" v-model="appointment.vehicle" required>
-                        <option value="">Please select a vehicle</option>
-                        <option v-for="vehicle in vehicles" :key="vehicle.id" :value="vehicle.id">{{
-                            vehicle.license_no
-                        }}</option>
-                    </select>
-                </div>
-
                 <div class="row">
                     <div class="col-6">
                         <div class="mb-3">
-                            <label for="start">Start</label>
-                            <input type="datetime-local" class="form-control" id="start" required
-                                v-model="appointment.start" name="start" />
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="mb-3">
-                            <label for="end">End</label>
-                            <input type="datetime-local" class="form-control" id="end" required
-                                v-model="appointment.end" name="end" />
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-6">
-                        <div class="mb-3">
-                            <label for="part">Part(s)</label>
-                            <select name="parts" id="part" class="form-control" v-model="appointment.parts" multiple>
-                                <option value="">Please select a part</option>
-                                <option v-for="part in parts" :key="part.id" :value="part.id">{{ part.name }} [{{
-                                    part.code
-                                }}]</option>
+                            <label for="vehicle">Vehicle</label>
+                            <select name="vehicle" id="vehicle" class="form-control" v-model="appointment.vehicle" required>
+                                <option value="">Please select a vehicle</option>
+                                <option v-for="vehicle in vehicles" :key="vehicle.id" :value="vehicle.id">{{
+                                    vehicle.license_no
+                                }}</option>
                             </select>
                         </div>
                     </div>
+                </div>
+                
+
+                <div class="row">
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label for="begin">Start Time</label>
+                            <input type="datetime-local" class="form-control" id="begin" required
+                                v-model="appointment.begin" name="begin" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
                     <div class="col-6">
                         <div class="mb-3">
                             <label for="service">Service(s)</label>
@@ -71,7 +58,6 @@
 import AppointmentDataService from "../../services/AppointmentDataService";
 import VehicleDataService from "../../services/VehicleDataService";
 import ServiceDataService from "../../services/ServiceDataService";
-import PartDataService from "../../services/PartDataService";
 
 export default {
     name: "create-appointment",
@@ -79,15 +65,12 @@ export default {
         return {
             appointment: {
                 begin: '',
-                finish: '',
                 vehicle: '',
                 services: '',
-                parts: ''
             },
             appointments: [],
             vehicles: [],
             services: [],
-            parts: []
         };
     },
     methods: {
@@ -113,13 +96,6 @@ export default {
             ServiceDataService.getAll()
                 .then(response => {
                     this.services = response.data;
-                });
-        },
-        
-        getParts() {
-            PartDataService.getAll()
-                .then(response => {
-                    this.parts = response.data;
                 });
         },
 
@@ -167,7 +143,6 @@ export default {
         }
         this.getVehicles();
         this.getServices();
-        this.getParts();
     }
 };
 </script>

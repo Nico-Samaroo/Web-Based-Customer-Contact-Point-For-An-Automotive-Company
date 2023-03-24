@@ -16,7 +16,7 @@
                     </div>
                 </form>
 
-                <img v-if="partImage" :src="partImage" alt="image">
+                <img v-if="quoteImage" :src="quoteImage" alt="image">
 
                 <!--SUCCESS-->
                 <!-- <div v-if="isSuccess">
@@ -43,26 +43,26 @@
 
                 <div class="mb-3">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" required v-model="part.name" name="name" />
+                    <input type="text" class="form-control" id="name" required v-model="quote.name" name="name" />
                 </div>
 
                 <div class="mb-3">
                     <label for="code">Code</label>
-                    <input type="text" class="form-control" id="code" required v-model="part.code" name="code" />
+                    <input type="text" class="form-control" id="code" required v-model="quote.code" name="code" />
                 </div>
 
                 <div class="mb-3">
                     <label for="amount">Amount</label>
-                    <input type="number" class="form-control" id="amount" required v-model="part.amount"
+                    <input type="number" class="form-control" id="amount" required v-model="quote.amount"
                         name="amount" />
                 </div>
 
                 <div class="mb-3">
                     <label for="price">Price</label>
-                    <input class="form-control" id="price" required v-model="part.price" name="price" />
+                    <input class="form-control" id="price" required v-model="quote.price" name="price" />
                 </div>
 
-                <button type="submit" class="btn btn-success" @click="createPart">
+                <button type="submit" class="btn btn-success" @click="createQuote">
                     Create
                 </button>
 
@@ -73,25 +73,25 @@
 </template>
 
 <script>
-import PartDataService from "../../services/PartDataService";
-import { upload } from '../../services/FileUploadService';
+import QuoteDataService from "../../services/QuoteDataService";
+import { upload } from '../../services/FileUploadServiceQuote';
 
 const STATUS_INITIAL = 0, STATUS_SAVING = 1, STATUS_SUCCESS = 2, STATUS_FAILED = 3;
 
 export default {
-    name: "create-part",
+    name: "create-quote",
     data() {
         return {
-            part: {
+            quote: {
                 image: '',
                 code: '',
                 name: '',
                 amount: '',
             },
-            parts: [],
+            quotes: [],
 
             //upload
-            partImage: null,
+            quoteImage: null,
             uploadedFiles: [],
             uploadError: null,
             currentStatus: null,
@@ -126,7 +126,7 @@ export default {
             upload(formData)
                 .then(data => {
                     // console.log(data);
-                    var image = this.downloadImage('http://localhost:8082/api/parts/download-image/' + data.file.filename);
+                    var image = this.downloadImage('http://localhost:8082/api/quotes/download-image/' + data.file.filename);
                     console.log(image.width);
 
                     // this.uploadedFiles = [].concat(x);
@@ -174,22 +174,22 @@ export default {
             this.save(formData);
         },
 
-        createPart() {
+        createQuote() {
             
-            PartDataService.create(this.part)
+            QuoteDataService.create(this.quote)
                 .then(response => {
                     console.log(response.data);
-                    this.$router.push({ name: "list-parts" });
+                    this.$router.push({ name: "list-quotes" });
                 })
                 .catch(e => {
                     console.log(e);
                 });
         },
 
-        getPart(id) {
-            PartDataService.get(id)
+        getQuote(id) {
+            QuoteDataService.get(id)
                 .then(response => {
-                    this.part = response.data;
+                    this.quote = response.data;
                     // console.log(response.data);  
                 })
                 .catch(e => {
@@ -197,12 +197,12 @@ export default {
                 });
         },
 
-        retrieveParts() {
+        retrieveQuotes() {
             this.loading = true;
-            PartDataService.getAll()
+            QuoteDataService.getAll()
                 .then(response => {
                     this.loading = false;
-                    this.parts = response.data;
+                    this.quotes = response.data;
                     // console.log(response.data);
                 })
                 .catch(e => {
@@ -210,11 +210,11 @@ export default {
                 });
         },
 
-        deletePart() {
-            PartDataService.delete(this.part.id)
+        deleteQuote() {
+            QuoteDataService.delete(this.quote.id)
                 .then(response => {
                     console.log(response.data);
-                    this.$router.push({ name: "parts" });
+                    this.$router.push({ name: "quotes" });
                 })
                 .catch(e => {
                     console.log(e);
@@ -223,11 +223,11 @@ export default {
     },
     mounted() {
         this.reset();
-        let part = this.$route.params.id;
-        if(part) {
-            this.getPart(part);
+        let quote = this.$route.params.id;
+        if(quote) {
+            this.getQuote(quote);
         } else {
-            this.retrieveParts();
+            this.retrieveQuotes();
         }
     }
 };

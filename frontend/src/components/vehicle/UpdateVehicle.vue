@@ -5,12 +5,12 @@
                 <h4>Editing: {{ vehicle.license_no }}</h4>
 
                 <div class="mb-3">
-                    <select name="customer" id="customer" class="form-control" v-model="vehicle.customer"
-                        :value="vehicle.customer" required>
-                        <option value="">Please select a customer</option>
-                        <option v-for="customer in customers" :key="customer.id" :value="customer.id">{{
-                            customer.first_name
-                        }} {{ customer.last_name }}</option>
+                    <select name="user" id="user" class="form-control" v-model="vehicle.user"
+                        :value="vehicle.user" required>
+                        <option value="">Please select a user</option>
+                        <option v-for="user in users" :key="user.id" :value="user.id">{{
+                            user.first_name
+                        }} {{ user.last_name }}</option>
                     </select>
                 </div>
 
@@ -41,6 +41,22 @@
                     <input class="form-control" id="year" required v-model="vehicle.year" name="year" />
                 </div>
 
+                <div class="mb-3">
+                    <!-- <pre>{{ vehicle.rental || json}}</pre> -->
+                    <label for="rental" style="font-weight: bold;">Rental?: </label>&nbsp;&nbsp;
+
+                    <input type="radio" id="yes" value="true" v-model="vehicle.rental">
+                    <label for="yes">Yes</label>
+                    &nbsp;
+                    <input type="radio" id="no" value="false" v-model="vehicle.rental">
+                    <label for="no">No</label>
+                </div>
+
+                <div v-if="vehicle.rental" class="mb-3">
+                    <label for="rental_price">Rental Price (Daily)</label>
+                    <input type="text" class="form-control" id="rental_price" required v-model="vehicle.rental_price" name="rental_price" />
+                </div>
+
                 <button class="btn btn-danger" @click="deleteVehicle">
                     Delete
                 </button>
@@ -61,7 +77,7 @@
 
 <script>
 import VehicleDataService from "../../services/VehicleDataService";
-import CustomerDataService from "../../services/CustomerDataService";
+import UserDataService from "../../services/UserDataService";
 import swal from "sweetalert";
 
 export default {
@@ -69,7 +85,7 @@ export default {
     data() {
         return {
             vehicle: null,
-            customers: [],
+            users: [],
             message: ''
         };
     },
@@ -118,12 +134,12 @@ export default {
             });
         },
 
-        retrieveCustomers() {
+        retrieveUsers() {
             this.loading = true;
-            CustomerDataService.getAll()
+            UserDataService.getAll()
                 .then(response => {
                     this.loading = false;
-                    this.customers = response.data;
+                    this.users = response.data;
                     // console.log(response.data);
                 })
                 .catch(e => {
@@ -133,7 +149,7 @@ export default {
     },
     mounted() {
         this.getVehicle(this.$route.params.id);
-        this.retrieveCustomers();
+        this.retrieveUsers();
     }
 };
 </script>

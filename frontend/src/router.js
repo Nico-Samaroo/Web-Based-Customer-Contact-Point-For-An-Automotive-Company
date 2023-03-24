@@ -189,6 +189,7 @@ const routes = [
       requiresAuth: true
     }
   },
+
   {
     path: "/part/list",
     alias: "/parts",
@@ -214,7 +215,31 @@ const routes = [
       requiresAuth: true
     }
   },
-
+  {
+    path: "/quote/list",
+    alias: "/quotes",
+    name: "list-quotes",
+    component: () => import("./components/quote/ListQuote"),
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/quote/update/:id",
+    name: "update-quote",
+    component: () => import("./components/quote/UpdateQuote"),
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/quote/create/:id?",
+    name: "create-quote",
+    component: () => import("./components/quote/CreateQuote"),
+    meta: {
+      requiresAuth: true
+    }
+  },
   {
     path: "/service/list",
     alias: "/services",
@@ -239,7 +264,50 @@ const routes = [
     meta: {
       requiresAuth: true
     }
-  }
+  },
+
+
+  {
+    path: "/rental/list",
+    alias: "/rentals",
+    name: "list-rentals",
+    component: () => import("./components/rental/ListRentals"),
+    meta: {
+      requiresAuth: true
+    }
+  },
+  // {
+  //   path: "/rental/update/:id",
+  //   name: "update-rental",
+  //   component: () => import("./components/rental/UpdateRental"),
+  //   meta: {
+  //     requiresAuth: true
+  //   }
+  // },
+  // {
+  //   path: "/rental/view/:id",
+  //   name: "view-rental",
+  //   component: () => import("./components/rental/ViewRental"),
+  //   meta: {
+  //     requiresAuth: true
+  //   }
+  // },
+  // {
+  //   path: "/rental/create",
+  //   name: "create-rental",
+  //   component: () => import("./components/rental/CreateRental"),
+  //   meta: {
+  //     requiresAuth: true
+  //   }
+  // },
+  {
+    path: "/history",
+    name: "history",
+    component: () => import("./components/History"),
+    meta: {
+      requiresAuth: true
+    }
+  },
 ];
 
 const router = createRouter({

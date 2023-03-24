@@ -5,16 +5,15 @@ module.exports = mongoose => {
         type: Date,
         required: true
       },
+      end: {
+        type: Date,
+        required: true
+      },
       vehicle: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: "vehicle"
       },
-      services: [{
-        type: mongoose.Schema.Types.ObjectId,
-        required: false,
-        ref: "service"
-      }],
     },
     { timestamps: true }
   );
@@ -23,10 +22,10 @@ module.exports = mongoose => {
     const { __v, _id, ...object } = this.toObject();
     object.id = _id;
     object.start = object.begin.toISOString().split('T')[0];
-    // object.title = object.vehicle.license_no;
+    object.end = object.end.toISOString().split('T')[0];
     return object;
   });
 
-  const Appointment = mongoose.model("appointment", schema);
-  return Appointment;
+  const Rental = mongoose.model("rental", schema);
+  return Rental;
 };

@@ -1,34 +1,34 @@
 <template>
     <div class="container">
         <div class="row">
-            <div v-if="part" class="col-12">
-                <h4>Editing: {{ part.name }}</h4>
+            <div v-if="quote" class="col-12">
+                <h4>Editing: {{ quote.name }}</h4>
 
                 <div class="mb-3">
                     <label for="name">License No.</label>
-                    <input type="text" class="form-control" id="name" required v-model="part.name" name="name" />
+                    <input type="text" class="form-control" id="name" required v-model="quote.name" name="name" />
                 </div>
 
                 <div class="mb-3">
                     <label for="code">Chassis No.</label>
-                    <input class="form-control" id="code" required v-model="part.code" name="code" />
+                    <input class="form-control" id="code" required v-model="quote.code" name="code" />
                 </div>
 
                 <div class="mb-3">
                     <label for="amount">Make</label>
-                    <input class="form-control" id="amount" required v-model="part.amount" name="amount" />
+                    <input class="form-control" id="amount" required v-model="quote.amount" name="amount" />
                 </div>
 
                 <div class="mb-3">
                     <label for="price">Price</label>
-                    <input class="form-control" id="price" required v-model="part.price" name="price" />
+                    <input class="form-control" id="price" required v-model="quote.price" name="price" />
                 </div>
 
-                <button class="btn btn-danger" @click="deletePart">
+                <button class="btn btn-danger" @click="deleteQuote">
                     Delete
                 </button>
 
-                <button type="submit" class="btn btn-success mx-4" @click="updatePart">
+                <button type="submit" class="btn btn-success mx-4" @click="updateQuote">
                     Update
                 </button>
 
@@ -36,31 +36,31 @@
 
             <div v-else>
                 <br />
-                <p>Please click on a Part...</p>
+                <p>Please click on a Quote...</p>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import PartDataService from "../../services/PartDataService";
+import QuoteDataService from "../../services/QuoteDataService";
 import CustomerDataService from "../../services/CustomerDataService";
 import swal from "sweetalert";
 
 export default {
-    name: "update-part",
+    name: "update-quote",
     data() {
         return {
-            part: null,
+            quote: null,
             customers: [],
             message: ''
         };
     },
     methods: {
-        getPart(id) {
-            PartDataService.get(id)
+        getQuote(id) {
+            QuoteDataService.get(id)
                 .then(response => {
-                    this.part = response.data;
+                    this.quote = response.data;
                     // console.log(response.data);  
                 })
                 .catch(e => {
@@ -68,18 +68,18 @@ export default {
                 });
         },
 
-        updatePart() {
-            PartDataService.update(this.part.id, this.part)
+        updateQuote() {
+            QuoteDataService.update(this.quote.id, this.quote)
                 .then(response => {
                     console.log(response.data);
-                    this.$router.push({ name: 'list-parts' })
+                    this.$router.push({ name: 'list-quotes' })
                 })
                 .catch(e => {
                     console.log(e);
                 });
         },
 
-        deletePart() {
+        deleteQuote() {
             swal({
                 title: "Are you sure?",
                 text: "Once deleted, you will not be able to recover it!",
@@ -89,10 +89,10 @@ export default {
             })
             .then((confirmed) => {
                 if(confirmed) {
-                    PartDataService.delete(this.part.id)
+                    QuoteDataService.delete(this.quote.id)
                         .then(response => {
                             console.log(response.data);
-                            this.$router.push({ name: 'list-parts'})
+                            this.$router.push({ name: 'list-quotes'})
                         })
                         .catch(e => {
                             console.log(e);
@@ -115,7 +115,7 @@ export default {
         },
     },
     mounted() {
-        this.getPart(this.$route.params.id);
+        this.getQuote(this.$route.params.id);
         this.retrieveCustomers();
     }
 };

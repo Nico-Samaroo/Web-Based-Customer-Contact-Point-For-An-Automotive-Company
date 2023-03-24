@@ -5,22 +5,18 @@ module.exports = mongoose => {
         type: String,
         required: true
       },
-      code: {
+      vehicle: {
         type: String,
         required: true
       },
-      name: {
+      service: {
         type: String,
         required: false
       },
-      amount: {
+      description: {
         type: Number,
         required: true
       },
-      price: {
-        type: Number,
-        required: true
-      }
     },
     { timestamps: true }
   );
@@ -31,6 +27,6 @@ module.exports = mongoose => {
     return object;
   });
 
-  const Part = mongoose.model("part", schema);
-  return Part;
+  const Quote = mongoose.model("quote", schema);
+  return Quote;
 };

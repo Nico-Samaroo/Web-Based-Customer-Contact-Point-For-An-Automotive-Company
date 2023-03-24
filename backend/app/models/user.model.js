@@ -73,6 +73,7 @@ module.exports = mongoose => {
     schema.method("toJSON", function() {
         const { __v, _id, ...object } = this.toObject();
         object.id = _id;
+        object.customer = object.admin ? false : true;
         return object;
     });
 

@@ -22,18 +22,20 @@
                         {{ vehicle.license_no }}
                     </li>
                 </ul>
+                <!-- <pre>{{ vehicles || json }}</pre> -->
 
                 <!-- <button class="m-3 btn btn-sm btn-danger" @click="removeAllVehicles">
                 Remove All
             </button> -->
             </div>
             <div class="col-md-6">
+                <!-- <pre>{{ currentVehicle || json }}</pre> -->
                 <div v-if="currentVehicle">
                     <h4>Vehicles</h4>
                     <div>
                         <label><strong>Customer Name:</strong></label> {{
-                            currentVehicle.customer.first_name + ' ' +
-                                currentVehicle.customer.last_name
+                            currentVehicle.user.first_name + ' ' +
+                                currentVehicle.user.last_name
                         }}
                     </div>
                     <div>
@@ -50,6 +52,12 @@
                     </div>
                     <div>
                         <label><strong>Year:</strong></label> {{ currentVehicle.year }}
+                    </div>
+                    <div>
+                        <label><strong>Rental:</strong></label> {{ currentVehicle.rental ? 'Yes' : 'No' }}
+                    </div>
+                    <div v-if="currentVehicle.rental">
+                        <label><strong>Price:</strong></label> {{ currentVehicle.rental_price }}
                     </div>
 
                     <a class="btn btn-warning" :href="'/vehicle/update/' + currentVehicle.id">Edit</a>

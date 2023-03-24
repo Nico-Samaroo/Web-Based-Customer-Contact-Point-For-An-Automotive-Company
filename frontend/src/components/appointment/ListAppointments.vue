@@ -5,8 +5,8 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <pre>{{ appointments || json}}</pre>
-                <vue-cal style="height: 800px" active-view="month" :events="appointments" />
+                <!-- <pre>{{ appointments || json}}</pre> -->
+                <vue-cal style="height: 800px" active-view="month" :events="appointments" :time-from="8 * 60" :time-to="19 * 60" :time-step="30" hide-weekends />
             </div>
         </div>
     </div>
@@ -36,9 +36,10 @@ export default {
                     this.appointments = response.data;
                     this.appointments.forEach(function (doc){
                         const beginDate = new Date(doc.begin);
-                        const endDate = new Date(doc.finish); 
+                        const endMinutes = beginDate.getMinutes() + 40;
                         doc.start = beginDate.getFullYear()+"-"+(beginDate.getMonth()+1)+"-"+beginDate.getDate() + " " + beginDate.getHours() + ":" + beginDate.getMinutes() + ":" + beginDate.getSeconds();
-                        doc.end = endDate.getFullYear()+"-"+(endDate.getMonth()+1)+"-"+endDate.getDate() + " " + endDate.getHours() + ":" + endDate.getMinutes() + ":" + endDate.getSeconds();
+                        doc.end = beginDate.getFullYear()+"-"+(beginDate.getMonth()+1)+"-"+beginDate.getDate() + " " + beginDate.getHours() + ":" + endMinutes + ":" + beginDate.getSeconds();
+                        doc.title = doc.vehicle.license_no;
                     });
                     // console.log(response.data);
                 })
@@ -49,14 +50,6 @@ export default {
 
         refreshList() {
             this.retrieveAppointments();
-            this.currentAppointment = null;
-            this.currentIndex = -1;
-        },
-
-        setActiveAppointment(appointment, index) {
-            console.log(appointment);
-            this.currentAppointment = appointment;
-            this.currentIndex = index;
         },
 
         deleteAppointment(id) {
@@ -91,17 +84,6 @@ export default {
                     console.log(e);
                 });
         },
-
-        searchLicenseNo() {
-            AppointmentDataService.findByLicenseNo(this.license_no)
-                .then(response => {
-                    this.appointments = response.data;
-                    console.log(response.data);
-                })
-                .catch(e => {
-                    console.log(e);
-                });
-        }
     },
     mounted() {
         this.retrieveAppointments();

@@ -47,9 +47,11 @@ require("./app/routes/customer.routes")(app);
 require("./app/routes/vehicle.routes")(app);
 require("./app/routes/appointment.routes")(app);
 require("./app/routes/part.routes")(app);
+require("./app/routes/quote.routes")(app);
 require("./app/routes/service.routes")(app);
 require("./app/routes/user.routes")(app);
 require("./app/routes/cart.routes")(app);
+require("./app/routes/rental.routes")(app);
 
 // set port, listen for requests
 // node server.js

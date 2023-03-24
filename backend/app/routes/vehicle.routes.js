@@ -10,6 +10,9 @@ module.exports = app => {
   // Retrieve all Vehicles
   router.get("/", vehicles.findAll);
 
+  // By user
+  router.get("/by-user/:userId", vehicles.findByUser);
+
   // Retrieve a single Vehicle with id
   router.get("/:id", vehicles.findOne);
 
