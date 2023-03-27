@@ -1,23 +1,23 @@
 const db = require("../models");
 const Quote = db.quotes;
 
-// Create and Save a new quote
+// Create and Save a new Quote
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.name) {
+  if (!req.body.vehicle) {
     res.status(400).send({ message: "Content can not be empty!" });
     return;
   }
 
-  // Create a quote
+  // Create a Quote
   const quote = new Quote({
-    name: req.body.name,
-    code: req.body.code,
-    amount: req.body.amount,
-    price: req.body.price
+    image: req.body.image,
+    vehicle: req.body.vehicle,
+    service: req.body.service,
+    description: req.body.description
   });
 
-  // Save quote in the database
+  // Save Quote in the database
   quote
     .save(quote)
     .then(data => {
@@ -26,7 +26,7 @@ exports.create = (req, res) => {
     .catch(err => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the quote."
+          err.message || "Some error occurred while creating the Quote."
       });
     });
 };
@@ -54,9 +54,11 @@ exports.download = (req, res) => {
   res.sendFile(path);
 }
 
-// Retrieve all Parts from the database.
+// Retrieve all Quotes from the database.
 exports.findAll = (req, res) => {
   Quote.find()
+    .populate("vehicle")
+    .populate("service")
     .then(data => {
       res.send(data);
     })
@@ -68,24 +70,24 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Find a single Part with an id
+// Find a single Quote with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
   Quote.findById(id)
     .then(data => {
       if (!data)
-        res.status(404).send({ message: "Not found quote with id " + id });
+        res.status(404).send({ message: "Not found Quote with id " + id });
       else res.send(data);
     })
     .catch(err => {
       res
         .status(500)
-        .send({ message: "Error retrieving quote with id=" + id });
+        .send({ message: "Error retrieving Quote with id=" + id });
     });
 };
 
-// Update a quote by the id in the request
+// Update a Quote by the id in the request
 exports.update = (req, res) => {
   if (!req.body) {
     return res.status(400).send({
@@ -99,18 +101,18 @@ exports.update = (req, res) => {
     .then(data => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot update quote with id=${id}. Maybe quote was not found!`
+          message: `Cannot update Quote with id=${id}. Maybe Quote was not found!`
         });
       } else res.send({ message: "Quote was updated successfully." });
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error updating quote with id=" + id
+        message: "Error updating Quote with id=" + id
       });
     });
 };
 
-// Delete a quote with the specified id in the request
+// Delete a Quote with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
 
@@ -118,22 +120,22 @@ exports.delete = (req, res) => {
     .then(data => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot delete Part with id=${id}. Maybe Part was not found!`
+          message: `Cannot delete Quote with id=${id}. Maybe Quote was not found!`
         });
       } else {
         res.send({
-          message: "Part was deleted successfully!"
+          message: "Quote was deleted successfully!"
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Could not delete Part with id=" + id
+        message: "Could not delete Quote with id=" + id
       });
     });
 };
 
-// Delete all quotes from the database.
+// Delete all Quotes from the database.
 exports.deleteAll = (req, res) => {
   Quote.deleteMany({})
     .then(data => {

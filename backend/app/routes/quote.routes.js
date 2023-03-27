@@ -6,7 +6,7 @@ module.exports = app => {
 
   var router = require("express").Router();
 
-  // Create a new quotes
+  // Create a new Part
   router.post("/", quotes.create);
 
   // Upload quote image
@@ -15,19 +15,19 @@ module.exports = app => {
   //Retrieve quote image
   router.get("/download-image/:filename", quotes.download);
 
-  // Retrieve all quotes
+  // Retrieve all Parts
   router.get("/", quotes.findAll);
 
-  // Retrieve a single quote with id
+  // Retrieve a single Part with id
   router.get("/:id", quotes.findOne);
 
-  // Update a quote with id
+  // Update a Part with id
   router.put("/:id", quotes.update);
 
-  // Delete a quote with id
+  // Delete a Part with id
   router.delete("/:id", quotes.delete);
 
-  // Create a new quotes
+  // Create a new Part
   router.delete("/", quotes.deleteAll);
 
   app.use("/api/quotes", router);

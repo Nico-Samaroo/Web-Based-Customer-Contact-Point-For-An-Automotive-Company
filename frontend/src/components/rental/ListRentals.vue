@@ -40,7 +40,7 @@
                     <label><strong>Vehicle:</strong></label> {{ currentRental.vehicle.license_no }}
                 </div>
                 <div>
-                    <label><strong>Price:</strong></label> ${{ currentRental.vehicle.rental_price + ' /day'}}
+                    <label><strong>Price:</strong></label> ${{ currentRental.vehicle.rental_price }}
                 </div>
 
                 <!-- <a class="btn btn-warning" :href="'/rental/update/' + currentRental.id">

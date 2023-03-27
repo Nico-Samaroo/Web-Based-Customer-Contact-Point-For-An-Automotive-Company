@@ -34,6 +34,10 @@ class UserDataService {
   findByFirstName(FirstName) {
     return http.get(`/users?first_name=${FirstName}`);
   }
+
+  sendEmail(data) {
+    return http.post(`/users/email`, data);
+  }
 }
 
 export default new UserDataService();

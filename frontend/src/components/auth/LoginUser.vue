@@ -9,7 +9,7 @@
           <input type="password" id="password" class="form-control mb-5" placeholder="Password"
             v-model="login.password" />
           <p>
-            Don't have an account??<router-link to="/register">click here</router-link>
+            Don't have an account? <router-link to="/register">Click Here</router-link>
           </p>
           <!-- Sign in button -->
           <center>
@@ -40,6 +40,7 @@ export default {
     async loginUser() {
       try {
         let response = await UserDataService.login(this.login);
+        console.log(response);
         let token = response.data.token;
         localStorage.setItem("jwt", token);
         if (token) {

@@ -6,15 +6,17 @@ module.exports = mongoose => {
         required: true
       },
       vehicle: {
-        type: String,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "vehicle"
       },
       service: {
-        type: String,
-        required: false
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "service"
       },
       description: {
-        type: Number,
+        type: String,
         required: true
       },
     },

@@ -24,6 +24,9 @@ module.exports = app => {
   // Create a new User
   router.delete("/", users.deleteAll);
 
+  // Email User
+  router.post("/email/", users.sendMail);
+
 
   //AUTHENTICATION
   router.post("/register", users.registerNewUser);

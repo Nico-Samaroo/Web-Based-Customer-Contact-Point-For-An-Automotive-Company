@@ -19,7 +19,7 @@
                 <img v-if="quoteImage" :src="quoteImage" alt="image">
 
                 <!--SUCCESS-->
-                <!-- <div v-if="isSuccess">
+                <div v-if="isSuccess">
                     <h2>Uploaded {{ uploadedFiles.length }} file(s) successfully.</h2>
                     <p>
                         <a href="javascript:void(0)" @click="reset()">Upload again</a>
@@ -29,37 +29,42 @@
                             <img :src="item.url" class="img-responsive img-thumbnail" :alt="item.originalName">
                         </li>
                     </ul>
-                </div> -->
+                </div>
                 <!--FAILED-->
-                <!-- <div v-if="isFailed">
+                <div v-if="isFailed">
                     <h2>Uploaded failed.</h2>
                     <p>
                         <a href="javascript:void(0)" @click="reset()">Try again</a>
                     </p>
                     <pre>{{ uploadError }}</pre>
-                </div> -->
+                </div>
             </div>
             <div class="col-8">
 
                 <div class="mb-3">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" required v-model="quote.name" name="name" />
+                    <label for="name">Which one of your vehicles is damaged?</label>
+                    <Select2 
+                        v-model="quote.vehicle" 
+                        :options="vehicleOptions" 
+                        :settings="{ width: '100%' }"
+                        class="mb-3">
+                    </Select2>
                 </div>
 
                 <div class="mb-3">
-                    <label for="code">Code</label>
-                    <input type="text" class="form-control" id="code" required v-model="quote.code" name="code" />
+                    <label for="code">Select body shop service required</label>
+                    <Select2 
+                        v-model="quote.service" 
+                        :options="serviceOptions" 
+                        :settings="{ width: '100%' }"
+                        class="mb-3">
+                    </Select2>
                 </div>
 
                 <div class="mb-3">
-                    <label for="amount">Amount</label>
-                    <input type="number" class="form-control" id="amount" required v-model="quote.amount"
-                        name="amount" />
-                </div>
-
-                <div class="mb-3">
-                    <label for="price">Price</label>
-                    <input class="form-control" id="price" required v-model="quote.price" name="price" />
+                    <label for="description">Description of body damage</label>
+                    <input type="text" class="form-control" id="description" required v-model="quote.description"
+                        name="description" />
                 </div>
 
                 <button type="submit" class="btn btn-success" @click="createQuote">
@@ -74,21 +79,36 @@
 
 <script>
 import QuoteDataService from "../../services/QuoteDataService";
-import { upload } from '../../services/FileUploadServiceQuote';
+import VehicleDataService from "../../services/VehicleDataService";
+import ServiceDataService from "../../services/ServiceDataService";
+import { upload } from '../../services/FileUploadService';
+// import VueJwtDecode from "vue-jwt-decode";
+// import swal from "sweetalert";
+import Select2 from "vue3-select2-component";
 
 const STATUS_INITIAL = 0, STATUS_SAVING = 1, STATUS_SUCCESS = 2, STATUS_FAILED = 3;
 
 export default {
     name: "create-quote",
+    components: {
+        Select2
+    },
     data() {
         return {
             quote: {
                 image: '',
-                code: '',
-                name: '',
-                amount: '',
+                vehicle: '',
+                service: '',
+                description: '',
             },
-            quotes: [],
+            vehicleOptions: [{
+                text: null,
+                id: null
+            }],
+            serviceOptions: [{
+                text: null,
+                id: null
+            }],
 
             //upload
             quoteImage: null,
@@ -119,13 +139,15 @@ export default {
             this.uploadedFiles = [];
             this.uploadError = null;
         },
+
         save(formData) {
             // upload data to the server
             this.currentStatus = STATUS_SAVING;
 
             upload(formData)
                 .then(data => {
-                    // console.log(data);
+                    console.log(data);
+                    this.quote.image = data.file.filename;
                     var image = this.downloadImage('http://localhost:8082/api/quotes/download-image/' + data.file.filename);
                     console.log(image.width);
 
@@ -157,6 +179,53 @@ export default {
             }
         },
 
+        retrieveVehicles() {
+            this.loading = true;
+            VehicleDataService.getAll()
+                .then(response => {
+                    this.loading = false;
+                    const vehicles = response.data;
+                    // console.log(response.data);
+
+                    if(vehicles) {
+                        // console.log(this.vehicles);
+                        for (let index = 0; index < vehicles.length; index++) {
+                            const vehicle = vehicles[index];
+                            let option = {
+                                text: vehicle.license_no,
+                                id: vehicle.id
+                            }
+                            this.vehicleOptions.push(option);     
+                        }
+                    }
+                })
+                .catch(e => {
+                    console.log(e);
+                });
+        },
+
+        retrieveServices() {
+            this.loading = true;
+            ServiceDataService.getAll()
+                .then(response => {
+                    this.loading = false;
+                    const services = response.data;
+                    // console.log(response.data);
+
+                    for (let index = 0; index < services.length; index++) {
+                        const service = services[index];
+                        let option = {
+                            text: service.name,
+                            id: service.id
+                        }
+                        this.serviceOptions.push(option);                
+                    }
+                })
+                .catch(e => {
+                    console.log(e);
+                });
+        },
+
         filesChange(fieldName, fileList) {
             // handle file changes
             const formData = new FormData();
@@ -175,7 +244,6 @@ export default {
         },
 
         createQuote() {
-            
             QuoteDataService.create(this.quote)
                 .then(response => {
                     console.log(response.data);
@@ -185,50 +253,11 @@ export default {
                     console.log(e);
                 });
         },
-
-        getQuote(id) {
-            QuoteDataService.get(id)
-                .then(response => {
-                    this.quote = response.data;
-                    // console.log(response.data);  
-                })
-                .catch(e => {
-                    console.log(e);
-                });
-        },
-
-        retrieveQuotes() {
-            this.loading = true;
-            QuoteDataService.getAll()
-                .then(response => {
-                    this.loading = false;
-                    this.quotes = response.data;
-                    // console.log(response.data);
-                })
-                .catch(e => {
-                    console.log(e);
-                });
-        },
-
-        deleteQuote() {
-            QuoteDataService.delete(this.quote.id)
-                .then(response => {
-                    console.log(response.data);
-                    this.$router.push({ name: "quotes" });
-                })
-                .catch(e => {
-                    console.log(e);
-                });
-        }
     },
     mounted() {
         this.reset();
-        let quote = this.$route.params.id;
-        if(quote) {
-            this.getQuote(quote);
-        } else {
-            this.retrieveQuotes();
-        }
+        this.retrieveVehicles();
+        this.retrieveServices();
     }
 };
 </script>

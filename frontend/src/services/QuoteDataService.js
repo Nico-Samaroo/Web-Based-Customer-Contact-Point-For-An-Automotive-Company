@@ -1,6 +1,6 @@
 import http from "../http-common";
 
-class QuoteDataService {
+class PartDataService {
   getAll() {
     return http.get("/quotes");
   }
@@ -25,9 +25,9 @@ class QuoteDataService {
     return http.delete(`/quotes`);
   }
 
-  findByCode(code) {
-    return http.get(`/quotes?code=${code}`);
+  findByDescription(description) {
+    return http.get(`/quotes?description=${description}`);
   }
 }
 
-export default new QuoteDataService();
+export default new PartDataService();

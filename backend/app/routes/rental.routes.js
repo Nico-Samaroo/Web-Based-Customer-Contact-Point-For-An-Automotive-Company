@@ -18,7 +18,7 @@ module.exports = app => {
   router.put("/:id", rentals.update);
 
   // Delete a Rental with id
-  router.delete("/:id", rentals.delete);
+  router.delete("/:id", auth, rentals.delete);
 
   // Create a new Rental
   router.delete("/", rentals.deleteAll);

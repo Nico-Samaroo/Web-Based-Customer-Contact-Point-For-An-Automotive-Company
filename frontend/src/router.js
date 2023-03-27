@@ -127,6 +127,14 @@ const routes = [
       requiresAuth: true
     }
   },
+  {
+    path: "/user/email/:id",
+    name: "email-user",
+    component: () => import("./components/user/EmailUser"),
+    meta: {
+      requiresAuth: true
+    }
+  },
 
   {
     path: "/vehicle/list",
@@ -215,31 +223,7 @@ const routes = [
       requiresAuth: true
     }
   },
-  {
-    path: "/quote/list",
-    alias: "/quotes",
-    name: "list-quotes",
-    component: () => import("./components/quote/ListQuote"),
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: "/quote/update/:id",
-    name: "update-quote",
-    component: () => import("./components/quote/UpdateQuote"),
-    meta: {
-      requiresAuth: true
-    }
-  },
-  {
-    path: "/quote/create/:id?",
-    name: "create-quote",
-    component: () => import("./components/quote/CreateQuote"),
-    meta: {
-      requiresAuth: true
-    }
-  },
+
   {
     path: "/service/list",
     alias: "/services",
@@ -308,6 +292,25 @@ const routes = [
       requiresAuth: true
     }
   },
+
+  {
+    path: "/quote/list",
+    alias: "/quotes",
+    name: "list-quotes",
+    component: () => import("./components/quote/ListQuotes"),
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/quote/create/:id?",
+    name: "create-quote",
+    component: () => import("./components/quote/CreateQuote"),
+    meta: {
+      requiresAuth: true
+    }
+  },
+
 ];
 
 const router = createRouter({

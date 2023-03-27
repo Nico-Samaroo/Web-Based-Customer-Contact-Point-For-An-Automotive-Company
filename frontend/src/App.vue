@@ -11,12 +11,12 @@
     </div>
     <div id="mobile-menu-wrap"></div>
     <ul class="offcanvas__widget__add">
-      <li><i class="fa fa-clock-o"></i> Week day: 08:00 am to 18:00 pm</li>
-      <li><i class="fa fa-envelope-o"></i> info@automotive.com</li>
+      <li><i class="fa fa-clock-o"></i> Week day: 08:00 am to 5:00 pm</li>
+      <li><i class="fa fa-envelope-o"></i> n_auto_business@gmail.com</li>
     </ul>
     <div class="offcanvas__phone__num">
       <i class="fa fa-phone"></i>
-      <span>(+12) 345 678 910</span>
+      <span>(+1 868) 555 6789</span>
     </div>
     <div class="offcanvas__social">
       <a href="#"><i class="fa fa-facebook"></i></a>
@@ -34,15 +34,15 @@
         <div class="row">
           <div class="col-lg-7">
             <ul class="header__top__widget">
-              <li><i class="fa fa-clock-o"></i> Week day: 08:00 am to 18:00 pm</li>
-              <li><i class="fa fa-envelope-o"></i> Info.colorlib@gmail.com</li>
+              <li><i class="fa fa-clock-o"></i> Week day: 08:00 am to 5:00 pm</li>
+              <li><i class="fa fa-envelope-o"></i> n_auto_business@gmail.com</li>
             </ul>
           </div>
           <div class="col-lg-5">
             <div class="header__top__right">
               <div class="header__top__phone">
                 <i class="fa fa-phone"></i>
-                <span>(+12) 345 678 910</span>
+                <span>(+1 868) 555 6789</span>
               </div>
               <div class="header__top__social">
                 <a href="#"><i class="fa fa-facebook"></i></a>
@@ -93,16 +93,16 @@
                     <li><router-link to="/part/list">Part List</router-link></li>
                   </ul>
                 </li>
-                <li><a>Quotes</a>
-                  <ul class="dropdown">
-                    <li><router-link to="/quote/create">Create Quote</router-link></li>
-                    <li><router-link to="/quote/list">Quote List</router-link></li>
-                  </ul>
-                </li>
                 <li><a>Services</a>
                   <ul class="dropdown">
                     <li><router-link to="/service/create">Create Service</router-link></li>
                     <li><router-link to="/service/list">Service List</router-link></li>
+                  </ul>
+                </li>
+                <li><a>Quotes</a>
+                  <ul class="dropdown">
+                    <li><router-link to="/quote/create">Create Quote</router-link></li>
+                    <li><router-link to="/quote/list">Quote List</router-link></li>
                   </ul>
                 </li>
               </ul>

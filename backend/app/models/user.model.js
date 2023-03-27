@@ -26,8 +26,13 @@ module.exports = mongoose => {
             },
         }],
         admin:{
-            type:Boolean,
-            required:[true, "Please select admin"],
+            type:Boolean
+        },
+        technician:{
+            type:Boolean
+        },
+        customer:{
+            type:Boolean
         }
     });
 
@@ -48,7 +53,8 @@ module.exports = mongoose => {
             name: user.first_name +' '+ user.last_name, 
             email: user.email,
             contact_no: user.contact_no,
-            admin: user.admin
+            admin: user.admin,
+            technician: user.technician
         },
         "secret");
 

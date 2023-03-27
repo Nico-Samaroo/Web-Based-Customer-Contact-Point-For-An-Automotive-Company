@@ -247,7 +247,7 @@
                                 <div class="feature__item__icon">
                                     <img src="assets/img/feature/feature-3.png" alt="">
                                 </div>
-                                <h6>Colling</h6>
+                                <h6>Cooling</h6>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-4 col-6">
@@ -288,7 +288,7 @@
                 <div class="col-lg-12">
                     <div class="section-title">
                         <span>Parts available</span>
-                        <h2>BesT Prices In The Region</h2>
+                        <h2>Best Prices In The Region</h2>
                     </div>
                     <!-- <ul class="filter__controls">
                         <li class="active" data-filter="*">Most Researched</li>
@@ -331,7 +331,7 @@
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="footer__contact__option">
-                            <div class="option__item"><i class="fa fa-phone"></i> (+1868) 555 6789</div>
+                            <div class="option__item"><i class="fa fa-phone"></i> (+1 868) 555 6789</div>
                             <div class="option__item email"><i class="fa fa-envelope-o"></i> n_auto_business@gmail.com</div>
                         </div>
                     </div>
@@ -346,7 +346,7 @@
                         <p>Visit Us in store at 25 Engine Road, San Fernando </p>
                         <p>or at 12 Turbo Street, Port of Spain </p>
                         <div class="footer__social">
-                            <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                            <a href="https://www.facebook.com/ronstt/" class="facebook"><i class="fa fa-facebook"></i></a>
                             <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
                             <a href="#" class="google"><i class="fa fa-google"></i></a>
                             <a href="#" class="skype"><i class="fa fa-skype"></i></a>
@@ -393,7 +393,7 @@
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             <div class="footer__copyright__text">
                 <p>Copyright &copy; {{ date }} All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
-            </div>
+             </div>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
         </div>
     </footer>
@@ -511,7 +511,7 @@ export default {
                         for (let index = 0; index < vehicles.length; index++) {
                             const vehicle = vehicles[index];
                             let option = {
-                                text: vehicle.license_no + ' - ' + vehicle.make+ ' '+ vehicle.model + ' ' + vehicle.rental_price + ' /day' ,
+                                text: vehicle.license_no + ' - ' + vehicle.make+ ' '+ vehicle.model + ' ' + vehicle.rental_price + ' /day',
                                 id: vehicle.id
                             }
                             if(vehicle.rental) {

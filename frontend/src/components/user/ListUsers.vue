@@ -43,9 +43,12 @@
                     <label><strong>Contact No.:</strong></label> {{ currentUser.contact_no }}
                 </div>
 
-                <a class="btn btn-warning" :href="'/user/update/' + currentUser.id">
+                <!-- <a class="btn btn-warning" :href="'/user/update/' + currentUser.id">
                     Edit
-                </a>
+                </a> -->
+
+                <router-link :to="'/user/update/' + currentUser.id" class="btn btn-secondary">Edit</router-link>
+                <router-link :to="'/user/email/' + currentUser.id" v-if="!currentUser.admin" class="btn btn-warning mx-2">Email</router-link>
 
                 <a class="btn btn-danger mx-2" @click="deleteUser(currentUser.id)">
                     Delete

@@ -28,6 +28,23 @@
                         name="contact_no" />
                 </div>
 
+                <div class="mb-3">
+                    <label for="role">Contact No.</label>
+
+                    <Select2 
+                        v-model="rental.vehicle" 
+                        :options="vehicleOptions" 
+                        :settings="{ width: '100%' }"
+                        @select="selectedVehicle($event)"
+                        class="mb-3">
+                    </Select2>
+                    <select name="role" id="role">
+                        <option value="admin">Admin</option>
+                        <option value="technician">Technician</option>
+                        <option value="customer">Customer</option>
+                    </select>
+                </div>
+
                 <button @click="saveUser()" class="btn btn-success">Create</button>
 
             </div>
@@ -37,9 +54,13 @@
 
 <script>
 import UserDataService from "../../services/UserDataService";
+import Select2 from "vue3-select2-component";
 
 export default {
     name: "create-user",
+    components: {
+        Select2
+    },
     data() {
         return {
             user: {
@@ -47,6 +68,9 @@ export default {
                 last_name: '',
                 email: '',
                 contact_no: '',
+                admin: false,
+                technician: false,
+                customer: false
             },
         };
     },
@@ -57,6 +81,9 @@ export default {
                 last_name: this.user.last_name,
                 email: this.user.email,
                 contact_no: this.user.contact_no,
+                admin: this.user.admin,
+                technician: this.user.technician,
+                customer: this.user.customer
             };
 
             UserDataService.create(data)
@@ -68,6 +95,10 @@ export default {
                 .catch(e => {
                     console.log(e);
                 });
+        },
+
+        selectRole(selectedRole) {
+            console.log(selectedRole);
         },
 
         newUser() {

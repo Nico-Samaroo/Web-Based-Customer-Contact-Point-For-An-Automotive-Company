@@ -47,6 +47,10 @@
                     Edit
                 </a>
 
+                <a class="btn btn-secondary" :href="'/customer/update/' + currentCustomer.id">
+                    Email
+                </a>
+
                 <a class="btn btn-danger mx-2" @click="deleteCustomer(currentCustomer.id)">
                     Delete
                 </a>

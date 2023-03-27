@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1">
-                <pre>{{ register || json }}</pre>
+                <!-- <pre>{{ register || json }}</pre> -->
                 <form class="text-center border border-secondary p-5"
                     style="margin-top:70px;height:auto;padding-top:100px !important;" @submit.prevent="registerUser">
                     <input type="text" id="name" class="form-control mb-5" placeholder="First Name" v-model="register.first_name"
@@ -15,11 +15,11 @@
                     <input type="password" id="password" class="form-control mb-5" placeholder="Password"
                         v-model="register.password" />
                     <p>
-                        Already have an account??<router-link to="/">click here</router-link>
+                        Already have an account? <router-link to="/">Click Here</router-link>
                         <!-- Sign in button -->
                         <center>
                             <button class="btn btn-primary btn-block w-75 my-4" type="submit">
-                                Sign in
+                                Create Account and Sign in
                             </button>
                         </center>
                     </p>
@@ -53,7 +53,7 @@ export default {
                 let token = response.data.token;
                 if (token) {
                     localStorage.setItem("jwt", token);
-                    this.$router.push({ name: "dashboard"});
+                    this.$router.push({ name: "homepage"});
                     swal("Success", "Registration Was successful", "success");
                 } else {
                     swal("Error", "Something Went Wrong", "error");

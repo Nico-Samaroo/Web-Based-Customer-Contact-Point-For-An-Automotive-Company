@@ -16,28 +16,29 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-3" v-for="(quote, index) in quotes" :key="index">
-                            <div class="flex justify-center">
-                                <div class="rounded-lg shadow-lg bg-white max-w-sm">
-                                    <a href="#!">
-                                        <img class="rounded-t-lg" src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" alt=""/>
-                                    </a>
-                                    <div class="p-6" style="padding: 1em; margin-bottom: 2em;">
-                                        <h5 class="text-gray-900 text-xl font-medium mb-2">{{ quote.name }}</h5>
-                                        <p class="text-gray-700 text-base mb-4">
-                                            Code: [{{ quote.code }}]
-                                            Amount: {{ quote.amount }}
-                                            Price: {{ quote.price }}
-                                        </p>
-                                        <a class="btn btn-warning" :href="'/quote/update/' + quote.id">Edit</a>
-                                        <button class="btn btn-danger mx-2" @click="deleteQuote(quote.id)">Delete</button>
-
-                    <!-- <button class="m-3 btn btn-sm btn-danger" @click="removeAllQuotes">
-                Remove All
-            </button> -->
-                                </div>
-                        </div>
-                    </div>
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Vehicle</th>
+                                <th>Service</th>
+                                <th>Description</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(quote, index) in quotes" :key="index">
+                                <td>{{ quote.image }}</td>
+                                <td>{{ quote.vehicle.license_no }}</td>
+                                <td>{{ quote.service.name }}</td>
+                                <td>{{ quote.description }}</td>
+                                <td>
+                                    <button class="btn btn-danger mx-2" @click="deleteQuote(quote.id)">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -53,6 +54,7 @@ export default {
     data() {
         return {
             loading: false,
+            quote: null,
             quotes: [],
             currentQuote: null,
             currentIndex: -1,

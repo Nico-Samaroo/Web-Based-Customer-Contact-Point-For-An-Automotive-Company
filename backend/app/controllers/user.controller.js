@@ -1,5 +1,6 @@
 const db = require("../models");
 const User = db.users;
+const nodemailer = require("nodemailer");
 
 //AUTHENTICATION
 exports.registerNewUser = async (req, res) => {
@@ -16,6 +17,7 @@ exports.registerNewUser = async (req, res) => {
       email: req.body.email,
       password: req.body.password,
       admin: req.body.admin,
+      technician: req.body.technician,
       contact_no: req.body.contact_no
     });
     let data = await user.save();
@@ -55,6 +57,9 @@ exports.create = (req, res) => {
     last_name: req.body.last_name,
     email: req.body.email,
     password: req.body.password,
+    admin: req.body.admin,
+    technician: req.body.technician,
+    user: req.body.customer
   });
 
   // Save User in the database
@@ -159,4 +164,32 @@ exports.deleteAll = (req, res) => {
         message: err.message || "Some error occurred while removing all users.",
       });
     });
+};
+
+exports.sendMail = (req, res) => {
+  var transport = nodemailer.createTransport({
+    host: "sandbox.smtp.mailtrap.io",
+    port: 2525,
+    auth: {
+      user: "45955a5ef1d510",
+      pass: "af6b9dcaf723b4",
+    },
+  });
+
+  const data = req.body;
+  const mailOptions = {
+    from: '"N Auto " <' + data.from +'>',
+    to: data.to,
+    subject: data.subject,
+    text: data.content
+  };
+
+  transport.sendMail(mailOptions, (err, info) => {
+    if (err) {
+      console.log(err);
+      // return next(err);
+    }
+    console.log("Info: ", info);
+    res.send(data);
+  });
 };
