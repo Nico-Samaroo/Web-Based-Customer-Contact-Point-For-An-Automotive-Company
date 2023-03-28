@@ -36,7 +36,7 @@ export default {
                     this.appointments = response.data;
                     this.appointments.forEach(function (doc){
                         const beginDate = new Date(doc.begin);
-                        const endMinutes = beginDate.getMinutes() + 10;
+                        const endMinutes = beginDate.getMinutes() + 40;
                         doc.start = beginDate.getFullYear()+"-"+(beginDate.getMonth()+1)+"-"+beginDate.getDate() + " " + beginDate.getHours() + ":" + beginDate.getMinutes() + ":" + beginDate.getSeconds();
                         doc.end = beginDate.getFullYear()+"-"+(beginDate.getMonth()+1)+"-"+beginDate.getDate() + " " + beginDate.getHours() + ":" + endMinutes + ":" + beginDate.getSeconds();
                         doc.title = doc.vehicle.license_no;
