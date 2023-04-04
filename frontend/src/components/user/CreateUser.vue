@@ -22,28 +22,19 @@
                         name="email" />
                 </div>
 
+                
                 <div class="mb-3">
-                    <label for="contact_no">Contact No.</label>
-                    <input type="tel" class="form-control" id="contact_no" required v-model="user.contact_no"
-                        name="contact_no" />
-                </div>
+                    <label for="role">Role</label>
 
-                <div class="mb-3">
-                    <label for="role">Contact No.</label>
-
-                    <Select2 
-                        v-model="rental.vehicle" 
-                        :options="vehicleOptions" 
+                    <Select2  
+                        :options="roleOptions" 
                         :settings="{ width: '100%' }"
-                        @select="selectedVehicle($event)"
+                        @select="selectedRole($event)"
                         class="mb-3">
                     </Select2>
-                    <select name="role" id="role">
-                        <option value="admin">Admin</option>
-                        <option value="technician">Technician</option>
-                        <option value="customer">Customer</option>
-                    </select>
                 </div>
+
+                <!-- <pre>{{ user || json }}</pre> -->
 
                 <button @click="saveUser()" class="btn btn-success">Create</button>
 
@@ -63,14 +54,20 @@ export default {
     },
     data() {
         return {
+            roleOptions: [
+                {text: "Admin", id: "Admin"},
+                {text: "Technician", id: "Technician"},
+                {text: "Customer", id: "Customer"},
+            ],
             user: {
                 first_name: '',
                 last_name: '',
+                password: 'password',
                 email: '',
                 contact_no: '',
                 admin: false,
                 technician: false,
-                customer: false
+                customer: true
             },
         };
     },
@@ -79,6 +76,7 @@ export default {
             var data = {
                 first_name: this.user.first_name,
                 last_name: this.user.last_name,
+                password: this.user.password,
                 email: this.user.email,
                 contact_no: this.user.contact_no,
                 admin: this.user.admin,
@@ -97,8 +95,29 @@ export default {
                 });
         },
 
-        selectRole(selectedRole) {
-            console.log(selectedRole);
+        selectedRole(selectedRole) {
+            const role = selectedRole.text;
+            switch (role) {
+                case "Admin":
+                    this.user.admin = true;
+                    this.user.customer = false;
+                    this.user.technician = false;
+                    break;
+                case "Technician":
+                    this.user.technician = true;
+                    this.user.customer = false;
+                    this.user.admin = false;
+                    break;
+                case "Customer":
+                    this.user.customer = true;
+                    this.user.technician = false;
+                    this.user.admin = false;
+                    break;
+            
+                default:
+                    this.user.customer = true;
+                    break;
+            }
         },
 
         newUser() {

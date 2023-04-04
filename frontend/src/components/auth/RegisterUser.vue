@@ -15,7 +15,7 @@
                     <input type="password" id="password" class="form-control mb-5" placeholder="Password"
                         v-model="register.password" />
                     <p>
-                        Already have an account? <router-link to="/">Click Here</router-link>
+                        Already have an account? <router-link to="/">Click here</router-link>
                         <!-- Sign in button -->
                         <center>
                             <button class="btn btn-primary btn-block w-75 my-4" type="submit">
@@ -41,7 +41,8 @@ export default {
                 last_name: "",
                 email: "",
                 password: "",
-                admin:false
+                admin:false,
+                customer:true
             }
         };
     },

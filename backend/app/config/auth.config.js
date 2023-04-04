@@ -1,15 +1,21 @@
 const jwt = require("jsonwebtoken");
+
 module.exports = (req, res, next) => {
-  try {
-    const token = req.headers.authorization.replace("Bearer ", "");
-    console.log(token);
-    const decoded = jwt.verify(token, "secret");
-    req.userData = decoded;
-    // console.log(req.userData);
-    next();
-  } catch (err) {
-    return res.status(401).json({
-      message: "Authentication Failed",
-    });
-  }
+  console.log(req.body);
+  const token = req.headers.authorization.replace("Bearer ", "");
+    // console.log(token);
+
+    if(token) {
+      jwt.verify(token, "secret", (err, user) => {
+        if (err) {
+          return res.status(401).send({ message: "Unauthorized!" });
+        }
+
+        //check the roles here
+        // console.log(decoded);
+        next(); 
+      });
+    } else {
+      return res.status(403).send({ message: "No token provided!" });
+    }
 };

@@ -16,7 +16,7 @@
     </ul>
     <div class="offcanvas__phone__num">
       <i class="fa fa-phone"></i>
-      <span>(+1 868) 555 6789</span>
+      <span>(+1 868) 333 1870</span>
     </div>
     <div class="offcanvas__social">
       <a href="#"><i class="fa fa-facebook"></i></a>
@@ -42,10 +42,10 @@
             <div class="header__top__right">
               <div class="header__top__phone">
                 <i class="fa fa-phone"></i>
-                <span>(+1 868) 555 6789</span>
+                <span>(+1 868) 333 1870</span>
               </div>
               <div class="header__top__social">
-                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="https://www.facebook.com/ronstt/"><i class="fa fa-facebook"></i></a>
                 <a href="#"><i class="fa fa-twitter"></i></a>
                 <a href="#"><i class="fa fa-google"></i></a>
                 <a href="#"><i class="fa fa-instagram"></i></a>
@@ -130,9 +130,12 @@
   </header>
   <!-- Header Section End -->
 
-  <div class="container">
+  <div v-if="isLoggedIn" class="container">
     <div class="row">
-      <div class="col-12 text-center mb-4">logged in as: <strong>{{ user.name }}</strong></div>
+      <div class="col-12 text-center mb-4">
+        Logged in as: <strong>{{ user.name }}</strong><br>
+        {{ userRole }}
+      </div>
     </div>
   </div>
 
@@ -149,7 +152,8 @@ export default {
     return {
       user: {},
       isLoggedIn: false,
-      isAdmin: false
+      isAdmin: false,
+      userRole: null,
     };
   },
   methods: {
@@ -162,6 +166,7 @@ export default {
         this.isLoggedIn = true;
         this.user = decoded;
         // console.log(decoded);
+        this.getUserRole();
       }
       
     },
@@ -170,6 +175,16 @@ export default {
       let token = localStorage.getItem("jwt");
       let decoded = VueJwtDecode.decode(token);
       this.$router.push({ name: 'list-cart', params: { customerId: decoded._id }});
+    },
+
+    getUserRole() {
+        if(this.user.admin) {
+            this.userRole = "Admin";
+        } else if(this.user.technician) {
+            this.userRole = "Technician";
+        } else if(this.user.customer) {
+            this.userRole = "Customer";
+        }
     },
 
     logUserOut() {

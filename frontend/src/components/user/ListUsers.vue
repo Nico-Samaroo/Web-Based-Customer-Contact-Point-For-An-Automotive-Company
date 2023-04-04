@@ -40,7 +40,7 @@
                     <label><strong>Email:</strong></label> {{ currentUser.email }}
                 </div>
                 <div>
-                    <label><strong>Contact No.:</strong></label> {{ currentUser.contact_no }}
+                    <label><strong>Role:</strong></label> {{ currentUserRole }}
                 </div>
 
                 <!-- <a class="btn btn-warning" :href="'/user/update/' + currentUser.id">
@@ -75,6 +75,7 @@ export default {
             users: [],
             currentUser: null,
             currentIndex: -1,
+            currentUserRole: null,
             first_name: ""
         };
     },
@@ -96,11 +97,23 @@ export default {
             this.retrieveUsers();
             this.currentUser = null;
             this.currentIndex = -1;
+            this.currentUserRole = null;
         },
 
         setActiveUser(user, index) {
             this.currentUser = user;
             this.currentIndex = index;
+            this.getUserRole(user);
+        },
+
+        getUserRole(user) {
+            if(user.admin) {
+                this.currentUserRole = "Admin";
+            } else if(user.technician) {
+                this.currentUserRole = "Technician";
+            } else if(user.customer) {
+                this.currentUserRole = "Customer";
+            }
         },
 
         deleteUser(id) {

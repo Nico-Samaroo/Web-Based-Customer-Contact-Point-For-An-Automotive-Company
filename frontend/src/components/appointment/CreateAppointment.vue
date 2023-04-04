@@ -1,10 +1,10 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col-12">
+            <div class="col-lg-12">
                 <!-- <pre>{{ appointment || json }}</pre> -->
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-lg-12">
                         <div class="mb-3">
                             <label for="vehicle">Vehicle</label>
                             <select name="vehicle" id="vehicle" class="form-control" v-model="appointment.vehicle" required>
@@ -19,7 +19,7 @@
                 
 
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-lg-12">
                         <div class="mb-3">
                             <label for="begin">Start Time</label>
                             <input type="datetime-local" class="form-control" id="begin" required
@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-lg-12">
                         <div class="mb-3">
                             <label for="service">Service(s)</label>
                             <select name="services" id="service" class="form-control" v-model="appointment.services"

@@ -1,6 +1,7 @@
 <template>
     <div class="container">
         <div class="row">
+            <!-- <pre>{{ part || json }}</pre> -->
             <div class="col-4">
                 <form enctype="multipart/form-data" novalidate v-if="isInitial || isSaving">
                     <h6>Upload image</h6>
@@ -19,8 +20,8 @@
                 <img v-if="partImage" :src="partImage" alt="image">
 
                 <!--SUCCESS-->
-                <!-- <div v-if="isSuccess">
-                    <h2>Uploaded {{ uploadedFiles.length }} file(s) successfully.</h2>
+                <div v-if="isSuccess">
+                    <h2>Uploaded file successfully.</h2>
                     <p>
                         <a href="javascript:void(0)" @click="reset()">Upload again</a>
                     </p>
@@ -29,7 +30,7 @@
                             <img :src="item.url" class="img-responsive img-thumbnail" :alt="item.originalName">
                         </li>
                     </ul>
-                </div> -->
+                </div>
                 <!--FAILED-->
                 <!-- <div v-if="isFailed">
                     <h2>Uploaded failed.</h2>
@@ -163,11 +164,15 @@ export default {
 
             if (!fileList.length) return;
 
+
             // append the files to FormData
             Array
                 .from(Array(fileList.length).keys())
                 .map(x => {
                     formData.append(fieldName, fileList[x], fileList[x].name);
+                    
+                    //set the image string to the image name
+                    this.part.image = fileList[x].name;
                 });
 
             // save it

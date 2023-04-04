@@ -5,17 +5,17 @@
                 <h4>Editing: {{ part.name }}</h4>
 
                 <div class="mb-3">
-                    <label for="name">License No.</label>
+                    <label for="name">Name</label>
                     <input type="text" class="form-control" id="name" required v-model="part.name" name="name" />
                 </div>
 
                 <div class="mb-3">
-                    <label for="code">Chassis No.</label>
+                    <label for="code">Code</label>
                     <input class="form-control" id="code" required v-model="part.code" name="code" />
                 </div>
 
                 <div class="mb-3">
-                    <label for="amount">Make</label>
+                    <label for="amount">Amount</label>
                     <input class="form-control" id="amount" required v-model="part.amount" name="amount" />
                 </div>
 

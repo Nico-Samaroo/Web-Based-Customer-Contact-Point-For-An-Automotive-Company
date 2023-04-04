@@ -19,7 +19,7 @@
             <table class="table table-sm">
                 <tr class="list-group-item" :class="{ active: index == currentIndex }"
                     v-for="(rental, index) in rentals" :key="index" @click="setActiveRental(rental, index)">
-                    {{ rental.vehicle.license_no }} | <strong>From</strong>: {{ rental.start }} - <strong>To</strong>: {{ rental.end }}
+                    {{ rental.vehicle.license_no + " - " + rental.vehicle.make +" "+ rental.vehicle.model}} | <strong>From</strong>: {{ rental.start }} - <strong>To</strong>: {{ rental.end }}
                 </tr>
             </table>
 
@@ -38,6 +38,12 @@
                 </div>
                 <div>
                     <label><strong>Vehicle:</strong></label> {{ currentRental.vehicle.license_no }}
+                </div>
+                <div>
+                    <label><strong>Make:</strong></label> {{ currentRental.vehicle.make }}
+                </div>
+                <div>
+                    <label><strong>Model:</strong></label> {{ currentRental.vehicle.model }}
                 </div>
                 <div>
                     <label><strong>Price:</strong></label> ${{ currentRental.vehicle.rental_price }}

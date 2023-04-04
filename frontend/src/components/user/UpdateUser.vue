@@ -22,9 +22,15 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="contact_no">Contact No.</label>
-                    <input type="tel" class="form-control" id="contact_no" required v-model="user.contact_no"
-                        name="contact_no" />
+                    <label for="role">Role</label>
+
+                    <Select2 
+                        v-model="userRole"
+                        :options="roleOptions" 
+                        :settings="{ width: '100%' }"
+                        @select="selectedRole($event)"
+                        class="mb-3">
+                    </Select2>
                 </div>
 
                 <button class="btn btn-danger" @click="deleteUser">
@@ -38,8 +44,7 @@
             </div>
 
             <div v-else>
-                <br />
-                <p>Please click on a User...</p>
+                <p>No user found with that ID.</p>
             </div>
         </div>
     </div>
@@ -48,13 +53,23 @@
 <script>
 import UserDataService from "../../services/UserDataService";
 import swal from "sweetalert";
+import Select2 from "vue3-select2-component";
 
 export default {
     name: "update-user",
+    components: {
+        Select2
+    },
     data() {
         return {
+            roleOptions: [
+                {text: "Admin", id: "Admin"},
+                {text: "Technician", id: "Technician"},
+                {text: "Customer", id: "Customer"},
+            ],
             user: null,
-            message: ''
+            message: '',
+            userRole: null,
         };
     },
     methods: {
@@ -63,6 +78,7 @@ export default {
                 .then(response => {
                     this.user = response.data;
                     // console.log(response.data);  
+                    this.getUserRole();
                 })
                 .catch(e => {
                     console.log(e);
@@ -78,6 +94,16 @@ export default {
                 .catch(e => {
                     console.log(e);
                 });
+        },
+
+        getUserRole() {
+            if(this.user.admin) {
+                this.userRole = "Admin";
+            } else if(this.user.technician) {
+                this.userRole = "Technician";
+            } else if(this.user.customer) {
+                this.userRole = "Customer";
+            }
         },
 
         deleteUser() {
@@ -100,7 +126,32 @@ export default {
                         });
                 }
             });
-        }
+        },
+
+        selectedRole(selectedRole) {
+            const role = selectedRole.text;
+            switch (role) {
+                case "Admin":
+                    this.user.admin = true;
+                    this.user.customer = false;
+                    this.user.technician = false;
+                    break;
+                case "Technician":
+                    this.user.technician = true;
+                    this.user.customer = false;
+                    this.user.admin = false;
+                    break;
+                case "Customer":
+                    this.user.customer = true;
+                    this.user.technician = false;
+                    this.user.admin = false;
+                    break;
+            
+                default:
+                    this.user.customer = true;
+                    break;
+            }
+        },
     },
     mounted() {
         this.message = '';

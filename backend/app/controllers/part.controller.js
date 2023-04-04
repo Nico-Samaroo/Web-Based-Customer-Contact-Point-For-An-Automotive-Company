@@ -11,6 +11,7 @@ exports.create = (req, res) => {
 
   // Create a Part
   const part = new Part({
+    image: req.body.image,
     name: req.body.name,
     code: req.body.code,
     amount: req.body.amount,

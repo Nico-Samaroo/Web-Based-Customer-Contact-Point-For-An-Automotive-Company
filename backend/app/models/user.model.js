@@ -54,7 +54,8 @@ module.exports = mongoose => {
             email: user.email,
             contact_no: user.contact_no,
             admin: user.admin,
-            technician: user.technician
+            technician: user.technician,
+            customer: user.customer
         },
         "secret");
 
@@ -79,7 +80,9 @@ module.exports = mongoose => {
     schema.method("toJSON", function() {
         const { __v, _id, ...object } = this.toObject();
         object.id = _id;
-        object.customer = object.admin ? false : true;
+        object.admin = object.admin;
+        object.technician = object.technician;
+        object.customer = object.customer;
         return object;
     });
 

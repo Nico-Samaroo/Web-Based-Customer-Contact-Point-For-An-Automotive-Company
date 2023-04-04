@@ -18,6 +18,7 @@ exports.registerNewUser = async (req, res) => {
       password: req.body.password,
       admin: req.body.admin,
       technician: req.body.technician,
+      customer: req.body.customer,
       contact_no: req.body.contact_no
     });
     let data = await user.save();
@@ -33,6 +34,7 @@ exports.loginUser = async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
     const user = await User.findByCredentials(email, password);
+    // console.log(user);
     if (!user) {
       return res.status(401).json({ error: "Login failed! Check authentication credentials" });
     }
@@ -46,7 +48,7 @@ exports.loginUser = async (req, res) => {
 // Create and Save a new User
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.email || !req.body.name) {
+  if (!req.body.email || !req.body.first_name) {
     res.status(400).send({ message: "Content can not be empty!" });
     return;
   }
@@ -59,7 +61,7 @@ exports.create = (req, res) => {
     password: req.body.password,
     admin: req.body.admin,
     technician: req.body.technician,
-    user: req.body.customer
+    customer: req.body.customer
   });
 
   // Save User in the database

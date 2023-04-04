@@ -39,7 +39,7 @@ export default {
                         const endMinutes = beginDate.getMinutes() + 40;
                         doc.start = beginDate.getFullYear()+"-"+(beginDate.getMonth()+1)+"-"+beginDate.getDate() + " " + beginDate.getHours() + ":" + beginDate.getMinutes() + ":" + beginDate.getSeconds();
                         doc.end = beginDate.getFullYear()+"-"+(beginDate.getMonth()+1)+"-"+beginDate.getDate() + " " + beginDate.getHours() + ":" + endMinutes + ":" + beginDate.getSeconds();
-                        doc.title = doc.vehicle.license_no;
+                        doc.title = doc.vehicle.license_no + " "+ doc.vehicle.make + " " + doc.vehicle.model;
                     });
                     // console.log(response.data);
                 })

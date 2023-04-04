@@ -54,7 +54,7 @@
                         <div class="card-title">
                             How your email would look
                         </div>
-                        <p class="card-text">"Hi {{ customer.first_name }},<br> Our system shows your vehicle, {{ vehicle?.license_no }}, is need of service. The service required is {{ service?.name }}. We recommend coming in on {{ date }} at {{ time }}, to complete this service and keep up your routine maintenance. Thank you and hope to see you soon!"</p>
+                        <p class="card-text">"Hi {{ customer.first_name }}, Our system shows your vehicle, {{ vehicle?.license_no }}, is need of service. The service required is {{ service?.name }}. We recommend coming in on {{ date }} at {{ time }}, to complete this service and keep up your routine maintenance."</p>
 
                         <button @click="sendEmail" class="btn btn-block btn-primary">Send</button>
                     </div>
@@ -140,7 +140,7 @@ export default {
             this.email.subject = "N Auto Reminder: Vehicle To Service Soon - "+ vehicleNumber;
         },
         updateContent() {
-            this.email.content = "Hi "+ this.customer?.first_name +" Our system shows your vehicle, "+ this.vehicle?.license_no +", is need of service. The service required is "+ this.service?.name +". We recommend coming in on "+ this.date +" at "+ this.time +", to complete this service and keep up your routine maintenance. Thank You and hope to see you soon!";
+            this.email.content = "Hi "+ this.customer?.first_name +", Our system shows your vehicle, "+ this.vehicle?.license_no +", is need of service. The service required is "+ this.service?.name +". We recommend coming in on "+ this.date +" at "+ this.time +", to complete this service and keep up your routine maintenance.";
         },
         
         retrieveVehicles() {

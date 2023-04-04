@@ -1,12 +1,6 @@
-# Web-based Customer Contact Point for an Automotive Company
+# automotive-apps
 
-Steps to run backend:
-cd backend ->
-npm install ->
-node server.js (back end)
+npm install (frontend then backend)
 
-Steps to run frontend:
-cd frontend ->
-npm install ->
 npm run serve (front end)
-
+node server.js (back end)

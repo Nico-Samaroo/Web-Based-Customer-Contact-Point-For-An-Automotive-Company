@@ -20,7 +20,7 @@
 
                 <!--SUCCESS-->
                 <div v-if="isSuccess">
-                    <h2>Uploaded {{ uploadedFiles.length }} file(s) successfully.</h2>
+                    <h2>Uploaded file successfully.</h2>
                     <p>
                         <a href="javascript:void(0)" @click="reset()">Upload again</a>
                     </p>

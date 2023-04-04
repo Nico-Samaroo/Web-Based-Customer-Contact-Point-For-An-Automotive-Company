@@ -84,7 +84,7 @@
                         <!-- <img src="assets/img/services/services-1.png" alt=""> -->
                         <h5>Oil Change - $100</h5>
                         <p>Over time, the fast-moving parts breakdown the oil and lessen its ability to absorb heat and lubricate the engine. Skipping an oil change leads to the vehicle's oil thinning over time and catching a build-up of metal, dirt, and other particles. Get your oil changed at N Auto Today!</p>
-                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                        <router-link class="fa fa-long-arrow-right" to="/appointment/create"></router-link>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6">
@@ -92,7 +92,7 @@
                         <!-- <img src="assets/img/services/services-2.png" alt=""> -->
                         <h5>Brake Repair - $120</h5>
                         <p>Regular brake checks give you the chance to fix small problems before they become bigger. However, too much time between services, can cause brake pads to wear away completely, damaging your brake disks every time you come to a stop. Get your brakes checked and repaired at N Auto Today!</p>
-                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                        <router-link class="fa fa-long-arrow-right" to="/appointment/create"></router-link>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6">
@@ -100,7 +100,7 @@
                         <!-- <img src="assets/img/services/services-3.png" alt=""> -->
                         <h5>Alignment - $110</h5>
                         <p>Tire alignment, also known as wheel alignment, can help your tires perform properly and help them last longer. It can also improve handling and keep your vehicle from pulling in one direction or vibrating strangely on the road.  Get your tires aligned at N Auto Today!</p>
-                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                        <router-link class="fa fa-long-arrow-right" to="/appointment/create"></router-link>
                     </div>
                 </div>
             </div>
@@ -117,7 +117,7 @@
                         <!-- <img src="assets/img/services/services-1.png" alt=""> -->
                         <h5>Buff and Polish - $1000</h5>
                         <p>Buffing or polishing a vehicle correctly allows you to take away or remove a number of defects, such as small scratches, etching and oxidation. Get your car buffed and polished at N Auto Today!</p>
-                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                        <router-link class="fa fa-long-arrow-right" to="/appointment/create"></router-link>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6">
@@ -125,7 +125,7 @@
                         <!-- <img src="assets/img/services/services-2.png" alt=""> -->
                         <h5>Inside and Outside Wash - $400</h5>
                         <p>Keeping your vehicle clean and shiny with regular carwashes is an investment for the future. Regular carwashes help protect your vehicle from grime, mud, and other corrosive debris that can lead to rust, faded paint and more. Get a complete car wash N Auto Today!</p>
-                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                        <router-link class="fa fa-long-arrow-right" to="/appointment/create"></router-link>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6">
@@ -133,7 +133,7 @@
                         <!-- <img src="assets/img/services/services-3.png" alt=""> -->
                         <h5>Shampoo Upholstery - $500</h5>
                         <p>Give your regular car interior cleaning as this can help you avoid health issues and other issues associated with low indoor air quality. Get an interior car wash/shampoo at N Auto Today!</p>
-                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                        <router-link class="fa fa-long-arrow-right" to="/appointment/create"></router-link>
                     </div>
                 </div>
             </div>
@@ -150,7 +150,7 @@
                         <!-- <img src="assets/img/services/services-1.png" alt=""> -->
                         <h5>Rim Repair - $250</h5>
                         <p>Repairing your alloy wheels is generally cheaper than having to replace them, especially if there's only a few small scratches or dents that can be repaired with ease. Get your rims repaired at N Auto Today!</p>
-                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                        <router-link class="fa fa-long-arrow-right" to="/appointment/create"></router-link>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
@@ -158,7 +158,7 @@
                         <!-- <img src="assets/img/services/services-2.png" alt=""> -->
                         <h5>Polish Headlights - $100</h5>
                         <p>Plastic lenses can become dull, scratched and yellow over time. Polishing headlights will clear the haze and save money on replacements lights. Get your headlights polished at N Auto Today!</p>
-                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                        <router-link class="fa fa-long-arrow-right" to="/appointment/create"></router-link>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
@@ -166,7 +166,7 @@
                         <!-- <img src="assets/img/services/services-3.png" alt=""> -->
                         <h5>Ceramic coating - $2000</h5>
                         <p>Ceramic coating will protect your car's paint from oxidizing, preventing it from fading and wearing a dull look. Get your car ceramic coated at N Auto Today!</p>
-                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                        <router-link class="fa fa-long-arrow-right" to="/appointment/create"></router-link>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
@@ -174,7 +174,7 @@
                         <!-- <img src="assets/img/services/services-3.png" alt=""> -->
                         <h5>Collision Repairs</h5>
                         <p>Price based on uploading picture(s) to get a quote.</p>
-                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                        <router-link class="fa fa-long-arrow-right" to="/quote/create"></router-link>
                     </div>
                 </div>
             </div>
@@ -331,7 +331,7 @@
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="footer__contact__option">
-                            <div class="option__item"><i class="fa fa-phone"></i> (+1 868) 555 6789</div>
+                            <div class="option__item"><i class="fa fa-phone"></i> (+1 868) 333 1870</div>
                             <div class="option__item email"><i class="fa fa-envelope-o"></i> n_auto_business@gmail.com</div>
                         </div>
                     </div>
@@ -364,10 +364,10 @@
                 </div>
                 <div class="col-lg-2 col-md-3">
                     <div class="footer__widget">
-                        <h5>Infomation</h5>
+                        <h5>Access</h5>
                         <ul>
                             <li><a href="#"><i class="fa fa-angle-right"></i> Rentals</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right"></i> Services</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right"></i> Appointments</a></li>
                             <li><a href="#"><i class="fa fa-angle-right"></i> Quotes</a></li>
                         </ul>
                     </div>
@@ -376,24 +376,24 @@
                     <div class="footer__brand">
                         <h5>Top Brands</h5>
                         <ul>
-                            <li><a href="#"><i class="fa fa-angle-right"></i> 555</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right"></i> NGK</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right"></i> Bosch</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right"></i> Lucas</a></li>
+                            <li><a href="http://www.sankei-555.co.jp/"><i class="fa fa-angle-right"></i> 555</a></li>
+                            <li><a href="https://ngksparkplugs.com/en/"><i class="fa fa-angle-right"></i> NGK</a></li>
+                            <li><a href="https://www.boschautoparts.com/"><i class="fa fa-angle-right"></i> Bosch</a></li>
+                            <li><a href="https://lucasautomotive.com/en/"><i class="fa fa-angle-right"></i> Lucas</a></li>
                         </ul>
                         <ul>
-                            <li><a href="#"><i class="fa fa-angle-right"></i> Wagner</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right"></i> Rain-X</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right"></i> Castrol</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right"></i> Shell</a></li>
+                            <li><a href="https://www.wagnerbrake.com/"><i class="fa fa-angle-right"></i> Wagner</a></li>
+                            <li><a href="https://www.rainx.com/"><i class="fa fa-angle-right"></i> Rain-X</a></li>
+                            <li><a href="https://www.castrol.com/"><i class="fa fa-angle-right"></i> Castrol</a></li>
+                            <li><a href="https://www.shell.com/"><i class="fa fa-angle-right"></i> Shell</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            <div class="footer__copyright__text">
+             <div class="footer__copyright__text"> 
                 <p>Copyright &copy; {{ date }} All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
-             </div>
+            </div>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
         </div>
     </footer>
